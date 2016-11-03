@@ -1,0 +1,46 @@
+.login-panel{
+	margin: 80px 0px 20px 0px; 
+}
+.login-panel .email{
+    border-radius: 2px;
+}
+.login-panel .password{
+    border-radius: 2px;
+}
+.login-panel .login-btn{
+	border: 0px solid;
+    border-radius: 2px;
+    border-color: none;
+    background-color: #e3000f;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.login-panel .cancel-btn{
+	color: #fff;
+	border: 0px solid;
+    border-radius: 2px;
+    border-color: none;
+    background-color: #919191;
+    margin-bottom: 10px;
+}
+.no-password{
+	margin: 10px 0px 10px 0px;
+}
+.help-login{
+	margin: 20px 0px 10px 0px; 
+	border: 1px solid #cccccc;
+    border-radius: 2px;
+    padding: 0px 10px 10px 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color:#333333; 
+    background-color: #f6f6f6;
+}
+.login-body-text{
+	display: block;
+	background: url("../images/login-bg.png") no-repeat bottom left;
+	padding: 0px 10px 210px 10px;
+}
+.login-panel a:hover{
+    text-decoration: none;
+}

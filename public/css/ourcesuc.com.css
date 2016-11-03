@@ -1,0 +1,765 @@
+.nmbrsrch {
+    display: flex !important;
+    float: right;
+}
+.navbar-right .dropdown-menu {
+    left: auto;
+    right: -60px;
+}
+.logotxt {
+    font-size: 13px;
+    text-align: justify;
+    width: 245px;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #555;
+}
+h4.hdr-nmbr {
+    font-size: 18px;
+    font-weight: bold;
+}
+span.nmbclr {
+    color: #e3000f;
+}
+input.cesusearch {
+    padding: 4px;
+    box-shadow: inset 1px 4px 7px #e6e6e6;
+    -moz-box-shadow: inset 1px 4px 7px #e6e6e6;
+    -webkit-box-shadow: inset 1px 4px 7px #e6e6e6;
+    border: 1px solid #dbdbdb;
+    font-style: italic;
+}
+button.searchsbmt {
+    background-color: #e3000f;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+}
+.navbar-default {
+    background-color: #fff;
+    border-color: #e7e7e7;
+    box-shadow:  -17px -2px 18px 10px #ccc;
+    -webkit-box-shadow: -17px -2px 18px 10px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    -17px -2px 18px 10px #ccc;  /* Firefox 3.5 - 3.6 */
+}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+body {
+  font-family: 'Open Sans', 'sans-serif';
+}
+.mega-dropdown {
+  position: static !important;
+}
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 1109px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+}
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  color: #222;
+  padding: 3px 5px;
+}
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+}
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  color: #000;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
+}
+
+.carousel-control {
+  width: 30px;
+  height: 30px;
+  top: -35px;
+
+}
+
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right {
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 30px;
+  text-shadow: none;
+  color: #333;
+  border: 1px solid #ddd;
+}
+li.dropdown.mega-dropdown.domestic {
+    background-repeat: no-repeat;
+    color: #fff;
+   width: 169px;
+}
+li.dropdown.mega-dropdown.business {
+    background-repeat: no-repeat;
+    color: #fff;
+}
+a.dropdown-toggle.dmstic {
+    color: #fff;
+}
+li.cesu-menu {
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 12px;
+}
+.collapse.navbar-collapse.js-navbar-collapse {
+    position: relative;
+}
+.bs-example {
+    margin-left:20px;
+}
+.navbar-nav > li > .dropdown-menu {
+    margin-top: -16px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-left: 31px;
+}
+button.close1 {
+    margin-top: -288px;
+    color: #fff;
+    opacity: 0.9;
+    float: right;
+    margin-right: 5px;
+    background-color: #000;
+    border: none;
+}
+.cesu-bg{
+   background: url(../images/bgb.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: -33px;
+    height: 1427px;
+}
+.cesu-bg2{
+     background: url(../images/bgb.png) no-repeat;    
+}
+nav.navbar.navbar-inverse {
+   margin-left: -11px;
+    margin-top: -31px;
+}
+div#post-detailsxxx {
+    position: relative;
+    top: -14px;
+}
+img.img-responsive.cesutab {
+    float: left;
+    padding: 0px 3px;
+}
+li.list-group-item {
+    background-color: #f1f1f1;
+    cursor: pointer;
+    border-bottom: 1px solid #606060;
+    font-size: 13px;
+}
+.tab-submenu {
+    background-color: #fff;
+    
+    width: 100%;
+    padding: 11px 0px 0px;
+    margin-top: 10px;
+    border: 1px solid #d3d3d3;
+    color: #606060;
+    text-transform: none;
+}
+
+p.cesu-tab {
+    padding-bottom: 9px;
+    border-bottom: 1px dotted #aeaeae;
+}
+.panel-heading.leftmenu {
+    background-color: #e3000f;
+    color: #fff;
+}
+.maincolor {
+    background-color: #fff;
+    height: 543px;
+    margin-left: 20px;
+    width: auto;
+    border: 1px solid #d3d3d3;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+.cesu-lefttab {
+    margin: 0 0 0 0px;
+}
+nav.navbar.navbar-default.navbar-static-top.cesu {
+    padding: 10px 2px 12px;
+}
+
+p.cesu-content {
+    text-align: justify;
+    font-size: 12px;
+}
+.col-md-3.lefttab {
+    padding-left: 0;
+    margin-top: 20px;
+}
+.col-md-3.righttab {
+    padding-right: 6px;
+    margin-top: 20px;
+}
+li.list-group-item.tab {
+    background-color: #606060;
+    font-size: 14px;
+    font-style: normal;
+    color: #fff;
+    text-transform: uppercase;
+}
+.adsofc {
+    background-image: url(../images/ourofc.png);
+    background-repeat: no-repeat;
+    padding: 1px 21px;
+    width: 100%;
+    height: 129px;
+    color: #6f6f6f;
+    line-height: 0.5;
+}
+button.ofcservice {
+    background-color: #1e2d5c;
+    padding: 6px 9px;
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+}
+.cesuproducts {
+    margin: auto;
+    text-align: center;
+}
+.cesuproducts h4 {
+    color: #6f6f6f;
+}
+.cesuproducts p {
+    font-size: 13px;
+}
+.redmr a {
+    color: #e3000f;
+    font-style: italic;
+    font-weight: bold;
+}
+.cesuproducts {
+    margin: auto;
+    float: left;
+    margin-top: 47px;
+    margin-bottom: 15px;
+}
+.adsofc h3 {
+    text-transform: uppercase;
+    font-size: 21px;
+}
+.footer {
+    margin-top: 20px;
+    background-color: #606060;
+    width: 100%;
+    border-top: 5px solid #c8121e;
+    height: 254px;
+    color: #fff;
+}
+.cesu-ftr {
+    margin-left: 16px;
+}
+.cesu-ftr p {
+    font-size: 13px;
+    line-height: 0.8;
+}
+.cesu-ftr p a {
+    color: #bbbbbb;
+}
+.cesu-ftr p a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.contactcesu p {
+    line-height: normal;
+    margin: auto;
+}
+.contactcesu span {
+    float: left;
+    padding: 2px 13px;
+}
+.social-icn span {
+    padding: 28px 3px;
+}
+a.enquiry {
+    float: right;
+    margin-top: -1160px;
+}
+li.col-sm-3.mega {
+    width: 20%;
+}
+.account-login {
+    background-color: #112052;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.col-md-6.nusr2 {
+    text-align: right;
+}
+.col-md-6.nusr2 a {
+    color: #000;
+}
+.col-md-12.newusr {
+    border-bottom: 1px solid #aeaeae;
+    padding: 7px;
+}
+
+
+
+@media only screen and (max-width:320px) and (min-width:240px) {
+   
+    li.col-sm-3.mega {
+    width: 100%;
+}
+    .cesu-bg{
+     height: auto;
+    }
+.img-responsive.logo {
+    width: 102%;
+    position: relative;
+    top: -55px;
+    left: -36px;
+}
+    .nmbrsrch {
+    display: block !important;
+    float: right;
+}
+    .navbar-inverse .navbar-toggle {
+    border-color: #333;
+    background-color: black;
+    margin-top: 13px;
+    margin-bottom: 18px;
+}
+    .close1.toggle-visibility {
+    margin-top: -59px !important;
+    margin-right: 3px !important;
+}
+    .maincolor{
+     height: auto;   
+    }
+    div#post-detailsxxx {
+    position: relative;
+        top: auto;
+}
+    .tab-submenu{
+     width: 100% !important;   
+    }
+
+.adsofc {
+    background-image: url("../images/ourofc.png" ) !important;
+    background-repeat: no-repeat;
+    padding: 0;
+    width: 100%;
+    height: 129px;
+    color: #6F6F6F;
+    line-height: 0.5;
+}
+    li.list-group-item.tab {
+    font-size: 11px;
+    font-style: normal;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+    .footer {
+    height: auto !important;
+}
+.social-icn span {
+    padding: 0px;
+    margin-left: -2px !important;
+}
+    .contactcesu span {
+    float: left;
+}
+    .breadcrumb a {
+    text-decoration: none;
+    outline: none;
+    display: block;
+    float: left;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 24px;
+    color: white;
+    padding: 0px 10px 0px 40px;
+    text-transform: uppercase;
+    position: relative;
+}
+.breadcrumb a:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -11px;
+    width: 24px;
+    height: 24px;
+    z-index: 1;
+}
+            .col-md-9.brdcrm {
+    margin-bottom: 100px;
+}
+}
+
+
+
+
+@media only screen and (max-width:480px) and (min-width:320px) {
+        li.col-sm-3.mega {
+    width: 100%;
+}
+      .cesu-bg{
+     height: auto;
+    }
+.img-responsive.logo {
+    position: absolute;
+    top: -56px;
+    width: 35%;
+}
+    .nmbrsrch {
+    display: block !important;
+    float: right;
+}
+    .navbar-inverse .navbar-toggle {
+    border-color: #333;
+    background-color: black;
+    margin-top: 13px;
+    margin-bottom: 18px;
+}
+    .close1.toggle-visibility {
+    margin-top: -59px !important;
+    margin-right: 3px !important;
+}
+    .maincolor{
+     height: auto;   
+    }
+    div#post-detailsxxx {
+    position: relative;
+        top: auto;
+}
+   .tab-submenu {
+    width: 100%!important;
+}
+
+.adsofc {
+    background-image: url("../images/ourofc.png" ) !important;
+    background-repeat: no-repeat;
+    padding: 0;
+    width: 100%;
+    height: 129px;
+    color: #6F6F6F;
+    line-height: 0.5;
+}
+    li.list-group-item.tab {
+    font-size: 11px;
+    font-style: normal;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+    .footer {
+    height: auto !important;
+}
+.social-icn span {
+    margin-left: 4px !important;
+}
+    .contactcesu span {
+    float: left;
+}
+  .breadcrumb a:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    right: -16px;
+    width: 34px;
+    height: 34px;
+  }
+.breadcrumb a:after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -15px;
+    width: 38px;
+    height: 42px;
+    z-index: 1;
+}
+        .col-md-9.brdcrm {
+    margin-bottom: 200px;
+}
+    .breadcrumb a {
+    text-decoration: none;
+    outline: none;
+    display: block;
+    float: left;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 42px;
+    color: white;
+    padding: 0px 24px 0px 40px;;
+}
+}
+
+
+
+@media only screen and (max-width:640px) and (min-width:480px) {
+        li.col-sm-3.mega {
+    width: 100%;
+}
+    
+      .cesu-bg{
+     height: auto;
+    }
+.img-responsive.logo {
+    position: absolute;
+    top: -56px;
+    width: 35%;
+}
+    .contactcesu {
+    padding-bottom: 12px;
+}
+    
+    .navbar-inverse .navbar-toggle {
+    border-color: #333;
+    background-color: black;
+    margin-top: 13px;
+    margin-bottom: 18px;
+}
+    .close1.toggle-visibility {
+    margin-top: -111px !important;
+    margin-right: 3px !important;
+}
+    .maincolor{
+     height: auto;   
+    }
+    div#post-detailsxxx {
+    position: relative;
+        top: auto;
+}
+   .tab-submenu {
+    width: 100%!important;
+}
+
+.adsofc {
+    background-image: url("../images/ourofc.png" ) !important;
+    background-repeat: no-repeat;
+    padding: 0;
+    width: 100%;
+    height: 129px;
+    color: #6F6F6F;
+    line-height: 0.5;
+}
+    li.list-group-item.tab {
+    font-size: 11px;
+    font-style: normal;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+    .footer {
+    height: auto !important;
+}
+.breadcrumb a:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: -15px;
+    width: 37px;
+    height: 37px;
+    z-index: 1;
+}
+        .col-md-9.brdcrm {
+    margin-bottom: 82px;
+}
+    .breadcrumb a {
+    text-decoration: none;
+    outline: none;
+    display: block;
+    float: left;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 40px;
+    color: white;
+    padding: 0px 10px 0px 40px;
+}
+
+
+@media only screen and (max-width:768px) and (min-width:640px) {
+    
+      .cesu-bg{
+     height: auto;
+    }
+    .img-responsive.logo {
+    position: absolute;
+    top: -56px;
+    width: 28%;
+}
+    .contactcesu {
+    padding-bottom: 12px;
+}
+    
+    .navbar-inverse .navbar-toggle {
+    border-color: #333;
+    background-color: black;
+    margin-top: 13px;
+    margin-bottom: 18px;
+}
+    .close1.toggle-visibility {
+    margin-top: -111px !important;
+    margin-right: 3px !important;
+}
+
+    div#post-detailsxxx {
+    position: relative;
+        top: auto;
+}
+   .tab-submenu {
+    width: 100%!important;
+}
+
+.adsofc {
+    background-image: url("../images/ourofc.png" ) !important;
+    background-repeat: no-repeat;
+    padding: 0;
+    width: 100%;
+    height: 129px;
+    color: #6F6F6F;
+    line-height: 0.5;
+}
+    li.list-group-item.tab {
+    font-size: 11px;
+    font-style: normal;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+    .footer {
+    height: auto !important;
+}
+    .col-md-9.brdcrm {
+    margin-bottom: 82px;
+}
+
+
+}
+
+
+
+@media only screen and (max-width:1024px) and (min-width:768px) {
+    .footer{
+     width: 93%;
+        height: auto;
+    }
+      .cesu-bg{
+     height: auto;
+    }
+.nmbrsrch {
+    display: block !important;
+}
+    .mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 700px;
+    box-shadow: none;
+}
+    .contactcesu {
+    padding-bottom: 12px;
+}
+    
+    .navbar-inverse .navbar-toggle {
+    border-color: #333;
+    background-color: black;
+    margin-top: 13px;
+    margin-bottom: 18px;
+}
+    .close1.toggle-visibility {
+    margin-top: -180px; !important;
+    margin-right: 3px !important;
+}
+
+    div#post-detailsxxx {
+    position: relative;
+        top: auto;
+}
+   .tab-submenu {
+    width: 100%!important;
+}
+
+.adsofc {
+    background-image: url("../images/ourofc.png" ) !important;
+    background-repeat: no-repeat;
+    padding: 0;
+    width: 100%;
+    height: 129px;
+    color: #6F6F6F;
+    line-height: 0.5;
+}
+    li.list-group-item.tab {
+    font-size: 11px;
+    font-style: normal;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+    .col-md-3.prd {
+    display: inline-block !important;
+}
+    .cesuproducts {
+    margin: 20px auto auto;
+    display: inline-flex;
+}
+    .cesu-ftr {
+    margin-left: 16px;
+    display: inline-block;
+}
+.col-md-9.brdcrm {
+    margin-bottom: 82px;
+}
+        .maincolor{
+     height: auto;   
+    }
+        .footer {
+    height: auto !important;
+}
+}
+
+
+@media only screen and (max-width:1280px) and (min-width:1024px) {
+   .maincolor {
+    background-color: #FFF;
+    height: 633px;
+    margin-left: 20px;
+    width: auto;
+    border: 1px solid #D3D3D3;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+    
+    .social-icn span {
+    padding: 18px 0px;
+}
+        .mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 100%;
+    box-shadow: none;
+}
+    button.close1 {
+    margin-top: -252px;
+}
+}
+
+
+@media only screen and (max-width:1366px) and (min-width:1280px) {
+}
