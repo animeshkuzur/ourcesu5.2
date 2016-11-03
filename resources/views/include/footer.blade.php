@@ -38,12 +38,12 @@
                     <div class="col-md-3 prd">
                         <h4>Contact Us</h4>
                         <div class="contactcesu">
-                            <p><span><img src="images/home.png" class="img-responsive"> </span> 9870st vincent place,<br>
+                            <p><span><img src="{{ URL::asset('images/home.png') }}" class="img-responsive"> </span> 9870st vincent place,<br>
                             glasgow, dc 45 fr 45,</p><br>
-                            <p><span><img src="images/call.png" class="img-responsive"> </span> Telephone: +1 800 603 6035
+                            <p><span><img src="{{ URL::asset('images/call.png') }}" class="img-responsive"> </span> Telephone: +1 800 603 6035
 FAX: +1 800 889 9898</p>
                             <div class="social-icn">
-                            <p><span><img src="images/fb.png" class="img-responsive"></span> <span><img src="images/twt.png" class="img-responsive"> </span> <span><img src="images/gpls.png" class="img-responsive"> </span> <span><img src="images/pint.png" class="img-responsive"> </span> <span><img src="images/flicker.png" class="img-responsive"> </span> </p>
+                            <p><span><img src="{{ URL::asset('images/fb.png') }}" class="img-responsive"></span> <span><img src="{{ URL::asset('images/twt.png') }}" class="img-responsive"> </span> <span><img src="{{ URL::asset('images/gpls.png') }}" class="img-responsive"> </span> <span><img src="{{ URL::asset('images/pint.png') }}" class="img-responsive"> </span> <span><img src="{{ URL::asset('images/flicker.png') }}" class="img-responsive"> </span> </p>
                             </div>
                         </div>
                         </div>
