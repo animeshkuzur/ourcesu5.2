@@ -17,4 +17,9 @@ class UserController extends Controller
         }
         return redirect()->route('login');
     }
+
+    public function savesettings(){
+    	return view('pages.account');
+    }
+    
 }

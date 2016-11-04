@@ -11,4 +11,9 @@ class PageController extends Controller
     public function index($id){
     	
     }
+
+    public function test(){
+    	return view('pages.account');
+    }
+
 }

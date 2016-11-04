@@ -23,3 +23,5 @@ Route::get('/register',['as' => 'register', 'uses' => 'AuthController@register']
 Route::get('/registervalidate',['as' => 'registervalidate', 'uses' => 'AuthController@registervalidate']);
 Route::get('/account',['as' => 'account', 'uses' => 'UserController@account']);
 Route::get('/page/{id}',['uses' => 'PageController@index']);
+//Route::get('/test',['as' => 'test', 'uses' => 'PageController@test']);
+Route::get('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
