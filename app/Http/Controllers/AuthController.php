@@ -65,6 +65,24 @@ class AuthController extends Controller
 
     public function registervalidate(Request $request){
         $this->validate($request, User::$register_validation_rules);
+        $data = $request->only('name','email','password','password2','cont_acc');
+        if($data['password']!=$data['password2']){
+            return back()->withInput()->withErrors(['password' => 'Confirmation password did not match']);
+        }
+        $user = \DB::table('users')->insert([
+                'name' => $data['name'];
+                'email' => $data['email'];
+                'password' => bcrypt($data['password']),
+                'cont_acc' => $data['cont_acc'],
+            ]);
+        if($user){
+           if(\Auth::guard('user')->attempt(['email' => $data['email'], 'password' => $data['password'])){
+                return redirect('/');
+            } 
+        }
+        else{
+            return redirect()->withInput()->withErrors(['email' => 'Cannot register, Internal Server Error']);
+        }
         
         return redirect()->route('login');
     }
