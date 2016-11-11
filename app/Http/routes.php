@@ -20,8 +20,15 @@ Route::get('/vault',['as' => 'vault', 'uses' => 'VaultController@index']);
 Route::post('/loginvalidate',['as' => 'loginvalidate', 'uses' => 'AuthController@loginvalidate']);
 Route::get('/forgot',['as' => 'forgot', 'uses' => 'AuthController@forgot']);
 Route::get('/register',['as' => 'register', 'uses' => 'AuthController@register']);
-Route::get('/registervalidate',['as' => 'registervalidate', 'uses' => 'AuthController@registervalidate']);
+Route::post('/registervalidate',['as' => 'registervalidate', 'uses' => 'AuthController@registervalidate']);
 Route::get('/account',['as' => 'account', 'uses' => 'UserController@account']);
 Route::get('/page/{id}',['uses' => 'PageController@index']);
 //Route::get('/test',['as' => 'test', 'uses' => 'PageController@test']);
-Route::get('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
+Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
+
+Route::group(['prefix'=>'api'],function(){
+	Route::post('/login', ['uses'=>'ApiAuthController@login']);
+	Route::get('/getuser',['uses' => 'ApiAuthController@getuser']);
+	Route::get('/logout',['uses' => 'ApiAuthController@logout']);
+	Route::get('/regresh',['uses' => 'ApiAuthController@refresh']);
+});

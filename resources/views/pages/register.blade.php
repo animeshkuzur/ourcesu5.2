@@ -36,6 +36,21 @@
 		<div class="col-md-3">
 			<div class="login-panel">
 				<h4><b>Create Your Account</b></h4>
+				@if($errors)
+					@if(count($errors))
+						@foreach($errors->all() as $error)
+							<div class="alert alert-danger alert-dismissible" role="alert">
+								<font style="font-size: 12px; padding: 0px; margin : 0px;">
+									{{ $error }}
+									</font>
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+									
+								</button>
+							</div>
+						@endforeach
+					@endif
+				@endif
 				<br>
 				{!! Form::open(array('route' => 'registervalidate','method'=>'POST')) !!}
 				{!! Form::text('name', null, array('class' => 'form-control email','placeholder'=>'Name')) !!}

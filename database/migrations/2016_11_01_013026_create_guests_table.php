@@ -16,6 +16,7 @@ class CreateGuestsTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password')->default(bcrypt('password'));
+            $table->string('cont_acc')->nullable();
             $table->rememberToken();
         });
     }

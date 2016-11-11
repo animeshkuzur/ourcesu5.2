@@ -8,7 +8,7 @@ class Guest extends Authenticatable
 {
 	public $timestamps = false;
     protected $fillable = [
-        'email', 'password',
+        'email', 'password','cont_acc',
     ];
     protected $hidden = [
         'password', 'remember_token',

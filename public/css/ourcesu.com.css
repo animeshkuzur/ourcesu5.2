@@ -1088,3 +1088,9 @@ h4.hdr-nmbr{float:none; margin:0 auto;}
 .righttab-tabs{
     padding: 0px 10px 0px 0px;
 }
+.alert .alert-danger .alert-dismissible{
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+     
+}
