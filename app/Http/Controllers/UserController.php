@@ -20,9 +20,7 @@ class UserController extends Controller
     }
 
     public function savesettings(){
-        if(){
-
-        }
+        
     	return view('pages.account');
     }
     
