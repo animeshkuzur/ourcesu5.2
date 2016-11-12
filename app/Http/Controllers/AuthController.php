@@ -70,13 +70,13 @@ class AuthController extends Controller
             return back()->withInput()->withErrors(['password' => 'Confirmation password did not match']);
         }
         $user = \DB::table('users')->insert([
-                'name' => $data['name'];
-                'email' => $data['email'];
+                'name' => $data['name'],
+                'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'cont_acc' => $data['cont_acc'],
             ]);
         if($user){
-           if(\Auth::guard('user')->attempt(['email' => $data['email'], 'password' => $data['password'])){
+           if(\Auth::guard('user')->attempt(['email' => $data['email'], 'password' => $data['password'] ])){
                 return redirect('/');
             } 
         }
