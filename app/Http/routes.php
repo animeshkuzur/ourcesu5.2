@@ -31,5 +31,6 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('/getuser',['uses' => 'ApiAuthController@getuser']);
 	Route::get('/logout',['uses' => 'ApiAuthController@logout']);
 	Route::get('/refresh',['uses' => 'ApiAuthController@refresh']);
-	Route::get('/register',['uses' => 'ApiAuthController@register']);
+	Route::post('/register',['uses' => 'ApiAuthController@register']);
+
 });
