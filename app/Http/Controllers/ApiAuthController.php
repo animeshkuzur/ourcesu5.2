@@ -9,7 +9,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ApiAuthController extends Controller
 {
-    public function apilogin(Request $request){
+    public function login(Request $request){
         $data = $request->only('email','password');
         try {
             if (!$token = JWTAuth::attempt($data)) {
@@ -37,7 +37,7 @@ class ApiAuthController extends Controller
 
     }
 
-    public function apiauthenticatedUser()
+    public function getuser()
     {
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
@@ -87,6 +87,26 @@ class ApiAuthController extends Controller
         } 
     }
 
-    
+    public function register(Request $request){
+    	$data=$request->only('name','email','password','cont_acc');
+    	$data['password'] = bcrypt($data['password']);
+    	$stl_conn = \DB::connection('sqlsrv_STL');
+    	$USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $data['cont_acc'])->limit(1)->get();
+        if(empty($USER_DATA)){
+            return response()->json(['errorInfo' => 'Contract Account Number '.$count.' does not exist'], 401);
+        }
+        $user=\DB::table('users')->insert([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'cont_acc' => $data['cont_acc'],
+            ]);
+        if($user){
+            return response()->json(['Info' => 'user_registered'], 200);
+        }
+        else{
+            return response()->json(['errorInfo' => 'credentials_exists'], 401);
+        }
+    }
 
 }
