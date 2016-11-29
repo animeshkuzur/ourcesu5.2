@@ -46,11 +46,11 @@ class ApiAuthController extends Controller
                 return response()->json(['errorInfo' => 'user_not_found'], 404);
             }
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['errorInfo' => 'token_expired'], $e->getStatusCode());
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['errorInfo' => 'token_invalid'], $e->getStatusCode());
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['errorInfo' => 'token_absent'], $e->getStatusCode());
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
         return response()->json(compact('user'));
     }
@@ -59,14 +59,14 @@ class ApiAuthController extends Controller
     {
         try {
         	JWTAuth::invalidate($request->input('token'));
-        	return response()->json(['Info' => 'token_destroyed']);
+        	return response()->json(['info' => 'token_destroyed']);
         }
         catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['errorInfo' => 'token_expired'], $e->getStatusCode());
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['errorInfo' => 'token_invalid'], $e->getStatusCode());
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['errorInfo' => 'token_absent'], $e->getStatusCode());
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
     }
 
@@ -81,11 +81,11 @@ class ApiAuthController extends Controller
             return response()->json(['token' => $refreshedToken]);
         } 
         catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['errorInfo' => 'token_expired'], $e->getStatusCode());
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['errorInfo' => 'token_invalid'], $e->getStatusCode());
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['errorInfo' => 'token_absent'], $e->getStatusCode());
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         } 
     }
 
@@ -94,7 +94,7 @@ class ApiAuthController extends Controller
     	$data['password'] = bcrypt($data['password']);
     	$USER_DATA = Guest::where('cont_acc', $data['cont_acc'])->limit(1)->get();
         if(empty($USER_DATA)){
-            return response()->json(['errorInfo' => 'Contract Account Number does not exist'], 401);
+            return response()->json(['error' => 'Contract Account Number does not exist'], 401);
         }
         $user=\DB::table('users')->insert([
                 'name' => $data['name'],
@@ -103,10 +103,10 @@ class ApiAuthController extends Controller
                 'cont_acc' => $data['cont_acc'],
             ]);
         if($user){
-            return response()->json(['Info' => 'user_registered'], 200);
+            return response()->json(['info' => 'user_registered'], 200);
         }
         else{
-            return response()->json(['errorInfo' => 'credentials_exists'], 401);
+            return response()->json(['error' => 'credentials_exists'], 401);
         }
     }
 
