@@ -43,7 +43,7 @@ class ApiAuthController extends Controller
     {
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
-                return response()->json(['errorInfo' => 'user_not_found'], 404);
+                return response()->json(['error' => 'user_not_found'], 404);
             }
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
             return response()->json(['error' => 'token_expired'], $e->getStatusCode());
