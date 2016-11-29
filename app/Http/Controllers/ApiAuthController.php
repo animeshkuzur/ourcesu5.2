@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\User;
+use App\Guest;
 
 class ApiAuthController extends Controller
 {
@@ -20,7 +22,7 @@ class ApiAuthController extends Controller
             return response()->json(['error' => 'could not create token'], 500);
         }
 
-        $users = \DB::table('users')->where('email',$data['email'])->get();       
+        $users = User::where('email',$data['email'])->get();       
         foreach ($users as $user) {
             $id = $user->id; 
             $name = $user->name; 
@@ -90,10 +92,9 @@ class ApiAuthController extends Controller
     public function register(Request $request){
     	$data=$request->only('name','email','password','cont_acc');
     	$data['password'] = bcrypt($data['password']);
-    	$stl_conn = \DB::connection('sqlsrv_STL');
-    	$USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $data['cont_acc'])->limit(1)->get();
+    	$USER_DATA = Guest::where('cont_acc', $data['cont_acc'])->limit(1)->get();
         if(empty($USER_DATA)){
-            return response()->json(['errorInfo' => 'Contract Account Number '.$count.' does not exist'], 401);
+            return response()->json(['errorInfo' => 'Contract Account Number does not exist'], 401);
         }
         $user=\DB::table('users')->insert([
                 'name' => $data['name'],
