@@ -77,4 +77,35 @@ class ApiUserController extends Controller
         $temp = User::where('id',$user->id)->update(['email'=>$data['email']]);
         return response()->json(['info' => 'email changed']);
     }
+
+    public function contacc(Request $request){
+       try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['error' => 'user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+        }
+        $data = $request->only('cont_acc'); 
+        if(empty($data['cont_acc'])){
+            return response()->json(['error' => 'parameters missing']);
+        }
+        $stl_conn = \DB::connection('sqlsrv_STL');
+        $USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $$data['cont_acc'])->limit(1)->get();
+        if(empty($USER_DATA)){
+            return response()->json(['error' => 'contract account number does not exist']);
+        }
+        $temp = \DB::table('user_details')->insert([
+                'cont_acc' => $data['cont_acc'],
+                'cons_acc' => $USER_DATA[0]->CONS_ACC,
+                'user_id' => $user->id,
+            ]);
+        if($temp){
+            return response()->json(['info' => 'contract account number added']);
+        }
+    }
 }

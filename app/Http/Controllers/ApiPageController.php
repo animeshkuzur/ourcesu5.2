@@ -63,6 +63,8 @@ class ApiPageController extends Controller
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
 
+        
+        
     	return response()->json(['null'=>null]);	
     }
 

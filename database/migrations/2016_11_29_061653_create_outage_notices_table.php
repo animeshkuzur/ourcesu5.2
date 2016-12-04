@@ -12,7 +12,7 @@ class CreateOutageNoticesTable extends Migration
      */
     public function up()
     {
-        Schema::create('outage__notices', function (Blueprint $table) {
+        Schema::create('outage_notices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('notice');
             $table->string('DIVCODE');
@@ -28,6 +28,6 @@ class CreateOutageNoticesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('outage__notices');
+        Schema::drop('outage_notices');
     }
 }
