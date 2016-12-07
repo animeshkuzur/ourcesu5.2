@@ -65,7 +65,7 @@ class AuthController extends Controller
 
     public function registervalidate(Request $request){
         $this->validate($request, User::$register_validation_rules);
-        $data = $request->only('name','email','password','password2','cont_acc');
+        $data = $request->only('name','email','password','password2','cont_acc','phone');
         if($data['password']!=$data['password2']){
             return back()->withInput()->withErrors(['password' => 'Confirmation password did not match']);
         }
@@ -74,6 +74,7 @@ class AuthController extends Controller
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'cont_acc' => $data['cont_acc'],
+                'phone' => $data['phone'],
             ]);
         if($user){
            if(\Auth::guard('user')->attempt(['email' => $data['email'], 'password' => $data['password'] ])){

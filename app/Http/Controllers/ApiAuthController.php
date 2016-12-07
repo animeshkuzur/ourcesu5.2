@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\User;
 use App\Guest;
+use App\User_Detail;
 
 class ApiAuthController extends Controller
 {
@@ -72,7 +73,17 @@ class ApiAuthController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        return response()->json(compact('user'));
+        if(empty($user->cont_acc)){
+            return response()->json(['error' => 'select a cont_acc']);
+        }
+        $data = User_Detail::where('user_id',$user->id)->get(['cont_acc']);
+        return response()->json([
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'cont_acc' => $data,
+            ]);
     }
 
     public function logout(Request $request)

@@ -63,6 +63,8 @@
 				<br>
 				{!! Form::password('password2', array('class' => 'form-control password','placeholder'=>'Confirm Password')) !!}
 				<br>
+				{!! Form::text('phone', array('class' => 'form-control phone','placeholder'=>'Mobile Number')) !!}
+				<br>
 				<a href="#" class="btn btn-default cancel-btn">&nbsp;Cancel&nbsp;</a>
 				{!! Form::submit('&nbsp;&nbsp;Register&nbsp;&nbsp;', array('class' => 'btn btn-danger login-btn','name'=>'login')) !!}
 				{!! Form::close() !!}	
