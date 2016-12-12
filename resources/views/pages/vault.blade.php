@@ -31,7 +31,7 @@
                                         <th>Download/View</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="doc_content">
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -127,9 +127,9 @@
             data: request,
             dataType: 'json',
             success: function(data){
-                $('tdody').html("");
+                $('#doc_content').empty();
                 $.each(data.data, function (i){
-                    $('tbody').append("<tr><td>"+data.data[i].name+"</td><td>"+data.data[i].date+"</td><td>"+data.data[i].type+"</td><td></td></tr>");
+                    $('#doc_content').append("<tr><td>"+data.data[i].name+"</td><td>"+data.data[i].date+"</td><td>"+data.data[i].type+"</td><td></td></tr>");
                 });
                 
             },
