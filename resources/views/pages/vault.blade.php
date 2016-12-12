@@ -127,10 +127,9 @@
             data: request,
             dataType: 'json',
             success: function(data){
-                var i=0;
-                $.each(data, function (i){
-                    $('tbody').append("<tr><td>"+data[i].name+"</td><td>"+data[i].date+"</td><td>"+data[i].type+"</td><td></td></tr>");
-                    i++;
+                $('tdody').html("");
+                $.each(data.data, function (i){
+                    $('tbody').append("<tr><td>"+data.data[i].name+"</td><td>"+data.data[i].date+"</td><td>"+data.data[i].type+"</td><td></td></tr>");
                 });
                 
             },
