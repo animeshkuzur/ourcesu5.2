@@ -35,7 +35,7 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
+                                        <td>no records</td>
                                         <td></td>
                                     </tr>
                                     <!--<tr>
@@ -127,10 +127,15 @@
             data: request,
             dataType: 'json',
             success: function(data){
-                //console.log(data);
+                var i=0;
+                $.each(data, function (i){
+                    $('tbody').append("<tr><td>"+data[i].name+"</td><td>"+data[i].date+"</td><td>"+data[i].type+"</td><td></td></tr>");
+                    i++;
+                });
+                
             },
             error: function(data){
-                //console.log(data);
+                console.log(data);
             }
         });
     });

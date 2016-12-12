@@ -27,13 +27,27 @@ class VaultController extends Controller
     }
 
     public function getdocuments(Request $request){
-    	$date=$request->only('cont_acc','date');
+    	$result=array();
+    	$document = array();
+    	$data = $request->only('cont_acc','date');
+    	$arydate = explode("-",$data['date']);
+    	$date = $arydate[1].$arydate[0];
     	$stl_conn = \DB::connection('sqlsrv_STL');
     	$sap_conn = \DB::connection('sqlsrv_SAP');
-        $spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $$data['cont_acc'])->limit(1)->get();
+        $spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $data['cont_acc'])->where('BillMonth',$date)->limit(1)->get();
+        if($spot_bill){
+        	$document['name'] = "Spot Bill";
+        	$document['date'] = $data['date'];
+        	$document['type'] = "Bill";
+        	$result[0] = $document;
+        }
+        $result[1]=$document;
+        return response()->json(['data' => $result]);
+
         /*$sap_bill = $sap_conn->table('')->where()->limit(1)->get();
     	if(){
 
     	}*/
+    	
     }
 }
