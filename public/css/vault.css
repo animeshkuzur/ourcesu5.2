@@ -1,3 +1,19 @@
 .vault-panel label{
 	font-weight: normal;
 }
+.fetch-btn{
+    border: 0px solid;
+    border-radius: 2px;
+    border-color: none;
+    background-color: #e3000f;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.vault-panel .date-picker{
+	border: 0px solid;
+    border-radius: 2px;
+    border-color: none;    
+}
+.vault-panel a{
+	text-decoration: none;
+}

@@ -44,3 +44,6 @@
 .login-panel a:hover{
     text-decoration: none;
 }
+.login-panel .some{
+    padding: 5px 0px 5px 0px;
+}

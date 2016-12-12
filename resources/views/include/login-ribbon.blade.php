@@ -20,7 +20,6 @@
                                 @else
                                 <a href="{{ url('/login') }}"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Login</a>
                                 @endif
-        			
         		</div>
         	</div>
         </div>

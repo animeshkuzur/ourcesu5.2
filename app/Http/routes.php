@@ -25,6 +25,7 @@ Route::get('/account',['as' => 'account', 'uses' => 'UserController@account']);
 Route::get('/page/{id}',['uses' => 'PageController@index']);
 //Route::get('/test',['as' => 'test', 'uses' => 'PageController@test']);
 Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
+Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);
 
 Route::group(['prefix'=>'api'],function(){
 	Route::post('/login', ['uses'=>'ApiAuthController@login']);
@@ -45,4 +46,10 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('/payment',['uses' => 'ApiPageController@payment']);
 	Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
 	Route::get('/care',['uses' => 'ApiPageController@care']);
+});
+
+Route::group(['prefix'=>'admin'],function(){
+	Route::get('/login',['uses' => 'AdminController@login']);
+	Route::post('/adminvalidate',['as'=>'adminvalidate','uses'=>'AdminController@adminvalidate']);
+	Route::get('/dashboard',['uses'=>'AdminController@dashboard']);
 });

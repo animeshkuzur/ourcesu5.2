@@ -57,13 +57,27 @@
 				<br>
 				{!! Form::text('email', null, array('class' => 'form-control email','placeholder'=>'Email')) !!}
 				<br>
-				{!! Form::text('cont_acc', null, array('class' => 'form-control email','placeholder'=>'Contract Account No.')) !!}
+
+				<div class=" " id="cont_acc1">					
+					<input class="form-control" placeholder="CONTRACT ACCOUNT NUMBER" name="cont_acc[]" type="text">
+					<div class="row">
+						<div class="col-xs-6">
+							<button type="button" id="addBtn" class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Contract Acc</button>
+						</div>
+						<div class="col-xs-6">
+							<button type="button" id="removeBtn" class="btn btn-default btn-sm btn-block"><span class="glyphicon glyphicon-minus"></span>&nbsp;&nbsp;Contract Acc</button>
+						</div>
+					</div>
+				</div>
+				<div id="cont_acc">
+						
+				</div>
 				<br>
 				{!! Form::password('password', array('class' => 'form-control password','placeholder'=>'Password')) !!}
 				<br>
 				{!! Form::password('password2', array('class' => 'form-control password','placeholder'=>'Confirm Password')) !!}
 				<br>
-				{!! Form::text('phone', array('class' => 'form-control phone','placeholder'=>'Mobile Number')) !!}
+				{!! Form::text('phone',null, array('class' => 'form-control phone','placeholder'=>'Mobile Number')) !!}
 				<br>
 				<a href="#" class="btn btn-default cancel-btn">&nbsp;Cancel&nbsp;</a>
 				{!! Form::submit('&nbsp;&nbsp;Register&nbsp;&nbsp;', array('class' => 'btn btn-danger login-btn','name'=>'login')) !!}
@@ -83,5 +97,41 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
 
+			$(document).ready(function(){
+
+			    var counter = 2;
+					
+			    $("#addBtn").click(function () {
+							
+				if(counter>10){
+			        alert("Only 10 textboxes allow");
+			        return false;
+				}   
+					
+				var newTextBoxDiv = $(document.createElement('div')).attr({id : 'cont_acc' + counter,class: "some"});
+			                
+				newTextBoxDiv.after().html('<input class="form-control email" placeholder="CONTRACT ACCOUNT NUMBER '+counter+'" name="cont_acc[]" type="text">');
+			            
+				newTextBoxDiv.appendTo("#cont_acc");
+	
+				counter++;
+			    });
+
+			     $("#removeBtn").click(function () {
+				if(counter==2){
+			        alert("No more textbox to remove");
+			        return false;
+			       }   
+			        
+				counter--;
+						
+			        $("#cont_acc" + counter).remove();
+						
+			    });
+					
+
+			});
+		</script>
 @endsection

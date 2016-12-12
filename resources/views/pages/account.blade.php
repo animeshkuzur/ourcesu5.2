@@ -21,6 +21,7 @@
                     		
                     	</div>
                     <h3>My Account</h3>
+                    @if(\Auth::guard('users')->check())
                     <div class="account-header">
                         <div class="row">
                             <div class="col-xs-12">
@@ -136,6 +137,7 @@
                         {!! Form::close() !!}
                         </div>
                     </div>
+                    @endif
                 </div>
 		<!--Accounts Right Tab
             <div class="col-md-3 righttab">

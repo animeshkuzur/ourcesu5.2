@@ -64,19 +64,52 @@ class AuthController extends Controller
     }
 
     public function registervalidate(Request $request){
+        $count = 0;
         $this->validate($request, User::$register_validation_rules);
+        $contacc = $request->get('cont_acc');
         $data = $request->only('name','email','password','password2','cont_acc','phone');
+        $stl_conn = \DB::connection('sqlsrv_STL');
+        foreach ($contacc as $accnos) {
+            $count=$count+1;
+            if(empty($accnos)){
+                return back()->withInput()->withErrors(['cont_acc' => 'Contract Account Number ' .$count. ' is missing']);
+            }
+            else{
+                $USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $accnos)->limit(1)->get();
+                if(empty($USER_DATA)){
+                    return back()->withInput()->withErrors(['cont_acc' => 'Contract Account Number '.$count.' does not exist']);
+                }
+            }
+        }
         if($data['password']!=$data['password2']){
             return back()->withInput()->withErrors(['password' => 'Confirmation password did not match']);
+        }
+        if($count>1){
+            $temp = $contacc[0];
+        }
+        else{
+            $temp = $contacc;
         }
         $user = \DB::table('users')->insert([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'cont_acc' => $data['cont_acc'],
+                'cont_acc' => $temp,
                 'phone' => $data['phone'],
             ]);
-        if($user){
+        $user_id = User::where('email',$data['email'])->get();
+            $u_id = $user_id[0]->id;
+            foreach ($contacc as $accno) {
+                $U_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $accno)->limit(1)->get();
+                foreach ($U_DATA as $DAT) {
+                    $user_details = \DB::table('user_details')->insert([
+                    'cont_acc' => $DAT->CONTRACT_ACC,
+                    'cons_acc' => $DAT->CONS_ACC,
+                    'user_id' => $u_id,
+                    ]);
+                }                        
+            }
+        if($user_details){
            if(\Auth::guard('user')->attempt(['email' => $data['email'], 'password' => $data['password'] ])){
                 return redirect('/');
             } 

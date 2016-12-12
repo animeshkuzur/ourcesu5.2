@@ -148,7 +148,7 @@ class ApiAuthController extends Controller
             $user_id = User::where('email',$data['email'])->get();
             $u_id = $user_id[0]->id;
             foreach ($contacc as $accno) {
-                $U_DATA = $stl_conn->table('BILLING_OUTPUT_'.date('Y'))->where('CONTRACT_ACC', $accno)->limit(1)->get();
+                $U_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $accno)->limit(1)->get();
                 foreach ($U_DATA as $DAT) {
                     $user_details = \DB::table('user_details')->insert([
                     'cont_acc' => $DAT->CONTRACT_ACC,

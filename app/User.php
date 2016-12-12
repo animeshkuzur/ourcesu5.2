@@ -29,7 +29,8 @@ class User extends Authenticatable
         'email' => 'required|email|Unique:users',
         'password' => 'required|min:8',
         'password2' => 'required|min:8',
-        'cont_acc' => 'required|exists:guests',
+        'cont_acc' => 'required',
+        //'cont_acc' => 'required|exists:guests',
     ];
 
     public static $login_validation_rules = [
