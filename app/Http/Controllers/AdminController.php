@@ -40,10 +40,12 @@ class AdminController extends Controller
         if(empty($data['giturl'])){
             return back()->withInput()->withErrors(['giturl' => 'URL Required']);
         }
-        $path_command = "cd E:/TNINE/OURCESU";
-        $command = "git pull";
-        echo exec($path_command); 
-        echo exec($command);
+        $path_command = "cd E:/TNINE/OURCESU 2>&1";
+        $command = "git pull 2>&1";
+        exec($path_command,$temp); 
+        exec($command,$output);
+        echo $temp;
+        echo $output;
         //return view('admin.git',['output'=>$output]);
         //return response()->json(['output'=>$output]);
     }
