@@ -44,8 +44,8 @@ class AdminController extends Controller
         $command = "git pull 2>&1";
         exec($path_command,$temp); 
         exec($command,$output);
-        echo $temp;
-        echo $output;
+        echo implode(';', $temp);
+        echo implode(';', $output);
         //return view('admin.git',['output'=>$output]);
         //return response()->json(['output'=>$output]);
     }
