@@ -10,6 +10,9 @@ use App\Admin;
 class AdminController extends Controller
 {
     public function login(){
+        if(\Auth::guard('admin')->check()){
+            return view('admin.dashboard');    
+        }
     	return view('admin.login');
     }
 
@@ -23,7 +26,11 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-    	return view('admin.dashboard');
+        if(\Auth::guard('admin')->check()){
+            return view('admin.dashboard');    
+        }
+        return redirect('/admin/login');
+    	
     }
 
     public function git(){
@@ -48,5 +55,36 @@ class AdminController extends Controller
         $str_output = $str_output."<br>".implode(';', $output);
         return view('admin.git',['output'=>$output]);
         //return response()->json(['output'=>$output]);
+    }
+
+    public function logout(){
+        if(\Auth::guard('admin')->check()){
+            \Auth::guard('admin')->logout();
+        }
+        return redirect()->route('adminlogin');
+    }
+
+    public function pages(){
+        if(\Auth::guard('admin')->check()){
+            return view('admin.pages');    
+        }
+        return redirect('/admin/login');
+        
+    }
+
+    public function settings(){
+        if(\Auth::guard('admin')->check()){
+            return view('admin.settings');    
+        }
+        return redirect('/admin/login');
+        
+    }
+
+    public function images(){
+        if(\Auth::guard('admin')->check()){
+            return view('admin.images');    
+        }
+        return redirect('/admin/login');
+        
     }
 }

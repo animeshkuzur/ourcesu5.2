@@ -35,16 +35,18 @@
 	
 		<div class="content">
 			<div class="container">
-				<h1>Welcome!</h1>
+				<h1>Settings</h1>
 				<h5>Logged in as 
 				<b>
-				{{ \Auth::guard('admin')->user()->email }}
+					{{ \Auth::guard('admin')->user()->email }}
 				</b>
 				</h5>
 			</div>
 			<div class="container">
 				<div class="dashboard-panel">
-					
+				<div class="row">
+					<div class="col-md-"></div>
+				</div>	
 				</div>
 			</div>
 		</div>

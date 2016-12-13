@@ -35,7 +35,7 @@
 	
 		<div class="content">
 			<div class="container">
-				<h1>Welcome!</h1>
+				<h1>Upload Banner Images</h1>
 				<h5>Logged in as 
 				<b>
 				{{ \Auth::guard('admin')->user()->email }}

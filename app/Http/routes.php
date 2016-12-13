@@ -49,9 +49,13 @@ Route::group(['prefix'=>'api'],function(){
 });
 
 Route::group(['prefix'=>'admin'],function(){
-	Route::get('/login',['uses' => 'AdminController@login']);
+	Route::get('/login',['as'=>'adminlogin','uses' => 'AdminController@login']);
 	Route::post('/adminvalidate',['as'=>'adminvalidate','uses'=>'AdminController@adminvalidate']);
 	Route::get('/dashboard',['uses'=>'AdminController@dashboard']);
 	Route::get('/git',['uses'=>'AdminController@git']);
 	Route::post('/gitupdate',['as'=>'gitupdate','uses'=>'AdminController@gitupdate']);
+	Route::get('/logout',['uses'=>'AdminController@logout']);
+	Route::get('/pages',['uses'=>'AdminController@pages']);
+	Route::get('/settings',['uses'=>'AdminController@settings']);
+	Route::get('/images',['uses'=>'AdminController@images']);
 });
