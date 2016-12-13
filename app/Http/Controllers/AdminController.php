@@ -25,4 +25,25 @@ class AdminController extends Controller
     public function dashboard(){
     	return view('admin.dashboard');
     }
+
+    public function git(){
+        if(\Auth::guard('admin')->check()){
+            return view('admin.git');    
+        }
+        return view('admin.login');
+        
+    }
+
+    public function gitupdate(Request $request){
+        $data = $request->only('giturl');
+        if(empty($data['giturl'])){
+            return back()->withInput()->withErrors(['giturl' => 'URL Required']);
+        }
+        $path_command = "cd E:/TNINE/OURCESU";
+        $command = "git pull";
+        exec($path_command, $temp); 
+        exec($command, $output);
+        $output = $temp."<br>".$output; 
+        return view('/admin/git',['output'=>$output]);
+    }
 }

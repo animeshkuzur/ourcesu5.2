@@ -52,4 +52,6 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('/login',['uses' => 'AdminController@login']);
 	Route::post('/adminvalidate',['as'=>'adminvalidate','uses'=>'AdminController@adminvalidate']);
 	Route::get('/dashboard',['uses'=>'AdminController@dashboard']);
+	Route::get('/git',['uses'=>'AdminController@git']);
+	Route::post('/gitupdate',['as'=>'gitupdate','uses'=>'AdminController@gitupdate']);
 });
