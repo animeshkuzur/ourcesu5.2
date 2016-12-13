@@ -62,7 +62,9 @@
 						@if(!empty($output))
 							<hr>
 							<div class="output">
-								{{ $output }}
+								@foreach($output as $out)
+									{{$out}}
+								@endforeach
 							</div>
 						@else
 							<br>
