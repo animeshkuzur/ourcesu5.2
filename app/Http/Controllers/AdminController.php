@@ -42,9 +42,9 @@ class AdminController extends Controller
         }
         $path_command = "cd E:/TNINE/OURCESU";
         $command = "git pull";
-        exec($path_command, $temp); 
-        exec($command, $output);
+        echo exec($path_command, $temp); 
+        echo exec($command, $output);
         //return view('admin.git',['output'=>$output]);
-        return response()->json(['output'=>$output]);
+        //return response()->json(['output'=>$output]);
     }
 }
