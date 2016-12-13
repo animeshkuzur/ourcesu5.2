@@ -129,7 +129,7 @@
             success: function(data){
                 $('#doc_content').empty();
                 $.each(data.data, function (i){
-                    $('#doc_content').append("<tr><td>"+data.data[i].name+"</td><td>"+data.data[i].date+"</td><td>"+data.data[i].type+"</td><td></td></tr>");
+                    $('#doc_content').append("<tr><td>"+data.data[i].name+"</td><td>"+data.data[i].date+"</td><td>"+data.data[i].type+"</td><td><button class='btn btn-sm btn-default'>Download/View</button></td></tr>");
                 });
                 
             },
