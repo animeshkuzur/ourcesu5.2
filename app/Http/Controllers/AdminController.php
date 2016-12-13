@@ -44,7 +44,6 @@ class AdminController extends Controller
         $command = "git pull";
         exec($path_command, $temp); 
         exec($command, $output);
-        $output = $temp."<br>".$output; 
         return view('admin.git',['output'=>$output]);
     }
 }
