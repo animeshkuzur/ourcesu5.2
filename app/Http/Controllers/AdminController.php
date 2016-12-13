@@ -45,7 +45,6 @@ class AdminController extends Controller
         exec($path_command, $temp); 
         exec($command, $output);
         //return view('admin.git',['output'=>$output]);
-        echo $temp;
-        echo $output;
+        return response()->json(['output'=>$output]);
     }
 }
