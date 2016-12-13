@@ -27,8 +27,9 @@ class AdminController extends Controller
     }
 
     public function git(){
+        $output = '';
         if(\Auth::guard('admin')->check()){
-            return view('admin.git');    
+            return view('admin.git',['output',$output]);    
         }
         return view('admin.login');
         
@@ -44,6 +45,6 @@ class AdminController extends Controller
         exec($path_command, $temp); 
         exec($command, $output);
         $output = $temp."<br>".$output; 
-        return view('/admin/git',['output'=>$output]);
+        return view('admin.git',['output'=>$output]);
     }
 }

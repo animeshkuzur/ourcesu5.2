@@ -58,13 +58,14 @@
 						{!! Form::text('giturl', null, array('class' => 'form-control email','placeholder'=>'Git URL','id'=>'giturl')) !!}
 						<br>
 						{!! Form::submit('&nbsp;&nbsp;PULL&nbsp;&nbsp;', array('class' => 'btn btn-danger login-btn btn-block','name'=>'login','id'=>'login')) !!}
-						@if($output)
-						<hr>
-						<div class="output">
-							{{$output}}
-						</div>
+
+						@if(!empty($output))
+							<hr>
+							<div class="output">
+								{{ $output }}
+							</div>
 						@else
-						<br>
+							<br>
 						@endif
 						</div>
 					</div>
