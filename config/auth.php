@@ -52,6 +52,10 @@ return [
             'driver' => 'session',
             'provider' => 'guests',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'guests' => [
             'driver' => 'eloquent',
             'model' => App\Guest::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
         ],
 
         // 'users' => [
@@ -115,6 +123,12 @@ return [
         ],
         'guests' => [
             'provider' => 'guests',
+            'email' => 'auth.emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
             'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
