@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
@@ -42,26 +43,50 @@
 				</b>
 				</h5>
 			</div>
+			{!! Form::token() !!}
 			<div class="container">
 				<div class="dashboard-panel">
 					<div class="row">
 						<div class="col-md-4">
-						<div class="form-group">
-							<label>Select a Category: </label>
-							<select class="form-control" id="category">
-								@if($category)
-									@foreach($category as $cat)
-										<option>{{ $cat->name }}</option>
-									@endforeach
-								@endif
-							</select>
+							<div class="form-group">
+								<label>Select a Category: </label>
+								<select class="form-control" id="category">
+									<option disabled selected value> -- select an category -- </option>
+									@if($category)
+										@foreach($category as $cat)
+											<option value="{{ $cat->id }}">{{ $cat->name }}</option>
+										@endforeach
+									@endif
+								</select>
+							</div>
 						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Select a Sub-Category: </label>
+								<select class="form-control" id="subcategory" disabled="disabled">
+									
+								</select>
+							</div>
 						</div>
-						<div class="col-md-4"></div>
-						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Select a Page: </label>
+								<select class="form-control" id="page" disabled="disabled">
+									
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+	<script type="text/javascript">
+		$('#category').change(function(){
+			var id = $('#category option:selected').val();
+			
+		});
+
+	</script>
 </body>
 </html>

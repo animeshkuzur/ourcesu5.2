@@ -60,4 +60,5 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('/images',['uses'=>'AdminController@images']);
 	Route::post('/adminchangepwd',['as'=>'adminchangepwd','uses'=>'AdminController@adminchangepwd']);
 	Route::post('/adduser',['as'=>'adduser','uses'=>'AdminController@adduser']);
+	Route::get('/getsubcat',['uses'=>'AdminController@getsubcat']);
 });

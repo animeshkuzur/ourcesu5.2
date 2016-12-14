@@ -132,4 +132,10 @@ class AdminController extends Controller
         return redirect('/admin/settings');
 
     }
+
+    public function getsubcat(Request $request){
+        $id = $request->only('id');
+        $data = Subcategory::where('category_id',$id)->get();
+        return response()->json(['']);
+    }
 }
