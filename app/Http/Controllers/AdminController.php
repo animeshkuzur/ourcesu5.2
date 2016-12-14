@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Admin;
+use App\Category;
+use App\Subcategory;
+use App\Page;
+use App\Content;
 
 class AdminController extends Controller
 {
@@ -68,7 +72,8 @@ class AdminController extends Controller
 
     public function pages(){
         if(\Auth::guard('admin')->check()){
-            return view('admin.pages');    
+            $category = Category::get();
+            return view('admin.pages',['category'=>$category]);    
         }
         return redirect('/admin/login');
         
@@ -76,8 +81,7 @@ class AdminController extends Controller
 
     public function settings(){
         if(\Auth::guard('admin')->check()){
-            $success ="";
-            return view('admin.settings',['success',$success]);    
+            return view('admin.settings');    
         }
         return redirect('/admin/login');
         

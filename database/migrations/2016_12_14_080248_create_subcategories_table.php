@@ -18,6 +18,9 @@ class CreateSubcategoriesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->timestamps();
         });
+        Schema::table('subcategories', function($table) {
+            $table->foreign('category_id')->references('id')->on('categories');
+        });
     }
 
     /**

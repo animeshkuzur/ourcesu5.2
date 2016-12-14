@@ -44,7 +44,22 @@
 			</div>
 			<div class="container">
 				<div class="dashboard-panel">
-					
+					<div class="row">
+						<div class="col-md-4">
+						<div class="form-group">
+							<label>Select a Category: </label>
+							<select class="form-control" id="category">
+								@if($category)
+									@foreach($category as $cat)
+										<option>{{ $cat->name }}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
+					</div>
 				</div>
 			</div>
 		</div>

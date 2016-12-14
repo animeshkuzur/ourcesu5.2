@@ -11,8 +11,23 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
-        		'name' => 'Domestic Consumers',
+    	$data = array([
+        		'name' => 'Domestic Consumers'
+        	],
+        	[
+        		'name' => 'Business Consumers'
+        	],
+        	[
+        		'name' => 'Main Menu'
+        	],
+        	[
+        		'name' => 'Top Menu'
+        	],
+        	[
+        		'name' => 'Bottom Menu'
         	]);
+        DB::table('categories')->insert(
+        	$data
+        );
     }
 }
