@@ -103,9 +103,9 @@
 						<div class="row">
 							<div class="col-md-5">
 								{!! Form::open(array('route' => 'adduser','method'=>'POST')) !!}
-								{!! Form::text('user_email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'New Email')) !!}
+								{!! Form::text('email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'New Email')) !!}
 								<br>
-								{!! Form::password('user_password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'user_password')) !!}
+								{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'password')) !!}
 								<br>
 								{!! Form::submit('&nbsp;&nbsp;SAVE&nbsp;&nbsp;', array('class' => 'btn btn-danger btn-sm login-btn','name'=>'save','id'=>'pwd_save')) !!}
 								{!! Form::close() !!}

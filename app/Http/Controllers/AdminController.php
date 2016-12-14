@@ -115,14 +115,15 @@ class AdminController extends Controller
            return redirect('/admin/login'); 
         }
         $this->validate($request, Admin::$add_user_validation);
-        $data = $request->only('user_email','user_password');
+        $data = $request->only('email','password');
         $temp = Admin::insert([
-            'email'=>$data['user_email'],
-            'password'=>bcrypt($data['user_password']),     
+            'email'=>$data['email'],
+            'password'=>bcrypt($data['password']),     
         ]);
         if(empty($temp)){
             return back()->withInput()->withErrors(['user_email' => 'Cannot add new user']);
         }
+
         $request->session()->flash('alert-success', 'User was successfully added!');
         return redirect('/admin/settings');
 

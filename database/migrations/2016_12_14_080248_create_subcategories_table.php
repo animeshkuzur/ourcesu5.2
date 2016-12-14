@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContentsTable extends Migration
+class CreateSubcategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,11 @@ class CreateContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('subcategories', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('content');
-            $table->integer('page_id')->unsigned();
-        });
-
-        Schema::table('contents', function($table) {
-            $table->foreign('page_id')->references('id')->on('pages');
+            $table->string('name');
+            $table->integer('category_id')->unsigned();
+            $table->timestamps();
         });
     }
 
@@ -30,6 +27,6 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contents');
+        Schema::drop('subcategories');
     }
 }

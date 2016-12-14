@@ -22,8 +22,8 @@ class Admin extends Authenticatable
         'new_password' => 'required|min:8',
     ];
     public static $add_user_validation = [
-        'user_email' => 'required|unique',
-        'user_password' => 'required|min:8',
+        'email' => 'required|email|Unique:admins',
+        'password' => 'required|min:8',
     ];
 
 }
