@@ -61,7 +61,7 @@
 
 						@if(!empty($output))
 							<hr>
-							<div class="output">
+							<div class="output" style="font-style: 10px;">
 								@foreach($output as $out)
 									{{$out}}
 								@endforeach

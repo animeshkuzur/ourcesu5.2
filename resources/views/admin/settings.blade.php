@@ -6,8 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	
     <link href="{{ URL::asset('css/admin.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -56,12 +58,33 @@
 						<div class="row">
 							<div class="col-md-5">
 							{!! Form::open(array('route' => 'adminchangepwd','method'=>'POST')) !!}
-							{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'Current Password','id'=>'old_password')) !!} 
+							{!! Form::password('cur_password', array('class' => 'form-control password input-sm','placeholder'=>'Current Password','id'=>'old_password')) !!} 
 							<br>
-							{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'new_password')) !!}
+							{!! Form::password('new_password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'new_password')) !!}
 							<br>
 							{!! Form::submit('&nbsp;&nbsp;SAVE&nbsp;&nbsp;', array('class' => 'btn btn-danger btn-sm login-btn','name'=>'save','id'=>'pwd_save')) !!}
 							{!! Form::close() !!}
+							</div>
+							<div class="col-md-7">
+								@if($errors)
+									@if(count($errors))
+										@foreach($errors->all() as $error)	
+											<div class="alert alert-danger alert-dismissible" role="alert" style="font-size: 12px;margin:5px;">
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											{{ $error }}
+											</div>
+										@endforeach				
+									@endif
+								@endif
+
+								<div class="flash-message">
+								    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+								      @if(Session::has('alert-' . $msg))
+
+								      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+								      @endif
+								    @endforeach
+								</div> <!-- end .flash-message -->
 							</div>
 						</div>
 
@@ -70,7 +93,6 @@
 				<br><br>
 				<div class="row">
 					<div class="col-md-4">
-					<br>
 						<div class="account_img">
 							<img src="{{ URL::asset('images/key.png') }}" class="img-responsive center-block">
 						</div>
@@ -81,9 +103,9 @@
 						<div class="row">
 							<div class="col-md-5">
 								{!! Form::open(array('route' => 'adduser','method'=>'POST')) !!}
-								{!! Form::text('email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'New Email')) !!}
+								{!! Form::text('user_email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'New Email')) !!}
 								<br>
-								{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'user_password')) !!}
+								{!! Form::password('user_password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'user_password')) !!}
 								<br>
 								{!! Form::submit('&nbsp;&nbsp;SAVE&nbsp;&nbsp;', array('class' => 'btn btn-danger btn-sm login-btn','name'=>'save','id'=>'pwd_save')) !!}
 								{!! Form::close() !!}

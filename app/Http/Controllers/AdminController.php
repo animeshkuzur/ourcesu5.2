@@ -17,6 +17,7 @@ class AdminController extends Controller
     }
 
     public function adminvalidate(Request $request){
+        $this->validate($request, Admin::$login_validation);
     	$data = $request->only('email','password');
     	if(\Auth::guard('admin')->attempt($data)){
             return redirect('/admin/dashboard');   
@@ -75,7 +76,8 @@ class AdminController extends Controller
 
     public function settings(){
         if(\Auth::guard('admin')->check()){
-            return view('admin.settings');    
+            $success ="";
+            return view('admin.settings',['success',$success]);    
         }
         return redirect('/admin/login');
         
@@ -90,6 +92,39 @@ class AdminController extends Controller
     }
 
     public function adminchangepwd(Request $request){
+        if(!\Auth::guard('admin')->check()){
+           return redirect('/admin/login'); 
+        }
+        $this->validate($request, Admin::$change_password_validation);
+        $data = $request->only('cur_password','new_password');
+        $id = \Auth::guard('admin')->user()->id;
+        $pass = Admin::where('id',$id)->first();
+        if(!\Hash::check($data['cur_password'],$pass->password)){
+            return back()->withInput()->withErrors(['password' => 'Wrong password']);
+        }
+        $temp = Admin::where('id',$id)->update(['password'=>bcrypt($data['new_password'])]);
+        if(empty($temp)){
+            return back()->withInput()->withErrors(['password' => 'Cannot change password']);
+        }
+        $request->session()->flash('alert-success', 'Password change successful!');
+        return redirect('/admin/settings');   
+    }
+
+    public function adduser(Request $request){
+        if(!\Auth::guard('admin')->check()){
+           return redirect('/admin/login'); 
+        }
+        $this->validate($request, Admin::$add_user_validation);
+        $data = $request->only('user_email','user_password');
+        $temp = Admin::insert([
+            'email'=>$data['user_email'],
+            'password'=>bcrypt($data['user_password']),     
+        ]);
+        if(empty($temp)){
+            return back()->withInput()->withErrors(['user_email' => 'Cannot add new user']);
+        }
+        $request->session()->flash('alert-success', 'User was successfully added!');
+        return redirect('/admin/settings');
 
     }
 }

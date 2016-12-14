@@ -39,3 +39,8 @@
 	display: block;
 	padding:10px;
 }
+.alert .alter-danger{
+	margin: 5px; 
+	padding: 5px; 
+	font-size: 10px;    
+}
