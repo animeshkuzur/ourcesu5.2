@@ -4,6 +4,7 @@
 	background-color: #f6f6f6;
 	border-radius: 5px;
 	border: 1px solid #cccccc;
+	margin-bottom: 50px;
 }
 .back-btn a{
 	text-decoration: none;
@@ -27,4 +28,14 @@
 	background-color: #f6f6f6;
 	border-radius: 5px;
 	border: 1px solid #cccccc;
+	margin-bottom: 50px;
+}
+.password_img{
+	margin-top: 30px;
+	display: block;
+}
+.account_img{
+	margin-top: 50px;
+	display: block;
+	padding:10px;
 }

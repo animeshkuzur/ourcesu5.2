@@ -44,7 +44,29 @@
 			</div>
 			<div class="container">
 				<div class="dashboard-panel">
-					
+					<div class="row">
+						<div class="col-md-6">
+							<h4>List of Admin Accounts</h4>
+							<table class="table table-striped">
+							    <thead>
+							      <tr>
+							        <th>ID</th>
+							        <th>Email</th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							    @if(!empty($users))
+									@foreach($users as $user)
+										<tr>
+											<td>{{ $user->id }}</td>
+											<td>{{$user->email}}</td>
+										</tr>
+									@endforeach
+								@endif
+							    </tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

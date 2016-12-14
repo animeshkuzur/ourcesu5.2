@@ -58,4 +58,6 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('/pages',['uses'=>'AdminController@pages']);
 	Route::get('/settings',['uses'=>'AdminController@settings']);
 	Route::get('/images',['uses'=>'AdminController@images']);
+	Route::post('/adminchangepwd',['as'=>'adminchangepwd','uses'=>'AdminController@adminchangepwd']);
+	Route::post('/adduser',['as'=>'adduser','uses'=>'AdminController@adduser']);
 });

@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function login(){
         if(\Auth::guard('admin')->check()){
-            return view('admin.dashboard');    
+            return redirect('/admin/dashboard');   
         }
     	return view('admin.login');
     }
@@ -27,7 +27,8 @@ class AdminController extends Controller
 
     public function dashboard(){
         if(\Auth::guard('admin')->check()){
-            return view('admin.dashboard');    
+            $users = Admin::get();
+            return view('admin.dashboard',['users'=>$users]);    
         }
         return redirect('/admin/login');
     	
@@ -86,5 +87,9 @@ class AdminController extends Controller
         }
         return redirect('/admin/login');
         
+    }
+
+    public function adminchangepwd(Request $request){
+
     }
 }

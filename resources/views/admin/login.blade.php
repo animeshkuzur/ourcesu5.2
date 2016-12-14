@@ -60,6 +60,7 @@
 						<br>
 						<a href="#" class="btn btn-default cancel-btn">&nbsp;Cancel&nbsp;</a>
 						{!! Form::submit('&nbsp;&nbsp;Login&nbsp;&nbsp;', array('class' => 'btn btn-danger login-btn','name'=>'login','id'=>'login')) !!}
+						{!! Form::close() !!}
 						<br><br>
 						<label>{!! Html::linkRoute('forgot', 'Forgot your password?') !!}</label>			
 				</div>

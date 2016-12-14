@@ -45,7 +45,52 @@
 			<div class="container">
 				<div class="dashboard-panel">
 				<div class="row">
-					<div class="col-md-"></div>
+					<div class="col-md-4">
+						<div class="password_img">
+							<img src="{{ URL::asset('images/fingerprint.png') }}" class="img-responsive center-block" />
+						</div>
+					</div>
+					<div class="col-md-8">
+						<h4>Change Password</h4>
+						<hr>
+						<div class="row">
+							<div class="col-md-5">
+							{!! Form::open(array('route' => 'adminchangepwd','method'=>'POST')) !!}
+							{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'Current Password','id'=>'old_password')) !!} 
+							<br>
+							{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'new_password')) !!}
+							<br>
+							{!! Form::submit('&nbsp;&nbsp;SAVE&nbsp;&nbsp;', array('class' => 'btn btn-danger btn-sm login-btn','name'=>'save','id'=>'pwd_save')) !!}
+							{!! Form::close() !!}
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<br><br>
+				<div class="row">
+					<div class="col-md-4">
+					<br>
+						<div class="account_img">
+							<img src="{{ URL::asset('images/key.png') }}" class="img-responsive center-block">
+						</div>
+					</div>
+					<div class="col-md-8">
+						<h4>Add A New User</h4>
+						<hr>
+						<div class="row">
+							<div class="col-md-5">
+								{!! Form::open(array('route' => 'adduser','method'=>'POST')) !!}
+								{!! Form::text('email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'New Email')) !!}
+								<br>
+								{!! Form::password('password', array('class' => 'form-control password input-sm','placeholder'=>'New Password','id'=>'user_password')) !!}
+								<br>
+								{!! Form::submit('&nbsp;&nbsp;SAVE&nbsp;&nbsp;', array('class' => 'btn btn-danger btn-sm login-btn','name'=>'save','id'=>'pwd_save')) !!}
+								{!! Form::close() !!}
+							</div>
+						</div>
+					</div>
+					
 				</div>	
 				</div>
 			</div>
