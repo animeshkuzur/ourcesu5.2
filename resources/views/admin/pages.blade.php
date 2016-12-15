@@ -9,6 +9,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script src="{{ URL::asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
 	
     <link href="{{ URL::asset('css/admin.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -17,6 +19,11 @@
 			<nav class="navbar navbar-inverse navbar-static-top">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
+			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span> 
+			    </button>
 			      <a class="navbar-brand" href="{{ url('/admin/dashboard') }}">Dashboard</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
@@ -77,14 +84,139 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-10"></div>
+						<div class="col-md-2">
+							<button class="btn btn-default btn-sm btn-block" id="editbtn">EDIT</button>
+						</div>
+					</div><br>
+					<div id="editor">
+						<div class="row">
+							<div class="col-md-12">
+								<textarea class="form-control" name="content" id="input" rows="10"></textarea>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-2">
+								<button class="btn btn-block btn-sm btn-primary" id="savebtn">SAVE</button>
+							</div>
+							<div class="col-md-10"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 	<script type="text/javascript">
-		$('#category').change(function(){
+		$('#category').change(function(e){
+			$('#page').empty();
+			$('#page').attr("disabled","disabled");
+			$('#subcategory').empty();
+			$('#subcategory').attr("disabled","disabled");
+			$.ajaxSetup({
+            	headers: {
+                	'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            	}
+        	});
+        	e.preventDefault();
+        	var url = "{{url('/admin/getsubcat')}}";
 			var id = $('#category option:selected').val();
-			
+			var request = {"id":id}
+			$.ajax({
+	            type: "GET",
+	            url: url,
+	            data: request,
+	            dataType: 'json',
+	            success: function(data){
+	            	var temp = data;
+	                $('#subcategory').empty();
+	                $('#subcategory').removeAttr("disabled");
+	                $('#subcategory').html("<option disabled selected value> -- select an category -- </option>")
+	                $.each(temp.data, function (i,val){
+	                    $('#subcategory').append("<option value='"+val.id+"''>"+val.name+"</option>");
+	                });       
+	            },
+	            error: function(data){
+	                console.log(data);
+	            }
+	        });
+		});
+
+		$('#subcategory').change(function(e){
+			$('#page').empty();
+			$('#page').attr("disabled","disabled");
+			$.ajaxSetup({
+            	headers: {
+                	'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            	}
+        	});
+        	e.preventDefault();
+        	var url = "{{url('/admin/getpage')}}";
+			var id = $('#subcategory option:selected').val();
+			var request = {"id":id}
+			$.ajax({
+	            type: "GET",
+	            url: url,
+	            data: request,
+	            dataType: 'json',
+	            success: function(data){
+	            	var temp = data;
+	                $('#page').empty();
+	                $('#page').removeAttr("disabled");
+	                $('#page').html("<option disabled selected value> -- select an category -- </option>")
+	                $.each(temp.data, function (i,val){
+	                    $('#page').append("<option value='"+val.id+"''>"+val.name+"</option>");
+	                });
+	            },
+	            error: function(data){
+	                console.log(data);
+	            }
+	        });
+		});
+
+		$('#editbtn').click(function(e){
+			e.preventDefault();
+			$cat = $('#category option:selected').val();
+			$subcat = $('#subcategory option:selected').val();
+			$pag = $('#page option:selected').val();
+			if($cat && $subcat && $pag){
+				$.ajaxSetup({
+            		headers: {
+                		'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            		}
+        		});
+        		var url = "{{url('/admin/getcontent')}}";
+        		var request = {"cat":$cat,"subcat":$subcat,"pag":$pag}
+        		$.ajax({
+		            type: "GET",
+		            url: url,
+		            data: request,
+		            dataType: 'json',
+		            success: function(data){
+		            	
+		            },
+		            error: function(data){
+		                console.log(data);
+		            }
+		        });
+			}
+			else{
+				
+			}
+		});
+
+		tinymce.init({
+		  selector: 'textarea',
+		  height: 500,
+		  menubar: false,
+		  plugins: [
+		    'advlist autolink lists link image charmap print preview anchor',
+		    'searchreplace wordcount visualblocks code fullscreen',
+		    'insertdatetime media table contextmenu paste code'
+		  ],
+		  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor',
+		  content_css: '//www.tinymce.com/css/codepen.min.css'
 		});
 
 	</script>

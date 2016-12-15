@@ -61,4 +61,6 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::post('/adminchangepwd',['as'=>'adminchangepwd','uses'=>'AdminController@adminchangepwd']);
 	Route::post('/adduser',['as'=>'adduser','uses'=>'AdminController@adduser']);
 	Route::get('/getsubcat',['uses'=>'AdminController@getsubcat']);
+	Route::get('/getpage',['uses'=>'AdminController@getpage']);
+	Route::get('/getcontent',['uses'=>'AdminController@getcontent']);
 });

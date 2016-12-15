@@ -130,12 +130,23 @@ class AdminController extends Controller
 
         $request->session()->flash('alert-success', 'User was successfully added!');
         return redirect('/admin/settings');
-
     }
 
     public function getsubcat(Request $request){
         $id = $request->only('id');
         $data = Subcategory::where('category_id',$id)->get();
-        return response()->json(['']);
+        return response()->json(['data'=>$data]);
+    }
+
+    public function getpage(Request $request){
+        $id = $request->only('id');
+        $data = Page::where('subcategory_id',$id)->get();
+        return response()->json(['data'=>$data]);
+    }
+
+    public function getcontent(Request $request){
+        $id = $request->only('cat','subcat','pag');
+        $data = Content::where('page_id',$id['pag'])->get();
+        return response()->json(['data'=>$data]);
     }
 }
