@@ -274,7 +274,8 @@ class ContentTableSeeder extends Seeder
         	['content' => '','page_id' => '260'],
         	['content' => '','page_id' => '261'],
         	['content' => '','page_id' => '262'],
-        	['content' => '','page_id' => '263']
+        	['content' => '','page_id' => '263'],
+        	['content' => '','page_id' => '264']
         	);
         DB::table('contents')->insert(
         	$data

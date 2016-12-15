@@ -289,7 +289,9 @@ class PageTableSeeder extends Seeder
 
         	['name' => 'Site Map','subcategory_id' => 36],
 
-        	['name' => 'Getting best of the website','subcategory_id' => 37]
+        	['name' => 'Getting best of the website','subcategory_id' => 37],
+
+            ['name' => 'Home','subcategory_id' => 38]
     	);
         DB::table('pages')->insert(
         	$data

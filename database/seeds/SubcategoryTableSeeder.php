@@ -159,7 +159,11 @@ class SubcategoryTableSeeder extends Seeder
         	[
         		'name' => 'Getting best of the website',
         		'category_id' => 5
-        	]
+        	],
+            [
+                'name' => 'Others',
+                'category_id' => 6
+            ]
     		);
         DB::table('subcategories')->insert(
         	$data

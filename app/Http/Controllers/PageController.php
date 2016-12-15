@@ -27,4 +27,10 @@ class PageController extends Controller
     	return view('pages.account');
     }
 
+    public function home(){
+    	$id = 264;
+    	$data = Content::where('page_id',$id)->get();
+    	return view('pages.index',['data' => $data[0]]);
+    }
+
 }

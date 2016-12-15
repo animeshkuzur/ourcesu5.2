@@ -25,7 +25,11 @@ class CategoryTableSeeder extends Seeder
         	],
         	[
         		'name' => 'Bottom Menu'
-        	]);
+        	],
+            [
+                'name' => 'Others'
+            ]
+            );
         DB::table('categories')->insert(
         	$data
         );
