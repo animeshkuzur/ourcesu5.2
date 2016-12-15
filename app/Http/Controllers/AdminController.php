@@ -149,4 +149,13 @@ class AdminController extends Controller
         $data = Content::where('page_id',$id['pag'])->get();
         return response()->json(['data'=>$data]);
     }
+
+    public function savecontent(Request $request){
+        $id = $request->only('cat','subcat','pag','content');
+        $data = Content::where('page_id',$id['pag'])->update(['content'=>"`".$id['content']."`"]);
+        if(!$data){
+            return response()->json(['error'=>'Cannot save data']);
+        }
+        return response()->json(['success'=>'Page Saved!']);
+    }
 }

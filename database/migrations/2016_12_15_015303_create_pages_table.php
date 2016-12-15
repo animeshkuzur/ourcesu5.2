@@ -16,6 +16,7 @@ class CreatePagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('subcategory_id')->unsigned();
+            $table->timestamps();
         });
 
         Schema::table('pages', function($table) {

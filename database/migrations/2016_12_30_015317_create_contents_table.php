@@ -16,6 +16,7 @@ class CreateContentsTable extends Migration
             $table->increments('id');
             $table->text('content');
             $table->integer('page_id')->unsigned();
+            $table->timestamps();
         });
 
         Schema::table('contents', function($table) {

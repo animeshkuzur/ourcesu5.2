@@ -63,4 +63,5 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('/getsubcat',['uses'=>'AdminController@getsubcat']);
 	Route::get('/getpage',['uses'=>'AdminController@getpage']);
 	Route::get('/getcontent',['uses'=>'AdminController@getcontent']);
+	Route::post('/savecontent',['uses'=>'AdminController@savecontent']);
 });

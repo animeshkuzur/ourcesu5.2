@@ -85,15 +85,22 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-10"></div>
+						<div class="col-md-10">
+							<div id="error">
+								
+							</div>
+						</div>
 						<div class="col-md-2">
 							<button class="btn btn-default btn-sm btn-block" id="editbtn">EDIT</button>
 						</div>
 					</div><br>
+					<meta name="csrf-token" content="{{ csrf_token() }}">
 					<div id="editor">
 						<div class="row">
 							<div class="col-md-12">
-								<textarea class="form-control" name="content" id="input" rows="10"></textarea>
+								<textarea class="form-control" name="content" id="input" rows="10">
+									
+								</textarea>
 							</div>
 						</div>
 						<br>
@@ -101,7 +108,11 @@
 							<div class="col-md-2">
 								<button class="btn btn-block btn-sm btn-primary" id="savebtn">SAVE</button>
 							</div>
-							<div class="col-md-10"></div>
+							<div class="col-md-10">
+								<div id="save-msg">
+									
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -175,26 +186,46 @@
 	        });
 		});
 
+		tinymce.init({
+		  //path_absolute: "{{ URL::to('/') }}",
+		  selector: 'textarea',
+		  height: 500,
+		  menubar: false,
+		  plugins: [
+		    'advlist autolink lists link image charmap print preview anchor',
+		    'searchreplace wordcount visualblocks code fullscreen',
+		    'insertdatetime media table contextmenu paste code textcolor'
+		  ],
+		  toolbar: 'undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+		  relative_urls:false,
+		  content_css: '//www.tinymce.com/css/codepen.min.css'
+		});
+
 		$('#editbtn').click(function(e){
 			e.preventDefault();
-			$cat = $('#category option:selected').val();
-			$subcat = $('#subcategory option:selected').val();
-			$pag = $('#page option:selected').val();
-			if($cat && $subcat && $pag){
+			var cat = $('#category option:selected').val();
+			var subcat = $('#subcategory option:selected').val();
+			var pag = $('#page option:selected').val();
+			if(cat && subcat && pag){
 				$.ajaxSetup({
             		headers: {
                 		'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             		}
         		});
         		var url = "{{url('/admin/getcontent')}}";
-        		var request = {"cat":$cat,"subcat":$subcat,"pag":$pag}
+        		var request = {"cat":cat,"subcat":subcat,"pag":pag}
         		$.ajax({
 		            type: "GET",
 		            url: url,
 		            data: request,
 		            dataType: 'json',
 		            success: function(data){
-		            	
+		            	if(data.data.content){
+		            		tinyMCE.activeEditor.setContent(data.data.content);
+		            	}
+		            	else{
+		            		tinyMCE.activeEditor.setContent("EMPTY");	
+		            	}
 		            },
 		            error: function(data){
 		                console.log(data);
@@ -202,21 +233,40 @@
 		        });
 			}
 			else{
-				
+				$("#error").html("<div class='alert alert-danger alert-dismissible' role='alert' style='font-size: 12px;margin:5px;'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Please select all the category</div>");
 			}
 		});
 
-		tinymce.init({
-		  selector: 'textarea',
-		  height: 500,
-		  menubar: false,
-		  plugins: [
-		    'advlist autolink lists link image charmap print preview anchor',
-		    'searchreplace wordcount visualblocks code fullscreen',
-		    'insertdatetime media table contextmenu paste code'
-		  ],
-		  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor',
-		  content_css: '//www.tinymce.com/css/codepen.min.css'
+		$('#savebtn').click(function (e) {
+			e.preventDefault();
+			var cat = $('#category option:selected').val();
+			var subcat = $('#subcategory option:selected').val();
+			var pag = $('#page option:selected').val();
+			var con = tinyMCE.activeEditor.getContent();
+			if(cat && subcat && pag && con){
+				$.ajaxSetup({
+            		headers: {
+                		'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            		}
+        		});
+        		var url = "{{url('/admin/savecontent')}}";
+        		var request = {"cat":cat,"subcat":subcat,"pag":pag,"content":con}
+        		$.ajax({
+		            type: "POST",
+		            url: url,
+		            data: request,
+		            dataType: 'json',
+		            success: function(data){
+		            	$("#save-msg").html("<div class='alert alert-success alert-dismissible' role='alert' style='font-size: 12px;margin:5px;'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Page Edited</div>");
+		            },
+		            error: function(data){
+		                console.log(data);
+		            }
+		        });
+			}
+			else{
+				$("#save-msg").html("<div class='alert alert-danger alert-dismissible' role='alert' style='font-size: 12px;margin:5px;'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Fail to save</div>");
+			}
 		});
 
 	</script>
