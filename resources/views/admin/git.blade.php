@@ -29,8 +29,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="admin-loginpanel-logo">
@@ -58,10 +58,14 @@
 						{!! Form::text('giturl', null, array('class' => 'form-control email','placeholder'=>'Git URL','id'=>'giturl')) !!}
 						<br>
 						{!! Form::submit('&nbsp;&nbsp;PULL&nbsp;&nbsp;', array('class' => 'btn btn-danger login-btn btn-block','name'=>'login','id'=>'login')) !!}
+						<br>
+						<a href="{{ url('/admin/composerupdate') }}" class="btn btn-default btn-sm btn-block">
+							RUN COMPOSER UPDATE
+						</a>
 
 						@if(!empty($output))
 							<hr>
-							<div class="output" style="font-style: 10px;">
+							<div class="output" style="font-size: 10px;">
 								@foreach($output as $out)
 									{{$out}}
 								@endforeach
@@ -74,7 +78,7 @@
 				</div>
 				
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-3"></div>
 		</div>
 	</div>
 	<script src="{{ URL::asset('js/jquery.min.js') }}"></script>

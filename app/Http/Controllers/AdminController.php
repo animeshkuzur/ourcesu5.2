@@ -63,6 +63,16 @@ class AdminController extends Controller
         //return response()->json(['output'=>$output]);
     }
 
+    public function composerupdate(Request $request){
+        $path_command = "cd E:/TNINE/OURCESU 2>&1";
+        $command = "cd.. && composer update 2>&1";
+        exec($path_command,$temp); 
+        exec($command,$output);
+        $str_output = implode(';', $temp);
+        $str_output = $str_output."<br>".implode(';', $output);
+        return view('admin.git',['output'=>$output]);
+    }
+
     public function logout(){
         if(\Auth::guard('admin')->check()){
             \Auth::guard('admin')->logout();

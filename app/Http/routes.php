@@ -52,6 +52,7 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('/dashboard',['uses'=>'AdminController@dashboard']);
 	Route::get('/git',['uses'=>'AdminController@git']);
 	Route::post('/gitupdate',['as'=>'gitupdate','uses'=>'AdminController@gitupdate']);
+	Route::get('/composerupdate',['uses'=>'AdminController@composerupdate']);
 	Route::get('/logout',['uses'=>'AdminController@logout']);
 	Route::get('/pages',['uses'=>'AdminController@pages']);
 	Route::get('/settings',['uses'=>'AdminController@settings']);
