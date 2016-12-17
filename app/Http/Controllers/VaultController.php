@@ -52,5 +52,5 @@ class VaultController extends Controller
     	
     }
 
-    public function 
+    //public function 
 }
