@@ -11,6 +11,11 @@ class DocumentTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $data = array(
+        	['name' => 'Domestic Consumers','type' => '']
+            );
+        DB::table('categories')->insert(
+        	$data
+        );
     }
 }

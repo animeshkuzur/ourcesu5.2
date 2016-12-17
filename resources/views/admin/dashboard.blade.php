@@ -29,7 +29,7 @@
 			      <li><a href="{{ url('/admin/pages') }}"><span class="glyphicon glyphicon-file"></span>&nbsp;Pages</a></li>
 			      <li><a href="{{ url('/admin/images') }}"><span class="glyphicon glyphicon-picture"></span>&nbsp;Images</a></li>
 			      <li><a href="{{ url('/admin/git') }}"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;Git Pull</a></li>
-			      <li><a href="{{ url('/laravel-filemanager') }}" target="_blank"><span class="glyphicon glyphicon-modal-window"></span>&nbsp;File Manager</a></li>
+			      <li><a href="{{ url('/filemanager') }}" target="_blank"><span class="glyphicon glyphicon-modal-window"></span>&nbsp;File Manager</a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			      <li><a href="{{ url('/admin/settings') }}"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a></li>
