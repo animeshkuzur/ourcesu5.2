@@ -35,7 +35,7 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td>no records</td>
+                                        <td id="ajax-loader">no records</td>
                                         <td></td>
                                     </tr>
                                     <!--<tr>
@@ -107,6 +107,8 @@
         autoclose: true
     });
     $("#getdocs").click(function (e){
+        var loader = "{{ URL::asset('images/ajax-loader.gif') }}";
+        $('#ajax-loader').html("<img src='"+loader+"' />");
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -128,8 +130,8 @@
             dataType: 'json',
             success: function(data){
                 $('#doc_content').empty();
-                $.each(data.data, function (i){
-                    $('#doc_content').append("<tr><td>"+data.data[i].name+"</td><td>"+data.data[i].date+"</td><td>"+data.data[i].type+"</td><td><button class='btn btn-sm btn-default'>Download/View</button></td></tr>");
+                $.each(data.data, function (i,val){
+                    $('#doc_content').append("<tr><td>"+val.name+"</td><td>"+val.date+"</td><td>"+val.type+"</td><td><button class='btn btn-sm btn-default'>Download/View</button></td></tr>");
                 });
                 
             },

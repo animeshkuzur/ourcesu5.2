@@ -11,6 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<script src="{{ URL::asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+
 	
     <link href="{{ URL::asset('css/admin.css') }}" rel="stylesheet" type="text/css">
 </head>
@@ -31,6 +32,7 @@
 			      <li><a href="{{ url('/admin/pages') }}"><span class="glyphicon glyphicon-file"></span>&nbsp;Pages</a></li>
 			      <li><a href="{{ url('/admin/images') }}"><span class="glyphicon glyphicon-picture"></span>&nbsp;Images</a></li>
 			      <li><a href="{{ url('/admin/git') }}"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;Git Pull</a></li>
+			      <li><a href="{{ url('/laravel-filemanager') }}" target="_blank"><span class="glyphicon glyphicon-modal-window"></span>&nbsp;File Manager</a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-right">
 			      <li><a href="{{ url('/admin/settings') }}"><span class="glyphicon glyphicon-cog"></span>&nbsp;Settings</a></li>
@@ -118,7 +120,6 @@
 				</div>
 			</div>
 		</div>
-
 	<script type="text/javascript">
 		$('#category').change(function(e){
 			$('#page').empty();
@@ -186,8 +187,8 @@
 	        });
 		});
 
-		tinymce.init({
-		  //path_absolute: "{{ URL::to('/') }}",
+		var editor_config = {
+		  path_absolute: "{{ URL::to('/') }}/",
 		  selector: 'textarea',
 		  height: 500,
 		  menubar: false,
@@ -198,8 +199,30 @@
 		  ],
 		  toolbar: 'undo redo | insert | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
 		  relative_urls:false,
-		  content_css: '//www.tinymce.com/css/codepen.min.css'
-		});
+		  file_browser_callback : function(field_name, url, type, win) {
+		      var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+		      var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+		      var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+		      if (type == 'image') {
+		        cmsURL = cmsURL + "&type=Images";
+		      } else {
+		        cmsURL = cmsURL + "&type=Files";
+		      }
+
+		      tinyMCE.activeEditor.windowManager.open({
+		        file : cmsURL,
+		        title : 'Filemanager',
+		        width : x * 0.8,
+		        height : y * 0.8,
+		        resizable : "yes",
+		        close_previous : "no"
+		      });
+		    },
+		    content_css: '//www.tinymce.com/css/codepen.min.css'
+		};
+
+		tinymce.init(editor_config);
 
 		$('#editbtn').click(function(e){
 			e.preventDefault();

@@ -29,6 +29,9 @@ class AuthController extends Controller
             if(\Auth::guard('guest')->attempt(['email' => $data['email'], 'password' => $password])){
                 return redirect('/');   
             }
+            else{
+                return back()->withInput()->withErrors(['email' => 'Username or password is invalid']);
+            }
         }
         elseif (\Auth::guard('user')->attempt($data)){
             return redirect('/');

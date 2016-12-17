@@ -41,6 +41,7 @@ class VaultController extends Controller
         	$document['type'] = "Bill";
         	$result[0] = $document;
         }
+
         $result[1]=$document;
         return response()->json(['data' => $result]);
 
@@ -50,4 +51,6 @@ class VaultController extends Controller
     	}*/
     	
     }
+
+    public function 
 }
