@@ -60,7 +60,7 @@
 							<div class="form-group">
 								<label>Select a Category: </label>
 								<select class="form-control" id="category">
-									<option disabled selected value> -- select an category -- </option>
+									<option disabled selected value> -- select a category -- </option>
 									@if($category)
 										@foreach($category as $cat)
 											<option value="{{ $cat->id }}">{{ $cat->name }}</option>
@@ -144,7 +144,7 @@
 	            	var temp = data;
 	                $('#subcategory').empty();
 	                $('#subcategory').removeAttr("disabled");
-	                $('#subcategory').html("<option disabled selected value> -- select an category -- </option>")
+	                $('#subcategory').html("<option disabled selected value> -- select a subcategory -- </option>")
 	                $.each(temp.data, function (i,val){
 	                    $('#subcategory').append("<option value='"+val.id+"''>"+val.name+"</option>");
 	                });       
@@ -176,7 +176,7 @@
 	            	var temp = data;
 	                $('#page').empty();
 	                $('#page').removeAttr("disabled");
-	                $('#page').html("<option disabled selected value> -- select an category -- </option>")
+	                $('#page').html("<option disabled selected value> -- select a page -- </option>")
 	                $.each(temp.data, function (i,val){
 	                    $('#page').append("<option value='"+val.id+"''>"+val.name+"</option>");
 	                });
