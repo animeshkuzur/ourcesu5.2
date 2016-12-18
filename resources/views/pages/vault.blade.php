@@ -35,7 +35,7 @@
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td id="ajax-loader">no records</td>
+                                        <td id='ajax-loader'>no records</td>
                                         <td></td>
                                     </tr>
                                     <!--<tr>
@@ -81,7 +81,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label><input type="checkbox" value="" checked="checked">&nbsp;&nbsp;Fetch All Documents</label>
+                                            <label><input type="checkbox" id="alldocs" checked="checked">&nbsp;&nbsp;Fetch All Documents</label>
                                         </div>
                                     </div>
                                     <br>
@@ -107,14 +107,18 @@
         autoclose: true
     });
     $("#getdocs").click(function (e){
+        $('#doc_content').empty();
         var loader = "{{ URL::asset('images/ajax-loader.gif') }}";
-        $('#ajax-loader').html("<img src='"+loader+"' />");
+        $('#doc_content').html("<tr><td></td><td></td><td id='ajax-loader'><img src='"+loader+"' /></td><td></td></tr>");
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
         e.preventDefault();
+        if($('#alldocs').is(":checked")){
+            var docid = 0;
+        }
         var url = "{{url('/getdocuments')}}";
         if($("#text_contacc").length){
             var contacc = $("#text_contacc").val();
@@ -122,7 +126,7 @@
         else{
             var contacc = $("#sel_contacc option:selected").text();    
         }
-        var request = {"cont_acc":contacc,"date":$("#date").val()}
+        var request = {"cont_acc":contacc,"date":$("#date").val(),"docid":docid}
         $.ajax({
             type: "GET",
             url: url,
@@ -130,9 +134,15 @@
             dataType: 'json',
             success: function(data){
                 $('#doc_content').empty();
-                $.each(data.data, function (i,val){
-                    $('#doc_content').append("<tr><td>"+val.name+"</td><td>"+val.date+"</td><td>"+val.type+"</td><td><button class='btn btn-sm btn-default'>Download/View</button></td></tr>");
-                });
+                if(data.data == null){
+                    $('#doc_content').append("<tr><td></td><td>No Records found</td><td></td><td></td></tr>");
+                }
+                else{
+                   $.each(data.data, function (i,val){
+                        $('#doc_content').append("<tr><td>"+val.name+"</td><td>"+val.date+"</td><td>"+val.type+"</td><td><a href='{{ url('/docview') }}/"+contacc+"/"+val.date+"/"+val.id+"' class='btn btn-sm btn-default' target='_blank'>Download/View</a></td></tr>");
+                    }); 
+                }
+                
             },
             error: function(data){
                 console.log(data);

@@ -21,7 +21,7 @@ Route::get('/register',['as' => 'register', 'uses' => 'AuthController@register']
 Route::post('/registervalidate',['as' => 'registervalidate', 'uses' => 'AuthController@registervalidate']);
 Route::get('/account',['as' => 'account', 'uses' => 'UserController@account']);
 Route::get('/page/{id}',['uses' => 'PageController@index']);
-Route::get('/docview/{docid}/{contacc}',['uses' => 'VaultController@docview']);
+Route::get('/docview/{contacc}/{date}/{docid}',['uses' => 'VaultController@docview']);
 //Route::get('/test',['as' => 'test', 'uses' => 'PageController@test']);
 Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
 Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);

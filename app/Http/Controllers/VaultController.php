@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User_Detail;
+use APP\Document;
 
 class VaultController extends Controller
 {
@@ -29,17 +30,36 @@ class VaultController extends Controller
     public function getdocuments(Request $request){
     	$result=array();
     	$document = array();
-    	$data = $request->only('cont_acc','date');
+        $stl_conn = \DB::connection('sqlsrv_STL');
+        $sap_conn = \DB::connection('sqlsrv_SAP');
+    	$data = $request->only('cont_acc','date','docid');
     	$arydate = explode("-",$data['date']);
     	$date = $arydate[1].$arydate[0];
-    	$stl_conn = \DB::connection('sqlsrv_STL');
-    	$sap_conn = \DB::connection('sqlsrv_SAP');
-        $spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $data['cont_acc'])->where('BillMonth',$date)->limit(1)->get();
+        if($data['docid']==0){
+            $spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$date])->limit(1)->get();
+            $emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $date])->limit(1)->get();
+            $sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $date])->limit(1)->get();
+        }
         if($spot_bill){
         	$document['name'] = "Spot Bill";
         	$document['date'] = $data['date'];
         	$document['type'] = "Bill";
+            $document['id'] = 12;
         	$result[0] = $document;
+        }
+        if($emobile){
+            $document['name'] = "E-Mobile Receipt";
+            $document['date'] = $data['date'];
+            $document['type'] = "Receipt";
+            $document['id'] = 3;
+            $result[1] = $document;
+        }
+        if($sap_bill){
+            $document['name'] = "Sap Bill";
+            $document['date'] = $data['date'];
+            $document['type'] = "Bill";
+            $document['id'] = 11;
+            $result[2] = $document;
         }
         //$sap_bill = $
 
@@ -53,9 +73,8 @@ class VaultController extends Controller
     	
     }
 
-    public function docview($docid,$contacc){
-
-        return response()->json(['docid' => $docid,'contacc' => $contacc]);
+    public function docview($contacc,$date,$docid){
+        return response()->json(['docid' => $docid,'contacc' => $contacc,'date'=>$date]);
     }
 
     //public function 
