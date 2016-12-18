@@ -269,11 +269,11 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">CONSUMER SERVICE</li>
-													<li><a href="{{ url('/page/') }}">Raise a Service Request</a></li>
+													<li><a href="{{ url('/page/75') }}">Raise a Service Request</a></li>
                         
-														<li><a href="#">Report outage</a></li>
+														<li><a href="{{ url('/page/76') }}">Report outage</a></li>
                         
-														<li><a href="#">Report power theft/malpractice</a></li>
+														<li><a href="{{ url('/page/77') }}">Report power theft/malpractice</a></li>
 
 
                         
@@ -282,17 +282,17 @@
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Report for training</a></li>
+									<li><a href="{{ url('/page/78') }}">Report for training</a></li>
 
-									<li><a href="#">Load Calculator</a></li>
+									<li><a href="{{ url('/page/79') }}">Load Calculator</a></li>
 
-									<li><a href="#">Download Forms</a></li>
+									<li><a href="{{ url('/page/80') }}">Download Forms</a></li>
 
-									<li><a href="#">Your Rights and Responsibilities</a></li>
+									<li><a href="{{ url('/page/81') }}">Your Rights and Responsibilities</a></li>
 
-									<li><a href="#">Feedback</a></li>
+									<li><a href="{{ url('/page/82') }}">Feedback</a></li>
 
-									<li><a href="#">Contact Us</a></li>
+									<li><a href="{{ url('/page/83') }}">Contact Us</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
