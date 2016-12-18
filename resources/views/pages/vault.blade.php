@@ -133,7 +133,6 @@
                 $.each(data.data, function (i,val){
                     $('#doc_content').append("<tr><td>"+val.name+"</td><td>"+val.date+"</td><td>"+val.type+"</td><td><button class='btn btn-sm btn-default'>Download/View</button></td></tr>");
                 });
-                
             },
             error: function(data){
                 console.log(data);

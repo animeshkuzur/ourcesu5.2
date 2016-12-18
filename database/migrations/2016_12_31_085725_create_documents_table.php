@@ -15,8 +15,11 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('type');
+            $table->integer('type')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('documents', function($table) {
+            $table->foreign('type')->references('id')->on('document_types');
         });
     }
 

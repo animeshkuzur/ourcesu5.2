@@ -41,8 +41,9 @@ class VaultController extends Controller
         	$document['type'] = "Bill";
         	$result[0] = $document;
         }
+        //$sap_bill = $
 
-        $result[1]=$document;
+        //$result[1]=$document;
         return response()->json(['data' => $result]);
 
         /*$sap_bill = $sap_conn->table('')->where()->limit(1)->get();
@@ -50,6 +51,11 @@ class VaultController extends Controller
 
     	}*/
     	
+    }
+
+    public function docview($docid,$contacc){
+
+        return response()->json(['docid' => $docid,'contacc' => $contacc]);
     }
 
     //public function 

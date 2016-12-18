@@ -80,20 +80,20 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">PRODUCT & SERVICES</li>
-													<li><a href="#">BPL Families</a></li>
+													<li><a href="{{ url('/page/1') }}">BPL Families</a></li>
                         
-														<li><a href="#">Bulk Residents / Apartments</a></li>
-                        
-														<li><a href="#">General Residents</a></li>
+														<li><a href="{{ url('/page/2') }}">General Residents</a></li>
+
+														<li><a href="{{ url('/page/3') }}">Bulk Residents / Apartments</a></li>
                         
 													
 							
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Resident + Business</a></li>
+									<li><a href="{{ url('/page/4') }}">Resident + Business</a></li>
 																		
-									<li><a href="#">Temporary Connection</a></li>
+									<li><a href="{{ url('/page/5') }}">Temporary Connection</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -104,28 +104,28 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">MANAGE CONNECTION</li>
-													<li><a href="#">Apply New Connection</a></li>
+													<li><a href="{{ url('/page/8') }}">Apply New Connection</a></li>
                         
-														<li><a href="#">Manage your Connection</a></li>
+														<li><a href="{{ url('/page/9') }}">Manage your Connection</a></li>
                         
-														<li><a href="#">Close your Connection</a></li>
+														<li><a href="{{ url('/page/10') }}">Close your Connection</a></li>
                         
 													
 							
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Safe Custody</a></li>
+									<li><a href="{{ url('/page/11') }}">Safe Custody</a></li>
 																		
-									<li><a href="#">Change in Name and Address</a></li>
+									<li><a href="{{ url('/page/12') }}">Change in Name and Address</a></li>
 																		
-									<li><a href="#">Change Ownership</a></li>
+									<li><a href="{{ url('/page/13') }}">Change Ownership</a></li>
 
-									<li><a href="#">Change in Load/Demand</a></li>
+									<li><a href="{{ url('/page/14') }}">Change in Load/Demand</a></li>
 
-									<li><a href="#">Change in Category</a></li>
+									<li><a href="{{ url('/page/15') }}">Change in Category</a></li>
 
-									<li><a href="#">Fees and Security Deposit</a></li>
+									<li><a href="{{ url('/page/16') }}">Fees and Security Deposit</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -137,11 +137,11 @@
 						<ul>
 							<li class="dropdown-header">CARE YOUR METER</li>
 													
-													<li><a href="#">Test My Meter</a></li>
+													<li><a href="{{ url('/page/20') }}">Test My Meter</a></li>
 
-													<li><a href="#">Purchase/Replace Meter</a></li>
+													<li><a href="{{ url('/page/21') }}">Purchase/Replace Meter</a></li>
                         
-														<li><a href="#">Shift Meter</a></li>
+														<li><a href="{{ url('/page/22') }}">Shift Meter</a></li>
                         
 														
                         
@@ -150,11 +150,11 @@
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Report Stolen Meter</a></li>
+									<li><a href="{{ url('/page/23') }}">Report Stolen Meter</a></li>
 																		
-									<li><a href="#">Report Defects/Damage Meter</a></li>
+									<li><a href="{{ url('/page/24') }}">Report Defects/Damage Meter</a></li>
 																		
-									<li><a href="#">Know My Meter</a></li>
+									<li><a href="{{ url('/page/25') }}">Know My Meter</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -167,11 +167,11 @@
 						<ul>
 							<li class="dropdown-header">TRACK YOUR READING</li>
 													
-													<li><a href="#">My Reading Data</a></li>
+													<li><a href="{{ url('/page/28') }}">My Reading Data</a></li>
 
-													<li><a href="#">My Consumption Pattern</a></li>
+													<li><a href="{{ url('/page/29') }}">My Consumption Pattern</a></li>
                         
-														<li><a href="#">Report Your Reading</a></li>
+														<li><a href="{{ url('/page/30') }}">Report Your Reading</a></li>
                         
 														
                         
@@ -180,9 +180,9 @@
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Download Meter Data</a></li>
+									<li><a href="{{ url('/page/31') }}">Download Meter Data</a></li>
 																		
-									<li><a href="#">Report Wrong Reading</a></li>
+									<li><a href="{{ url('/page/32') }}">Report Wrong Reading</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -195,20 +195,20 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">KNOW YOUR BILL</li>
-													<li><a href="#">Report Non Billing</a></li>
+													<li><a href="{{ url('/page/35') }}">Report Non Billing</a></li>
                         
-														<li><a href="#">Request Bill Correction</a></li>
+														<li><a href="{{ url('/page/36') }}">Request Bill Correction</a></li>
                         
-														<li><a href="#">Request Duplicate Bill</a></li>
+														<li><a href="{{ url('/page/37') }}">Request Duplicate Bill</a></li>
                         
 													
 							
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Know your Bill Parameters</a></li>
+									<li><a href="{{ url('/page/38') }}">Know your Bill Parameters</a></li>
 																		
-									<li><a href="#">Understanding your bill</a></li>
+									<li><a href="{{ url('/page/39') }}">Understanding your bill</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -219,22 +219,22 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">MAKE A PAYMENT</li>
-													<li><a href="#">Pay bill Online</a></li>
+													<li><a href="{{ url('/page/42') }}">Pay bill Online</a></li>
                         
-														<li><a href="#">Modes of Payments</a></li>
+														<li><a href="{{ url('/page/43') }}">Modes of Payments</a></li>
                         
-														<li><a href="#">Payment Plans</a></li>
+														<li><a href="{{ url('/page/44') }}">Payment Plans</a></li>
                         
 													
 							
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">Nearest Collection Counter</a></li>
+									<li><a href="{{ url('/page/45') }}">Nearest Collection Counter</a></li>
 																		
-									<li><a href="#">Duplicate Money Receipt</a></li>
+									<li><a href="{{ url('/page/46') }}">Duplicate Money Receipt</a></li>
 																		
-									<li><a href="#">Consequences of Non-Payments</a></li>
+									<li><a href="{{ url('/page/47') }}">Consequences of Non-Payments</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -245,20 +245,20 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">BE COMPLAINT</li>
-													<li><a href="#">No to Power Theft</a></li>
+													<li><a href="{{ url('/page/50') }}">No to Power Theft</a></li>
                         
-														<li><a href="#">Not to interfer with Power Installation</a></li>
+														<li><a href="{{ url('/page/51') }}">Not to interfer with Power Installation</a></li>
                         
-														<li><a href="#">Inspection of Premises</a></li>
+														<li><a href="{{ url('/page/52') }}">Inspection of Premises</a></li>
                         
 													
 							
                                 
                                 <div class="read_more_content">
                                     									
-									<li><a href="#">FAQs</a></li>
+									<li><a href="{{ url('/page/53') }}">FAQs</a></li>
 																		
-									<li><a href="#">Service Request</a></li>
+									<li><a href="{{ url('/page/54') }}">Service Request</a></li>
 																		
                                 </div>
                           		<h3 class="menu-more-trigger">More..</h3>
@@ -269,7 +269,7 @@
 										<li class="col-sm-3 mega">
 						<ul>
 							<li class="dropdown-header">CONSUMER SERVICE</li>
-													<li><a href="#">Raise a Service Request</a></li>
+													<li><a href="{{ url('/page/') }}">Raise a Service Request</a></li>
                         
 														<li><a href="#">Report outage</a></li>
                         
