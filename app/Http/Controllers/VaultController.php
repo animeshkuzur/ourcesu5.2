@@ -74,6 +74,7 @@ class VaultController extends Controller
     }
 
     public function docview($contacc,$date,$docid){
+        
         return response()->json(['docid' => $docid,'contacc' => $contacc,'date'=>$date]);
     }
 
