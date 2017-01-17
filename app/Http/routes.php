@@ -25,7 +25,7 @@ Route::get('/docview/{contacc}/{date}/{docid}',['uses' => 'VaultController@docvi
 //Route::get('/test',['as' => 'test', 'uses' => 'PageController@test']);
 Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
 Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);
-Route::post('/payments',['as' => 'payments','uses'=>'PaymentController@initiate']);
+Route::get('/payment',['as' => 'payments','uses'=>'PaymentController@initiate']);
 Route::post('/receipt',['as' => 'receipt','uses'=>'PaymentController@receipt']);
 
 Route::group(['prefix'=>'api'],function(){

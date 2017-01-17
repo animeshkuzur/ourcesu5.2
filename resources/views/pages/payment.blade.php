@@ -36,9 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                        
-                    
+
                 </div>
 		<!--Accounts Right Tab
             <div class="col-md-3 righttab">
