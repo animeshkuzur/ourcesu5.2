@@ -10,8 +10,8 @@ class PaymentController extends Controller
 {
     public function initiate(){
 
-    	
-    	return 0;
+
+    	return view('pages.payment');
     }
 
     public function receipt(){
