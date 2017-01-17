@@ -23,6 +23,17 @@
         </a>
         </div>
 
+        <div class="">
+        <a href="{{ url('/payment') }}">
+            <div class="right-tab">
+                <div class="right-tab-icon">
+                    <img src="{{ URL::asset('images/payment.png') }}" class="img-responsive" align="left">
+                </div>
+                <div class="right-tab-title">My Payments</div>
+            </div>
+        </a>
+        </div>
+
     <div class="panel panel-default"> 
         <ul class="list-group accordion">
             <!--<li class="list-group-item tab">
@@ -33,7 +44,7 @@
                     </div>
                 </div>
                
-            </li>-->
+            </li>
             <li class="list-group-item tab">
                 <div class="row" id="dropdown-detail-11">
                     <div class="col-xs-10 cesutab">
@@ -41,7 +52,7 @@
                     </div>
                 </div>
                 
-            </li>
+            </li>-->
             <li class="list-group-item tab">
                 <div class="row" id="dropdown-detail-12">
                     <div class="col-xs-10 cesutab">
