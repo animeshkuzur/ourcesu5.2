@@ -14,7 +14,8 @@ class PaymentController extends Controller
     	return view('pages.payment');
     }
 
-    public function receipt(){
-    	return 0;
+    public function receipt(Request $request){
+    	$data = $request->all();
+    	return $data;
     }
 }
