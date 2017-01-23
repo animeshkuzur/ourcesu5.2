@@ -47,7 +47,7 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
 	Route::get('/care',['uses' => 'ApiPageController@care']);
 	Route::get('/getdocuments',['uses'=>'ApiValtController@getdocs']);
-	Route::get('/urldocuments',['uses'=>'ApiVaultController@urldocs'])
+	Route::get('/urldocuments',['uses'=>'ApiVaultController@urldocs']);
 });
 
 Route::group(['prefix'=>'admin'],function(){
