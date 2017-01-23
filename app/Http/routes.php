@@ -22,10 +22,9 @@ Route::post('/registervalidate',['as' => 'registervalidate', 'uses' => 'AuthCont
 Route::get('/account',['as' => 'account', 'uses' => 'UserController@account']);
 Route::get('/page/{id}',['uses' => 'PageController@index']);
 Route::get('/docview/{contacc}/{date}/{docid}',['uses' => 'VaultController@docview']);
-//Route::get('/test',['as' => 'test', 'uses' => 'PageController@test']);
 Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
 Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);
-Route::get('/payment',['as' => 'payments','uses'=>'PaymentController@initiate']);
+Route::get('/payment',['as' => 'payment','uses'=>'PaymentController@initiate']);
 Route::post('/receipt',['as' => 'receipt','uses'=>'PaymentController@receipt']);
 
 Route::group(['prefix'=>'api'],function(){
@@ -47,6 +46,8 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('/payment',['uses' => 'ApiPageController@payment']);
 	Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
 	Route::get('/care',['uses' => 'ApiPageController@care']);
+	Route::get('/getdocuments',['uses'=>'ApiValtController@getdocs']);
+	Route::get('/urldocuments',['uses'=>'ApiVaultController@urldocs'])
 });
 
 Route::group(['prefix'=>'admin'],function(){

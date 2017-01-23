@@ -23,10 +23,6 @@ class PageController extends Controller
     	return view('pages.page',['data'=>$data[0],'title'=>$page[0],'subcat'=>$subcat[0],'cat'=>$cat[0]]);
     }
 
-    public function test(){
-    	return view('pages.account');
-    }
-
     public function home(){
     	$id = 266;
     	$data = Content::where('page_id',$id)->get();
