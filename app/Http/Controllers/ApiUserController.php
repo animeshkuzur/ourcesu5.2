@@ -95,7 +95,7 @@ class ApiUserController extends Controller
             return response()->json(['error' => 'parameters missing']);
         }
         $stl_conn = \DB::connection('sqlsrv_STL');
-        $USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $$data['cont_acc'])->limit(1)->get();
+        $USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $data['cont_acc'])->limit(1)->get();
         if(empty($USER_DATA)){
             return response()->json(['error' => 'contract account number does not exist']);
         }
