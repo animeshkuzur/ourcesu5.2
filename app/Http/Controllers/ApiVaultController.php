@@ -96,6 +96,8 @@ class ApiVaultController extends Controller
     public function urldocs(Request $request){
     	$result = array();
     	$document = array();
+    	$stl_conn = \DB::connection('sqlsrv_STL');
+    	$sap_conn = \DB::connection('sqlsrv_SAP');
     	try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['error' => 'user_not_found'], 404);
