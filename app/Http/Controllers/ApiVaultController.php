@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\User;
+use App\Guest;
+use App\User_Detail;
 
 class ApiVaultController extends Controller
 {
