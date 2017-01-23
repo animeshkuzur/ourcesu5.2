@@ -33,7 +33,7 @@ class ApiVaultController extends Controller
 				        	$document['date'] = $data['date'];
 				        	$document['type'] = "Bill";
 				            $document['id'] = 12;
-				        	array_push($result,$document)
+				        	array_push($result,$document);
 				        }
         				break;
         	case '3' : 
@@ -43,7 +43,7 @@ class ApiVaultController extends Controller
 				            $document['date'] = $data['date'];
 				            $document['type'] = "Receipt";
 				            $document['id'] = 3;
-				            array_push($result,$document)
+				            array_push($result,$document);
 				        }
         				break;
         	case '11' : 
@@ -53,7 +53,7 @@ class ApiVaultController extends Controller
 				            $document['date'] = $data['date'];
 				            $document['type'] = "Bill";
 				            $document['id'] = 11;
-				            array_push($result,$document)
+				            array_push($result,$document);
 				        }
         				break;
         	default :	
@@ -66,21 +66,21 @@ class ApiVaultController extends Controller
 				        	$document['date'] = $data['date'];
 				        	$document['type'] = "Bill";
 				            $document['id'] = 12;
-				        	array_push($result,$document)
+				        	array_push($result,$document);
 				        }
 				        if($emobile){
 				            $document['name'] = "E-Mobile Receipt";
 				            $document['date'] = $data['date'];
 				            $document['type'] = "Receipt";
 				            $document['id'] = 3;
-				            array_push($result,$document)
+				            array_push($result,$document);
 				        }
 				        if($sap_bill){
 				            $document['name'] = "Sap Bill";
 				            $document['date'] = $data['date'];
 				            $document['type'] = "Bill";
 				            $document['id'] = 11;
-				            array_push($result,$document)
+				            array_push($result,$document);
 				        }
         }
     	
@@ -112,7 +112,7 @@ class ApiVaultController extends Controller
 				        	$document['date'] = $data['date'];
 				        	$document['type'] = "Bill";
 				            $document['id'] = 12;
-				        	array_push($result,$document)
+				        	array_push($result,$document);
 				        }
         				break;
         	case '3' : 
@@ -122,7 +122,7 @@ class ApiVaultController extends Controller
 				            $document['date'] = $data['date'];
 				            $document['type'] = "Receipt";
 				            $document['id'] = 3;
-				            array_push($result,$document)
+				            array_push($result,$document);
 				        }
         				break;
         	case '11' : 
@@ -132,7 +132,7 @@ class ApiVaultController extends Controller
 				            $document['date'] = $data['date'];
 				            $document['type'] = "Bill";
 				            $document['id'] = 11;
-				            array_push($result,$document)
+				            array_push($result,$document);
 				        }
         				break;
         	default :	
