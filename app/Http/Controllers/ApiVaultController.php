@@ -120,7 +120,7 @@ class ApiVaultController extends Controller
 				        	$document['date'] = $data['date'];
 				        	$document['type'] = "Bill";
 				            $document['id'] = 12;
-				            $path = base_path('public/temp/documents/'.$data['cont_acc'].'-12.pdf');
+				            $path = base_path('public/temp/spotbills/'.$data['cont_acc'].'-12.pdf');
 				            $html = \View::make('documents.spot-bill', ['dat'=>$spot_bill[0]])->render();
 				            exec("wkhtmltopdf ".$html." ".$path."2>&1",$output);
 				            $document['url'] = $path;
