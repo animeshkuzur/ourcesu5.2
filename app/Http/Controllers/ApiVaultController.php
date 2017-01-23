@@ -33,7 +33,7 @@ class ApiVaultController extends Controller
 
         switch($data['doc_type']){
         	case '12' :	
-        				$spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$date])->limit(1)->get();
+        				$spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$data['date']])->limit(1)->get();
         				if($spot_bill){
 				        	$document['name'] = "Spot Bill";
 				        	$document['date'] = $data['date'];
@@ -43,7 +43,7 @@ class ApiVaultController extends Controller
 				        }
         				break;
         	case '3' : 
-        				$emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $date])->limit(1)->get();
+        				$emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $data['date']])->limit(1)->get();
         				if($emobile){
 				            $document['name'] = "E-Mobile Receipt";
 				            $document['date'] = $data['date'];
@@ -53,7 +53,7 @@ class ApiVaultController extends Controller
 				        }
         				break;
         	case '11' : 
-        				$sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $date])->limit(1)->get();
+        				$sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $data['date']])->limit(1)->get();
         				if($sap_bill){
 				            $document['name'] = "Sap Bill";
 				            $document['date'] = $data['date'];
@@ -63,9 +63,9 @@ class ApiVaultController extends Controller
 				        }
         				break;
         	default :	
-        				$spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$date])->limit(1)->get();
-            			$emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $date])->limit(1)->get();
-            			$sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $date])->limit(1)->get();
+        				$spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$data['date']])->limit(1)->get();
+            			$emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $data['date']])->limit(1)->get();
+            			$sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $data['date']])->limit(1)->get();
 
             			if($spot_bill){
 				        	$document['name'] = "Spot Bill";
@@ -112,7 +112,7 @@ class ApiVaultController extends Controller
 
         switch($data['doc_type']){
         	case '12' :	
-        				$spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$date])->limit(1)->get();
+        				$spot_bill = $stl_conn->table('BILLING_OUTPUT_2016')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth'=>$data['date']])->limit(1)->get();
         				if($spot_bill){
 				        	$document['name'] = "Spot Bill";
 				        	$document['date'] = $data['date'];
@@ -122,7 +122,7 @@ class ApiVaultController extends Controller
 				        }
         				break;
         	case '3' : 
-        				$emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $date])->limit(1)->get();
+        				$emobile = \DB::table('VW_SPOT_MR_DETAILS')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BillMonth' => $data['date']])->limit(1)->get();
         				if($emobile){
 				            $document['name'] = "E-Mobile Receipt";
 				            $document['date'] = $data['date'];
@@ -132,7 +132,7 @@ class ApiVaultController extends Controller
 				        }
         				break;
         	case '11' : 
-        				$sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $date])->limit(1)->get();
+        				$sap_bill = $sap_conn->table('BILLING_DATA')->where(['CONTRACT_ACC'=> $data['cont_acc'],'BILL_MONTH' => $data['date']])->limit(1)->get();
         				if($sap_bill){
 				            $document['name'] = "Sap Bill";
 				            $document['date'] = $data['date'];
