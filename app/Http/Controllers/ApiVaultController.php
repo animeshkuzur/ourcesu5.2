@@ -12,6 +12,68 @@ use App\User_Detail;
 
 class ApiVaultController extends Controller
 {
+    public function datedocs(Request $request){
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['error' => 'user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+        }
+
+        $data = $request->only('cont_acc','doc_type');
+
+        if(!$data['cont_acc']){
+            return response()->json(['error' => 'cont_acc parameter absent']);
+        }        
+
+        switch ($data['doc_type']) {
+            case '1':
+                $docs = \DB::table('documents')->where('documents.id',1)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                return view('documents.demand-note');
+                break;
+            case '2':
+                $docs = \DB::table('documents')->where('documents.id',2)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+
+                break;
+            case '3':
+                $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+
+                break;
+            case '4':
+                $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                break;
+            case '5':
+                $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                break;
+            case '6':
+                break;
+            case '7':
+                break;
+            case '8':
+                break;
+            case '9':
+                break;
+            case '10':
+                break;
+            case '11':
+                break;
+            case '12':
+                break;
+            default:
+                # code...
+                break;
+        }
+
+
+
+
+        return 0;
+    }
     public function getdocs(Request $request){
     	$result = array();
     	$document = array();

@@ -42,12 +42,15 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('/meter',['uses' => 'ApiPageController@meter']);
 	Route::get('/connection',['uses' => 'ApiPageController@connection']);
 	Route::get('/reading',['uses' => 'ApiPageController@reading']);
+	Route::get('/readinghistory',['uses' => 'ApiPageController@readinghist']);
 	Route::get('/bill',['uses' => 'ApiPageController@bill']);
 	Route::get('/payment',['uses' => 'ApiPageController@payment']);
 	Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
 	Route::get('/care',['uses' => 'ApiPageController@care']);
+	Route::get('/datedocuments',['uses'=>'ApiVaultController@datedocs']);
 	Route::get('/getdocuments',['uses'=>'ApiVaultController@getdocs']);
 	Route::get('/urldocuments',['uses'=>'ApiVaultController@urldocs']);
+
 });
 
 Route::group(['prefix'=>'admin'],function(){

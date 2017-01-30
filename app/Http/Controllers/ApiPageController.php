@@ -100,7 +100,9 @@ class ApiPageController extends Controller
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
 
-    	return response()->json(['null'=>null]);
+    	return response()->json([
+            'null'=>null
+        ]);
     }
 
     public function reading(){
@@ -115,8 +117,53 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
+        $date = date('Y').date('m');
+        $data = \DB::table('READING.dbo.READING_MAS')->where('BILL_MONTH',$date)->where('CONTRACT_ACC',$user->cont_acc)->join('READING.dbo.RD_REMARK_MAS','READING.dbo.RD_REMARK_MAS.REMARK_NAME','=','READING.dbo.READING_MAS.READING_NOTE')->join('READING.dbo.READ_SOURCE_MAS','READING.dbo.READ_SOURCE_MAS.SOURCE_ID','=','READING.dbo.READING_MAS.READ_SOURCE')->get([
+                'READING.dbo.READING_MAS.READING_DATE','READING.dbo.READING_MAS.READING','READING.dbo.RD_REMARK_MAS.REMARK_DESC','READING.dbo.READING_MAS.UNITS_BILLED','READING.dbo.READ_SOURCE_MAS.SOURCE_DESC'
+            ]);
+        $schedule_date = new \DateTime($data[0]->READING_DATE);
+        $schedule_date->modify('+33 day');
+        
+        return response()->json([
+            'shedule_reading' => $schedule_date->format('Y-m-d'),
+            'previous_reading' => $data[0]->READING,
+            'previous_reading_date' => $data[0]->READING_DATE,
+            'previous_reading_remark'=> $data[0]->REMARK_DESC,
+            'last_consumption' => $data[0]->UNITS_BILLED,
+            'no_of_days' => '31',
+            'reading_source' => $data[0]->SOURCE_DESC,
+        ]); 
+    }
 
-    	return response()->json(['null' => null]);
+    public function readinghist(){
+        $result = array();
+        $temp = array();
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['error' => 'user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+        }
+        $data = \DB::table('READING.dbo.READING_MAS')->where('CONTRACT_ACC',$user->cont_acc)->join('READING.dbo.RD_REMARK_MAS','READING.dbo.RD_REMARK_MAS.REMARK_NAME','=','READING.dbo.READING_MAS.READING_NOTE')->join('READING.dbo.READ_SOURCE_MAS','READING.dbo.READ_SOURCE_MAS.SOURCE_ID','=','READING.dbo.READING_MAS.READ_SOURCE')->orderBy('BILL_MONTH','DESC')->get([
+                'READING.dbo.READING_MAS.READING_DATE','READING.dbo.READING_MAS.READING','READING.dbo.RD_REMARK_MAS.REMARK_DESC','READING.dbo.READING_MAS.UNITS_BILLED','READING.dbo.READ_SOURCE_MAS.SOURCE_DESC','READING.dbo.READING_MAS.BILL_MONTH'
+            ]);
+        foreach ($data as $dat) {
+            $temp = [
+                    'previous_reading' => $dat->READING,
+                    'previous_reading_date' => $dat->READING_DATE,
+                    'previous_reading_remark'=> $dat->REMARK_DESC,
+                    'last_consumption' => $dat->UNITS_BILLED,
+                    'no_of_days' => '31',
+                    'reading_source' => $dat->SOURCE_DESC,
+                ];
+            array_push($result,$temp);
+        }
+        return response()->json(['reading_history' => $result]);
     }
 
     public function bill(){
