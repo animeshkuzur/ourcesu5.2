@@ -83,7 +83,38 @@ class ApiPageController extends Controller
             'meter_status' => 'OK',
             'meter_location' => $USER_DATA[0]->Location_Detail,
             'meter_installed_on' => $USER_DATA[0]->CP_Date,
-            ]);	
+        ]);	
+    }
+
+    public function meterhist(){
+        $result = array();
+        $temp = array();
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['error' => 'user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+        }
+        $USER_DATA = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC', $user->cont_acc)->join('OW.dbo.tblMeterLocation','OW.dbo.tblMeterLocation.Location_Id','=','OW.dbo.MTR_PROT_SHEET.RP_MeterLocation')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MR_MeterMake')->get();
+        /*if(empty($USER_DATA)){
+            return response()->json(['history' => null]); 
+        }*/
+        foreach ($USER_DATA as $dat) {
+            $temp = [
+                'meter_no'=>$dat->MR_MeterNo,
+                'meter_make' => $dat->Make_Detail,
+                'meter_location' => $dat->Location_Detail,
+            ];
+            array_push($result,$temp);
+        }
+        return response()->json([
+            'history' => $result
+        ]);    
     }
 
     public function connection(){
@@ -210,7 +241,27 @@ class ApiPageController extends Controller
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
 
-    	return response()->json(['null' => null]);
+    	return response()->json([
+            'null' => null
+        ]);
+    }
+
+    public function paymenthist(){
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['error' => 'user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+        }
+        $data = \DB::table()->where()->get();
+        return response()->json([
+            'history' => null
+        ]);
     }
 
     public function compliance(){
