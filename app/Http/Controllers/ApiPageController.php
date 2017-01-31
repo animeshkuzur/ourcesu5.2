@@ -71,19 +71,18 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        $stl_conn = \DB::connection('sqlsrv_STL');
-        $USER_DATA = $stl_conn->table('BILLING_OUTPUT_2016')->where('CONTRACT_ACC', $user->cont_acc)->limit(1)->get();        
-        
+        $USER_DATA = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC', $user->cont_acc)->join('OW.dbo.tblMeterLocation','OW.dbo.tblMeterLocation.Location_Id','=','OW.dbo.MTR_PROT_SHEET.RP_MeterLocation')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterMake')->join('OW.dbo.tblMeterPhase','OW.dbo.tblMeterPhase.Phase_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterPhase')->join('OW.dbo.tblMeterType','OW.dbo.tblMeterType.TypeId','=','OW.dbo.MTR_PROT_SHEET.MI_MeterType')->limit(1)->get();
+        $meter_rent = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$user->cont_acc)->orderBy('BILL_MONTH','DESC')->get(['CUR_MR']);
     	return response()->json([
-            'meter_no'=>$USER_DATA[0]->METER_NO,
-            'meter_owner' => $user->name,
-            'meter_type' => $USER_DATA[0]->MTR_STAT,
-            'meter_rent' => $USER_DATA[0]->MFC,
-            'meter_make' => 'NULL',
+            'meter_no'=>$USER_DATA[0]->MI_MeterNo,
+            'meter_owner' => $USER_DATA[0]->CP_Name,
+            'meter_type' => $USER_DATA[0]->Type_Detail,
+            'meter_rent' => $meter_rent[0]->CUR_MR,
+            'meter_make' => $USER_DATA[0]->Make_Detail,
             'meter_remaining_month' => 'NULL',
-            'meter_status' => $USER_DATA[0]->READ_REMARK,
-            'meter_location' => 'NULL',
-            'meter_installed_on' => 'NULL',
+            'meter_status' => 'OK',
+            'meter_location' => $USER_DATA[0]->Location_Detail,
+            'meter_installed_on' => $USER_DATA[0]->CP_Date,
             ]);	
     }
 
@@ -178,8 +177,24 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-
-    	return response()->json(['null' => null]);
+        $date = date('Ym');
+        $last_date = date("Ym", strtotime("-1 months"));
+        $data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->where('BillMonth',$date)->get();
+        $last_data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->where('BillMonth',$last_date)->get();
+    	return response()->json([
+            'last_bill_date' => $last_data[0]->BILL_DATE,
+            'last_bill_amount' => $last_data[0]->CUR_BILL,
+            'due_date' => $data[0]->due_date,
+            'rebate' => $data[0]->REBATE_OFF,
+            'meter_rent' => $data[0]->CUR_MR,
+            'units_billed' => $data[0]->UNITS_BILLED,
+            'energy_charge' => $data[0]->CUR_EC,
+            'electricity_duty' => $data[0]->CUR_ED,
+            'mmfc' => $data[0]->MMFC,
+            'amt_before_due_date' => $data[0]->BILL_BEFORE_DUT_DT,
+            'amt_after_due_date' => $data[0]->BILL_AFTER_DUT_DT,
+            'total' => $data[0]->CUR_BILL,
+        ]);
     }
 
     public function payment(){
