@@ -5,7 +5,7 @@ return array(
 
     'pdf' => array(
         'enabled' => true,
-        'binary'  => '/usr/local/bin/wkhtmltopdf',
+        'binary'  => "E:\\TNINE\\OURCESU\\vendor\\h4cc\\wkhtmltopdf-amd64\\bin\\wkhtmltopdf.exe",
         'timeout' => false,
         'options' => array(),
         'env'     => array(),

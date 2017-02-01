@@ -13,6 +13,8 @@ use App\User_Detail;
 class ApiVaultController extends Controller
 {
     public function datedocs(Request $request){
+        $document = array();
+        $date = array();
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['error' => 'user_not_found'], 404);
@@ -25,16 +27,17 @@ class ApiVaultController extends Controller
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
 
-        $data = $request->only('cont_acc','doc_type');
+        $data = $request->only('doc_type');
 
-        if(!$data['cont_acc']){
-            return response()->json(['error' => 'cont_acc parameter absent']);
+        if(!$data['doc_type']){
+            return response()->json(['error' => 'doc_type parameter absent']);
         }        
 
         switch ($data['doc_type']) {
             case '1':
                 $docs = \DB::table('documents')->where('documents.id',1)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                return view('documents.demand-note');
+                
+                
                 break;
             case '2':
                 $docs = \DB::table('documents')->where('documents.id',2)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -42,43 +45,110 @@ class ApiVaultController extends Controller
                 break;
             case '3':
                 $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
 
                 break;
             case '4':
                 $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '5':
                 $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '6':
+                $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '7':
+                $docs = \DB::table('documents')->where('documents.id',7)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '8':
+                $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$user->cont_acc)->orderby('CP_Date','DESC')->get(['CP_Date']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($mtr_pro){
+                    foreach ($mtr_pro as $data) {
+                        array_push($date,$data->CP_Date);
+                    }
+                }
                 break;
             case '9':
+                $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '10':
+                $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '11':
+                $docs = \DB::table('documents')->where('documents.id',11)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $sap_bill = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$user->cont_acc)->orderby('BILL_MONTH','DESC')->get(['BILL_MONTH']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($sap_bill){
+                    foreach ($sap_bill as $data) {
+                        array_push($date,$data->BILL_MONTH);
+                    }
+                }
                 break;
             case '12':
+                $docs = \DB::table('documents')->where('documents.id',12)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $spot_bill = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->orderby('BillMonth','DESC')->get(['BillMonth']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($spot_bill){
+                    foreach ($spot_bill as $data) {
+                        array_push($date,$data->BillMonth);
+                    }
+                }
+                break;
+            case '13':
+                $docs = \DB::table('documents')->where('documents.id',13)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$user->cont_acc)->orderby('REQUEST_DATE','DESC')->get(['REQUEST_DATE']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($ser_req){
+                    foreach ($ser_req as $data) {
+                        array_push($date,$data->REQUEST_DATE);
+                    }
+                }
                 break;
             default:
-                # code...
+                return response()->json(['error'=>'invalid document id']);
                 break;
         }
 
-
-
-
-        return 0;
+        return response()->json([
+            'document_id' => $document['id'],
+            'document_name' => $document['name'],
+            'document_type' => $document['type'],
+            'dates' => $date,
+        ]);
     }
     public function getdocs(Request $request){
     	$result = array();
     	$document = array();
-    	$stl_conn = \DB::connection('sqlsrv_STL');
-    	$sap_conn = \DB::connection('sqlsrv_SAP');
     	try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['error' => 'user_not_found'], 404);
@@ -182,12 +252,11 @@ class ApiVaultController extends Controller
 				        	$document['date'] = $data['date'];
 				        	$document['type'] = "Bill";
 				            $document['id'] = 12;
-				            $path = base_path('public/temp/spotbills/'.$data['cont_acc'].'-12.pdf');
-				            $html = \View::make('documents.spot-bill', ['dat'=>$spot_bill[0]])->render();
-				            $binary = "C:/wkhtmltopdf/bin/wkhtmltopdf.exe";
-				            exec($binary." ".$html." ".$path."2>&1",$output);
-				            $document['url'] = $path;
-				            $document['output'] = $output;
+				            $path = 'C:/xampp/htdocs/ourcesu5.2/public/temp/documents/'.$data['cont_acc'].'-12.pdf';
+                            $url = 'https://ourcesu.com/temp/documents/'.$data['cont_acc'].'-12.pdf';
+                            $pdf = \PDF::loadView('documents.spot-bill', ['dat'=>$spot_bill[0]]);
+                            $pdf->save($path,$overwrite = true);
+				            $document['url'] = $url;
 				        	array_push($result,$document);
 				        }
         				break;
