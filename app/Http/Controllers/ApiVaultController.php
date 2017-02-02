@@ -250,7 +250,7 @@ class ApiVaultController extends Controller
                 $document['type'] = $docs[0]->type;
                 $document['date'] = $data['date'];
                 if($spot_bill){
-                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$data['cont_acc'].'-12.pdf';
+                    $path = 'E:/TNINE/OURCESU/public/temp/document_types/'.$user->cont_acc.'-12.pdf';
                     $url = 'https://ourcesu.com/temp/documents/'.$data['cont_acc'].'-12.pdf';
                     $pdf = \PDF::loadView('documents.spot-bill', ['dat'=>$spot_bill[0]]);
                     $pdf->save($path,$overwrite = true);
