@@ -281,7 +281,7 @@ class ApiVaultController extends Controller
         		break;
         	case '13':
                 $docs = \DB::table('documents')->where('documents.id',13)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$user->cont_acc)->where('')->get(['REQUEST_DATE']);
+                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$user->cont_acc)->where('')->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;

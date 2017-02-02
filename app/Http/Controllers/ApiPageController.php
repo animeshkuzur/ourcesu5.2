@@ -118,7 +118,8 @@ class ApiPageController extends Controller
     }
 
     public function connection(){
-    	try {
+        $address = array();
+        try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['error' => 'user_not_found'], 404);
             }
@@ -129,9 +130,27 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
+        $data = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$user->cont_acc)->limit(1)->get();
+        $address['address'] = $data[0]->CON_ADD3;
+        $address['sub_division'] = $data[0]->SUB_DIVISION;
+        $address['section'] = $data[0]->SECTION;
+        $address['business_unit_name'] = $data[0]->BU_NAME;
+        $address['service_unit_name'] = $data[0]->SU_NAME;
+        $address['village'] = $data[0]->VILLAGE;
 
     	return response()->json([
-            'null'=>null
+            'contract_acc' => $data[0]->CONTRACT_ACC,
+            'customer_acc_no' => $data[0]->CONS_ACC,
+            'connection_type' => $data[0]->ORG_TYPE_DESC,
+            'sub_connection_type' => $data[0]->ORG_GROUP_DESC,
+            'supply_address' => $address,
+            'supply_category' => $data[0]->CATEGORY,
+            'tariff_category' => $data[0]->CON_LOAD,
+            'route_no' => $data[0]->ROUTE_OWNER_CODE,
+            'billing_portion' => $data[0]->PORTION,
+            'billing_portion_code' => $data[0]->PORTION_NO,
+            'connection_since' => $data[0]->MTR_INST_DATE,
+            'reg_mobile_no' => $data[0]->REG_MOB_NO,
         ]);
     }
 
