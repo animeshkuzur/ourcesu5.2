@@ -168,11 +168,18 @@ class ApiVaultController extends Controller
         switch($data['doc_type']){
             case '1':
                 $docs = \DB::table('documents')->where('documents.id',1)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 
                 break;
             case '2':
                 $docs = \DB::table('documents')->where('documents.id',2)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                $document['url'] = null;
 
                 break;
             case '3':
@@ -180,6 +187,7 @@ class ApiVaultController extends Controller
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
 
                 break;
             case '4':
@@ -187,35 +195,42 @@ class ApiVaultController extends Controller
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 break;
             case '5':
                 $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 break;
             case '6':
                 $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 break;
             case '7':
                 $docs = \DB::table('documents')->where('documents.id',7)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 break;
             case '8':
                 $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$user->cont_acc)->orderby('CP_Date','DESC')->get(['CP_Date']);
+                $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$user->cont_acc)->where('CP_Date',$data['date'])->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 if($mtr_pro){
-                    foreach ($mtr_pro as $data) {
-                        array_push($date,$data->CP_Date);
-                    }
+                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-08.pdf';
+                    $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-08.pdf';
+                    $pdf = \PDF::loadView('documents.meter-protocol', ['dat'=>$mtr_pro[0]]);
+                    $pdf->save($path,$overwrite = true);
+                    $document['url'] = $url;
                 }
                 break;
             case '9':
@@ -223,12 +238,14 @@ class ApiVaultController extends Controller
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 break;
             case '10':
                 $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 break;
             case '11':
                 $docs = \DB::table('documents')->where('documents.id',11)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -236,10 +253,13 @@ class ApiVaultController extends Controller
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 if($sap_bill){
-                    foreach ($sap_bill as $data) {
-                        array_push($date,$data->BILL_MONTH);
-                    }
+                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-11.pdf';
+                    $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-11.pdf';
+                    $pdf = \PDF::loadView('documents.sap-bill', ['dat'=>$sap_bill[0]]);
+                    $pdf->save($path,$overwrite = true);
+                    $document['url'] = $url;
                 }
                 break;
         	case '12' :	
@@ -267,8 +287,8 @@ class ApiVaultController extends Controller
                 $document['type'] = $docs[0]->type;
                 $document['url'] = null;
                 if($ser_req){
-                    $path = 'C:/xampp/htdocs/ourcesu5.2/public/temp/documents/'.$data['cont_acc'].'-13.pdf';
-                    $url = 'https://ourcesu.com/temp/documents/'.$data['cont_acc'].'-13.pdf';
+                    $path = 'C:/xampp/htdocs/ourcesu5.2/public/temp/documents/'.$user->cont_acc.'-13.pdf';
+                    $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-13.pdf';
                     $pdf = \PDF::loadView('documents.service-request', ['data'=>$ser_req[0]]);
                     $pdf->save($path,$overwrite = true);
                     $document['url'] = $url;
