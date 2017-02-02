@@ -47,6 +47,7 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('/bill',['uses' => 'ApiPageController@bill']);
 	Route::get('/payment',['uses' => 'ApiPageController@payment']);
 	Route::get('/paymenthistory',['uses'=>'ApiPageController@paymenthist']);
+	Route::get('/sixmonthpayment',['uses' => 'ApiPageController@sixmonthpayment']);
 	Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
 	Route::get('/care',['uses' => 'ApiPageController@care']);
 	Route::get('/datedocuments',['uses'=>'ApiVaultController@datedocs']);

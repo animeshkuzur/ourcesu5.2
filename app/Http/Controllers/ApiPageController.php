@@ -259,13 +259,23 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-
+        $cons_acc = \DB::table('user_details')->where('cont_acc',$user->cont_acc)->limit(1)->get(['cons_acc']);
+        $data = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->cons_acc)->orderby('BillMonth','DESC')->limit(1)->get();
     	return response()->json([
-            'null' => null
+            'last_payment_date' => $data[0]->Billmonth,
+            'last_payment_amount' => $data[0]->RevenueAmt+$data[0]->CapitalAmt+$data[0]->MiscAmt,
+            'payment_received_at' => $data[0]->pay_date,
+            'received_by' => $data[0]->BillCollName,
+            'rebate_availed' => 0.00,
+            'DPS_charge' => 0.00,
+            'payment_mode' => $data[0]->PayMode,
+            'receipt_no' => $data[0]->ReceiptNo,
         ]);
     }
 
     public function paymenthist(){
+        $result = array();
+        $temp = array();
         try {
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['error' => 'user_not_found'], 404);
@@ -277,9 +287,49 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        $data = \DB::table()->where()->get();
+        $cons_acc = \DB::table('user_details')->where('cont_acc',$user->cont_acc)->limit(1)->get(['cons_acc']);
+        $data = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->cons_acc)->orderby('BillMonth','DESC')->get();
+        foreach ($data as $dat) {
+            $temp['last_payment_date'] = $dat->Billmonth;
+            $temp['last_payment_amount'] = $dat->RevenueAmt+$dat->CapitalAmt+$dat->MiscAmt;
+            $temp['payment_received_at'] = $dat->pay_date;
+            $temp['received_by'] = $dat->BillCollName;
+            $temp['payment_mode'] = $dat->PayMode;
+            $temp['receipt_no'] = $dat->ReceiptNo;
+            array_push($result,$temp);
+        }
         return response()->json([
-            'history' => null
+            'history' => $result
+        ]);
+    }
+
+    public function sixmonthpayment(){
+        $result = array();
+        $temp = array();
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['error' => 'user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error' => 'token_expired'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error' => 'token_invalid'], $e->getStatusCode());
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'token_absent'], $e->getStatusCode());
+        }
+        $cons_acc = \DB::table('user_details')->where('cont_acc',$user->cont_acc)->limit(1)->get(['cons_acc']);
+        $data = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->cons_acc)->orderby('BillMonth','DESC')->limit(6)->get();
+        foreach ($data as $dat) {
+            $temp['last_payment_date'] = $dat->Billmonth;
+            $temp['last_payment_amount'] = $dat->RevenueAmt+$dat->CapitalAmt+$dat->MiscAmt;
+            $temp['payment_received_at'] = $dat->pay_date;
+            $temp['received_by'] = $dat->BillCollName;
+            $temp['payment_mode'] = $dat->PayMode;
+            $temp['receipt_no'] = $dat->ReceiptNo;
+            array_push($result,$temp);
+        }
+        return response()->json([
+            'history' => $result
         ]);
     }
 
