@@ -249,14 +249,15 @@ class ApiVaultController extends Controller
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
                 $document['date'] = $data['date'];
+                $document['url'] = null;
                 if($spot_bill){
-                    $path = 'E:/TNINE/OURCESU/public/temp/document_types/'.$user->cont_acc.'-12.pdf';
+                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-12.pdf';
                     $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-12.pdf';
                     $pdf = \PDF::loadView('documents.spot-bill', ['dat'=>$spot_bill[0]]);
                     $pdf->save($path,$overwrite = true);
                     $document['url'] = $url;
                 }
-                $document['url'] = null;
+                
         		break;
         	case '13':
                 $docs = \DB::table('documents')->where('documents.id',13)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -264,6 +265,7 @@ class ApiVaultController extends Controller
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                $document['url'] = null;
                 if($ser_req){
                     $path = 'C:/xampp/htdocs/ourcesu5.2/public/temp/documents/'.$data['cont_acc'].'-13.pdf';
                     $url = 'https://ourcesu.com/temp/documents/'.$data['cont_acc'].'-13.pdf';
@@ -271,7 +273,7 @@ class ApiVaultController extends Controller
                     $pdf->save($path,$overwrite = true);
                     $document['url'] = $url;
                 }
-                $document['url'] = null;
+                
                 break;
         	default :	
                 return response()->json(['error' => 'invalid_document_id']);				
