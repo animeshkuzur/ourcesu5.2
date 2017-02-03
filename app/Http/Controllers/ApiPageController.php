@@ -71,18 +71,19 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        $USER_DATA = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC', $user->cont_acc)->join('OW.dbo.tblMeterLocation','OW.dbo.tblMeterLocation.Location_Id','=','OW.dbo.MTR_PROT_SHEET.RP_MeterLocation')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterMake')->join('OW.dbo.tblMeterPhase','OW.dbo.tblMeterPhase.Phase_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterPhase')->join('OW.dbo.tblMeterType','OW.dbo.tblMeterType.TypeId','=','OW.dbo.MTR_PROT_SHEET.MI_MeterType')->limit(1)->get();
+        $DATA = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$user->cont_acc)->limit(1)->get();
+        $USER_DATA = \DB::table('SAP_DATA.dbo.CONSUMER_MAS')->where('CONTRACT_ACC', $user->cont_acc)->limit(1)->get();
         $meter_rent = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$user->cont_acc)->orderBy('BILL_MONTH','DESC')->get(['CUR_MR']);
     	return response()->json([
-            'meter_no'=>$USER_DATA[0]->MI_MeterNo,
-            'meter_owner' => $USER_DATA[0]->CP_Name,
-            'meter_type' => $USER_DATA[0]->Type_Detail,
+            'meter_no'=>$DATA[0]->MTR_NO,
+            'meter_owner' => $DATA[0]->MTR_OWN,
+            'meter_type' => $USER_DATA[0]->MTR_TYP,
             'meter_rent' => $meter_rent[0]->CUR_MR,
-            'meter_make' => $USER_DATA[0]->Make_Detail,
+            'meter_make' => $USER_DATA[0]->MTR_TYP,
             'meter_remaining_month' => 'NULL',
-            'meter_status' => 'OK',
-            'meter_location' => $USER_DATA[0]->Location_Detail,
-            'meter_installed_on' => $USER_DATA[0]->CP_Date,
+            'meter_status' => $DATA[0]->MTR_COND,
+            'meter_location' => 'NULL',
+            'meter_installed_on' => $DATA[0]->MTR_INST_DATE,
         ]);	
     }
 
@@ -347,7 +348,7 @@ class ApiPageController extends Controller
         }
 
         return response()->json(['info' => 'lorium impum blah blah blah']);
-        
+
     }
 
     public function compliance(){
