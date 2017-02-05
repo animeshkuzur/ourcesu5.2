@@ -167,10 +167,11 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        $date = date('Y').date('m');
-        $data = \DB::table('READING.dbo.READING_MAS')->where('BILL_MONTH',$date)->where('CONTRACT_ACC',$user->cont_acc)->join('READING.dbo.RD_REMARK_MAS','READING.dbo.RD_REMARK_MAS.REMARK_NAME','=','READING.dbo.READING_MAS.READING_NOTE')->join('READING.dbo.READ_SOURCE_MAS','READING.dbo.READ_SOURCE_MAS.SOURCE_ID','=','READING.dbo.READING_MAS.READ_SOURCE')->get([
+        //$date = date('Y').date('m');
+        $data = \DB::table('READING.dbo.READING_MAS')->where('CONTRACT_ACC',$user->cont_acc)->join('READING.dbo.RD_REMARK_MAS','READING.dbo.RD_REMARK_MAS.REMARK_NAME','=','READING.dbo.READING_MAS.READING_NOTE')->join('READING.dbo.READ_SOURCE_MAS','READING.dbo.READ_SOURCE_MAS.SOURCE_ID','=','READING.dbo.READING_MAS.READ_SOURCE')->orderby('BILL_MONTH','DESC')->limit(1)->get([
                 'READING.dbo.READING_MAS.READING_DATE','READING.dbo.READING_MAS.READING','READING.dbo.RD_REMARK_MAS.REMARK_DESC','READING.dbo.READING_MAS.UNITS_BILLED','READING.dbo.READ_SOURCE_MAS.SOURCE_DESC'
             ]);
+        //return $data;
         $schedule_date = new \DateTime($data[0]->READING_DATE);
         $schedule_date->modify('+33 day');
         
@@ -228,13 +229,15 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        $date = date('Ym');
-        $last_date = date("Ym", strtotime("-1 months"));
-        $data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->where('BillMonth',$date)->get();
-        $last_data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->where('BillMonth',$last_date)->get();
+        //$date = date('Ym');
+        //$last_date = date("Ym", strtotime("-1 months"));
+        $data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->orderby('BillMonth','DESC')->limit(2)->get();
+        //$last_date = strtotime($data[0]->BillMonth);
+        //$last_date = date($data[0]->BillMonth, strtotime("-1 months"));
+        //$last_data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->where('BillMonth',$last_date)->get();
     	return response()->json([
-            'last_bill_date' => $last_data[0]->BILL_DATE,
-            'last_bill_amount' => $last_data[0]->CUR_BILL,
+            'last_bill_date' => $data[1]->BILL_DATE,
+            'last_bill_amount' => $data[1]->CUR_BILL,
             'due_date' => $data[0]->due_date,
             'rebate' => $data[0]->REBATE_OFF,
             'meter_rent' => $data[0]->CUR_MR,
