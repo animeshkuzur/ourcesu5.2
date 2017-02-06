@@ -39,19 +39,19 @@
                         <h4>Contact Us</h4>
                         <div class="contactcesu">
                             <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-2">
                             <span><img src="{{ URL::asset('images/home.png') }}" class="img-responsive"> </span> 
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-10">
                             <p>Seaside Utilities Pvt Ltd,<br>Riverside Utilities Pvt Ltd,<br>Plot No. 369 & 370,<br>Near Highway Honda Showroom,<br>Rudrapur – 752101<br>
                             Bhubaneswar, Odisha</p><br>
                             </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-6">
+                                <div class="col-xs-2">
                                     <span><img src="{{ URL::asset('images/call.png') }}" class="img-responsive"> </span>
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-10">
                                     <p> Telephone:  0674  301 4444<br>
                                         Mobile: 933 833 4444</p>
                                 </div>
