@@ -40,7 +40,7 @@
                         <div class="contactcesu">
                             <div class="row">
                             <div class="col-xs-3">
-                            <span><img src="{{ URL::asset('images/home.png') }}" class="img-responsive"> </span> 
+                            <span><img src="{{ URL::asset('images/home.png') }}" > </span> 
                             </div>
                             <div class="col-xs-9">
                             <p>Seaside Utilities Pvt Ltd,<br>Riverside Utilities Pvt Ltd,<br>Plot No. 369 & 370,<br>Near Highway Honda Showroom,<br>Rudrapur – 752101<br>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <span><img src="{{ URL::asset('images/call.png') }}" class="img-responsive"> </span>
+                                    <span><img src="{{ URL::asset('images/call.png') }}" > </span>
                                 </div>
                                 <div class="col-xs-9">
                                     <p> Telephone:  0674  301 4444<br>
