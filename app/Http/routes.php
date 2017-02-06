@@ -24,6 +24,7 @@ Route::get('/page/{id}',['uses' => 'PageController@index']);
 Route::get('/docview/{contacc}/{date}/{docid}',['uses' => 'VaultController@docview']);
 Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);
 Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);
+Route::get('/datedocuments',['as' => 'datedocuments','uses' => 'VaultController@datedocs']);
 Route::get('/payment',['as' => 'payment','uses'=>'PaymentController@initiate']);
 Route::post('/receipt',['as' => 'receipt','uses'=>'PaymentController@receipt']);
 

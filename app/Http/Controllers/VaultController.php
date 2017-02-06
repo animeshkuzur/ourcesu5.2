@@ -27,7 +27,129 @@ class VaultController extends Controller
   		return view('pages.vault',['cont_acc'=>$cont_accs]);
     }
 
-    public function getdocuments(Request $request){
+    public function datedocs(Request $request){
+        $document = array();
+        $date = array();
+        $data = $request->only('cont_acc','doc_type');
+
+        if(!$data['doc_type']){
+            return response()->json(['error' => 'doc_type parameter absent']);
+        }        
+
+        switch ($data['doc_type']) {
+            case '1':
+                $docs = \DB::table('documents')->where('documents.id',1)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                
+                
+                break;
+            case '2':
+                $docs = \DB::table('documents')->where('documents.id',2)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+
+                break;
+            case '3':
+                $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+
+                break;
+            case '4':
+                $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                break;
+            case '5':
+                $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                break;
+            case '6':
+                $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                break;
+            case '7':
+                $docs = \DB::table('documents')->where('documents.id',7)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                break;
+            case '8':
+                $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$data['cont_acc'])->orderby('CP_Date','DESC')->get(['CP_Date']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($mtr_pro){
+                    foreach ($mtr_pro as $data) {
+                        array_push($date,$data->CP_Date);
+                    }
+                }
+                break;
+            case '9':
+                $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                break;
+            case '10':
+                $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                break;
+            case '11':
+                $docs = \DB::table('documents')->where('documents.id',11)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $sap_bill = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$data['cont_acc'])->orderby('BILL_MONTH','DESC')->get(['BILL_MONTH']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($sap_bill){
+                    foreach ($sap_bill as $data) {
+                        array_push($date,$data->BILL_MONTH);
+                    }
+                }
+                break;
+            case '12':
+                $docs = \DB::table('documents')->where('documents.id',12)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $spot_bill = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$data['cont_acc'])->orderby('BillMonth','DESC')->get(['BillMonth']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($spot_bill){
+                    foreach ($spot_bill as $data) {
+                        array_push($date,$data->BillMonth);
+                    }
+                }
+                break;
+            case '13':
+                $docs = \DB::table('documents')->where('documents.id',13)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$data['cont_acc'])->orderby('REQUEST_DATE','DESC')->get(['REQUEST_DATE']);
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
+                if($ser_req){
+                    foreach ($ser_req as $data) {
+                        array_push($date,$data->REQUEST_DATE);
+                    }
+                }
+                break;
+            default:
+                return response()->json(['error'=>'invalid_document_id']);
+        }
+
+        return response()->json([
+            'document_id' => $document['id'],
+            'document_name' => $document['name'],
+            'document_type' => $document['type'],
+            'dates' => $date,
+        ]);
+    }
+
+    public function getdocs(Request $request){
     	$result=array();
     	$document = array();
         $stl_conn = \DB::connection('sqlsrv_STL');
