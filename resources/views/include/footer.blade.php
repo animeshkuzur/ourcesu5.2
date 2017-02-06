@@ -38,10 +38,24 @@
                     <div class="col-md-3 prd">
                         <h4>Contact Us</h4>
                         <div class="contactcesu">
-                            <p><span><img src="{{ URL::asset('images/home.png') }}" class="img-responsive"> </span> Seaside Utilities Pvt Ltd,<br>Riverside Utilities Pvt Ltd,<br>Plot No. 369 & 370,<br>Near Highway Honda Showroom,<br>Rudrapur – 752101<br>
+                            <div class="row">
+                            <div class="col-xs-6">
+                            <span><img src="{{ URL::asset('images/home.png') }}" class="img-responsive"> </span> 
+                            </div>
+                            <div class="col-xs-6">
+                            <p>Seaside Utilities Pvt Ltd,<br>Riverside Utilities Pvt Ltd,<br>Plot No. 369 & 370,<br>Near Highway Honda Showroom,<br>Rudrapur – 752101<br>
                             Bhubaneswar, Odisha</p><br>
-                            <p><span><img src="{{ URL::asset('images/call.png') }}" class="img-responsive"> </span> Telephone:  0674  301 4444
-Mobile: 933 833 4444</p>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <span><img src="{{ URL::asset('images/call.png') }}" class="img-responsive"> </span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p> Telephone:  0674  301 4444<br>
+                                        Mobile: 933 833 4444</p>
+                                </div>
+                            </div>
                             <div class="social-icn">
                             <p><span><img src="{{ URL::asset('images/fb.png') }}" class="img-responsive"></span> <span><img src="{{ URL::asset('images/twt.png') }}" class="img-responsive"> </span> <span><img src="{{ URL::asset('images/gpls.png') }}" class="img-responsive"> </span> <span><img src="{{ URL::asset('images/pint.png') }}" class="img-responsive"> </span> <span><img src="{{ URL::asset('images/flicker.png') }}" class="img-responsive"> </span> </p>
                             </div>
