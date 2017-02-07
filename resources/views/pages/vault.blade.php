@@ -28,7 +28,8 @@
                                         <th>Name</th>
                                         <th>Date</th>
                                         <th>Type</th>
-                                        <th>Download/View</th>
+                                        <th>View</th>
+                                        <th>Download</th>
                                     </tr>
                                 </thead>
                                 <tbody id="doc_content">
@@ -37,19 +38,8 @@
                                         <td></td>
                                         <td id='ajax-loader'>no records</td>
                                         <td></td>
+                                        <td></td>
                                     </tr>
-                                    <!--<tr>
-                                        <td>Mary</td>
-                                        <td>Moe</td>
-                                        <td>mary@example.com</td>
-                                        <td><button class="btn btn-default btn-sm btn-block">View/Download</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>July</td>
-                                        <td>Dooley</td>
-                                        <td>july@example.com</td>
-                                        <td><button class="btn btn-default btn-sm btn-block">View/Download</button></td>
-                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -72,16 +62,28 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="input-append date input-group input-group-sm" id="datepicker" data-date="{{date('m-Y')}}" data-date-format="mm-yyyy">
-                                                <span class="add-on input-group-addon" id="sizing-addon3"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                <input type="text" readonly="readonly" name="date" class="form-control" aria-describedby="sizing-addon3" value="{{date('m-Y')}}" id="date">          
-                                            </div>
+                                            <select class="form-control input-sm" id="doc_type">
+                                                <option value="11">SAP Bill</option>
+                                                <option value="12">Spot Bill</option>
+                                                <option value="1">Demand Note</option>
+                                                <option value="2">Disconnection Notice</option>
+                                                <option value="3">E-mobile Receipt</option>
+                                                <option value="4">Final Assessment</option>
+                                                <option value="5">FOC Slip</option>
+                                                <option value="6">Inspection Report</option>
+                                                <option value="7">Meter Change</option>
+                                                <option value="8">Meter Protocol</option>
+                                                <option value="9">Money Receipt</option>
+                                                <option value="10">Provisional Assessment</option>
+                                                <option value="13">Acknowledgement Receipt of Service Request</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <br>
+
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label><input type="checkbox" id="alldocs" checked="checked">&nbsp;&nbsp;Fetch All Documents</label>
+                                            
                                         </div>
                                     </div>
                                     <br>
@@ -100,33 +102,25 @@
 @section('script')
 <script src="{{ URL::asset('js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript">
-    $("#datepicker").datepicker( {
-        format: "mm-yyyy",
-        viewMode: "months", 
-        minViewMode: "months",
-        autoclose: true
-    });
     $("#getdocs").click(function (e){
         $('#doc_content').empty();
         var loader = "{{ URL::asset('images/ajax-loader.gif') }}";
-        $('#doc_content').html("<tr><td></td><td></td><td id='ajax-loader'><img src='"+loader+"' /></td><td></td></tr>");
+        $('#doc_content').html("<tr><td></td><td></td><td id='ajax-loader'><img src='"+loader+"' /></td><td></td><td></td></tr>");
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         });
         e.preventDefault();
-        if($('#alldocs').is(":checked")){
-            var docid = 0;
-        }
-        var url = "{{url('/getdocuments')}}";
+        var docid = $('#doc_type option:selected').val();
+        var url = "{{url('/datedocuments')}}";
         if($("#text_contacc").length){
             var contacc = $("#text_contacc").val();
         }
         else{
             var contacc = $("#sel_contacc option:selected").text();    
         }
-        var request = {"cont_acc":contacc,"date":$("#date").val(),"docid":docid}
+        var request = {"cont_acc":contacc,"doc_type":docid}
         $.ajax({
             type: "GET",
             url: url,
@@ -134,12 +128,12 @@
             dataType: 'json',
             success: function(data){
                 $('#doc_content').empty();
-                if(data.data == null){
-                    $('#doc_content').append("<tr><td></td><td>No Records found</td><td></td><td></td></tr>");
+                if(data.dates[0] == null){
+                    $('#doc_content').append("<tr><td></td><td></td><td>No Records found</td><td></td><td></td></tr>");
                 }
                 else{
-                   $.each(data.data, function (i,val){
-                        $('#doc_content').append("<tr><td>"+val.name+"</td><td>"+val.date+"</td><td>"+val.type+"</td><td><a href='{{ url('/docview') }}/"+contacc+"/"+val.date+"/"+val.id+"' class='btn btn-sm btn-default' target='_blank'>Download/View</a></td></tr>");
+                    $.each(data.dates, function (i,val){
+                        $('#doc_content').append("<tr><td>"+data.document_name+"</td><td>"+val+"</td><td>"+data.document_type+"</td><td><a href='{{ url('/docview') }}/"+contacc+"/"+val+"/"+data.document_id+"' class='btn btn-sm btn-default' target='_blank'>View</a></td><td><a href='#' class='btn btn-sm btn-default' target='_blank'>Download</a></td></tr>");
                     }); 
                 }
                 

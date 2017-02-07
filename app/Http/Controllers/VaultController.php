@@ -31,7 +31,9 @@ class VaultController extends Controller
         $document = array();
         $date = array();
         $data = $request->only('cont_acc','doc_type');
-
+        if(!$data['cont_acc']){
+            return response()->json(['error' => 'cont_acc parameter absent']);
+        }
         if(!$data['doc_type']){
             return response()->json(['error' => 'doc_type parameter absent']);
         }        
