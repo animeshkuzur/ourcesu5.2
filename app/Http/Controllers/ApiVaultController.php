@@ -36,12 +36,16 @@ class ApiVaultController extends Controller
         switch ($data['doc_type']) {
             case '1':
                 $docs = \DB::table('documents')->where('documents.id',1)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 
                 break;
             case '2':
                 $docs = \DB::table('documents')->where('documents.id',2)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-
+                $document['id'] = $docs[0]->id;
+                $document['name'] = $docs[0]->name;
+                $document['type'] = $docs[0]->type;
                 break;
             case '3':
                 $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
