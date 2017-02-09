@@ -183,78 +183,78 @@
 				<div class='col-xs-4'>
 					Meter No.: 
 				</div>
-				<div class='col-xs-4'>{{ $mr->MR_MeterNo }}</div>
+				<div class='col-xs-4'>@if($mr) {{ $mr->MR_MeterNo }} @endif</div>
 				<div class='col-xs-4'>{{ $mi->MI_MeterNo }}</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Make:
 				</div>
-				<div class='col-xs-4'> {{ $mr->Make_Detail }} </div>
+				<div class='col-xs-4'>@if($mr) {{ $mr->Make_Detail }} @endif</div>
 				<div class='col-xs-4'> {{ $mi->Make_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Type:
 				</div>
-				<div class='col-xs-4'> {{ $mr->Type_Detail }} </div>
+				<div class='col-xs-4'>@if($mr) {{ $mr->Type_Detail }} @endif</div>
 				<div class='col-xs-4'> {{ $mi->Type_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Phase: 
 				</div>
-				<div class='col-xs-4'> {{ $mr->Phase_Detail }} </div>
+				<div class='col-xs-4'>@if($mr) {{ $mr->Phase_Detail }} @endif</div>
 				<div class='col-xs-4'> {{ $mi->Phase_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					KHW Reading: 
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_KWHReading }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_KWHReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_KWHReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_KWHReading }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					KVAH Reading:
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_KVAHReading }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_KVAHReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_KVAHReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_KVAHReading }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MDI KW:
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_MDIkw }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_MDIkw }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_MDIkw }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_MDIkw }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MDI KVA:
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_MDIkva }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_MDIkva }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_MDIkva }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_MDIkva }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Current Reading:
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_CurrentReading }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_CurrentReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_CurrentReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_CurrentReading }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MF:
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_MF }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_MF }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_MF }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_MF }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Condition:
 				</div>
-				<div class='col-xs-4'> {{ $mr->MR_Condition }} </div>
-				<div class='col-xs-4'> {{ $mi->MI_Condition }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_Condition }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_Condition }} </div>
 			</div>
 		</div>
 		<div class='col-sm-6'>
