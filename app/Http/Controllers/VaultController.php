@@ -72,9 +72,15 @@ class VaultController extends Controller
                 break;
             case '5':
                 $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $foc = \DB::table('Network_Mas.dbo.FOC_Slip')->where('CONTRACT_ACC',$data['cont_acc'])->orderBy('REQ_DATE', 'DESC')->get(['REQ_DATE']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                if($foc){
+                    foreach ($foc as $data) {
+                        array_push($date,$data->REQ_DATE);
+                    }
+                }
                 break;
             case '6':
                 $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -352,9 +358,13 @@ class VaultController extends Controller
                 break;
             case '5':
                 $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $foc = \DB::table('Network_Mas.dbo.FOC_Slip')->where('CONTRACT_ACC',$contacc)->where('REQ_DATE', $date)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                if($foc){
+                    return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$foc[0]]);
+                }
                 break;
             case '6':
                 $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);

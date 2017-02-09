@@ -5,7 +5,7 @@
 		}
 		.container-b{
 			color: black;
-			
+			max-width: 900px;
 			border: 1px solid black;
 			padding-left: 5px;
 			padding-right: 5px;
@@ -30,7 +30,7 @@
 			width: 40%;
 		}
 	</style>
-	<div class='container'>
+	<div class='container' style="max-width: 900px; margin-left: auto;margin-right: auto;">
 		<div class='row'>
 			<div class='col-xs-3 left'>
 				<b>Activity Slip (FOC)</b>
@@ -39,86 +39,86 @@
 				<b>Service Utility Copy</b>
 			</div>
 			<div class='col-xs-3 right'>
-				<b>Serial No.</b>
+				<b>Serial No. {{ $dat->REQ_NO }}</b>
 			</div>
 		</div>
 	</div>
 <div class='container-b'>
 		<div class='row'>
 			<div class='col-xs-6'>
-				SU Code:
+				SU Code: {{ $dat->SU_ID }}
 			</div>
 			<div class='col-xs-6'>
-				Request No.:
+				Request No.: {{ $dat->REQ_NO }}
 			</div>
 		</div>
 
 		<div class='row'>
 			<div class='col-xs-6'>
-				Request Date:
+				Request Date: {{ $dat->REQ_DATE }}
 			</div>
 			<div class='col-xs-6'>
-				Time:
+				Time: {{ $dat->REQ_TIME }}
 			</div>
 		</div>
 		
 		<div class='row'>
 			<div class='col-xs-6'>
-				Resolved Date:
+				Resolved Date: {{ $dat->RESOLVE_DATE }}
 			</div>
 			<div class='col-xs-6'>
-				Time:
+				Time: {{ $dat->RESOLVE_TIME }}
 			</div>
 		</div>
 
 		<div class='row'>
 			<div class='col-xs-12'>
-				Complaint Type:
+				Complaint Type: {{ $dat->COMPLAINT_TYPE }}
 			</div>
 		</div>
 
 		<div class='row'>
 			<div class='col-xs-12'>
-				Remarks:
+				Remarks: {{ $dat->REMARK }}
 			</div>
 		</div>
 		<hr style='border-color:black; padding-top: 5px;'>
 		<div class='row'>
 			<div class='col-xs-12'>
-				Consumer Name:
+				Consumer Name: {{ $dat->CONS_NAME }}
 			</div>
 		</div>
 
 		<div class='row'>
 			<div class='col-xs-12'>
-				Village Area:
+				Village Area: <i>null</i>
 			</div>
 		</div>
 
 		<div class='row'>
 			<div class='col-xs-6'>
-				Consumer No:
+				Consumer No: {{ $dat->CONS_ACC }}
 			</div>
 			<div class='col-xs-6'>
-				Mobile No.:
-			</div>
-		</div>
-
-		<div class='row'>
-			<div class='col-xs-6'>
-				Meter No.:
-			</div>
-			<div class='col-xs-6'>
-				Meter Reading:
+				Mobile No.: <i>null</i>
 			</div>
 		</div>
 
 		<div class='row'>
 			<div class='col-xs-6'>
-				SS Name:
+				Meter No.: {{ $dat->METER_NO }}
 			</div>
 			<div class='col-xs-6'>
-				Consumer:
+				Meter Reading: {{ $dat->METER_READING }}
+			</div>
+		</div>
+
+		<div class='row'>
+			<div class='col-xs-6'>
+				SS Name: <i>null</i>
+			</div>
+			<div class='col-xs-6'>
+				Consumer: {{ $dat->CONS_NAME }}
 			</div>
 		</div>
 </div>

@@ -67,9 +67,15 @@ class ApiVaultController extends Controller
                 break;
             case '5':
                 $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $foc = \DB::table('Network_Mas.dbo.FOC_Slip')->where('CONTRACT_ACC',$user->cont_acc)->orderBy('REQ_DATE', 'DESC')->get(['REQ_DATE']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                if($foc){
+                    foreach ($foc as $data) {
+                        array_push($date,$data->REQ_DATE);
+                    }
+                }
                 break;
             case '6':
                 $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -222,10 +228,18 @@ class ApiVaultController extends Controller
                 break;
             case '5':
                 $docs = \DB::table('documents')->where('documents.id',5)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $foc = \DB::table('Network_Mas.dbo.FOC_Slip')->where('CONTRACT_ACC',$user->cont_acc)->where('REQ_DATE', $data['date'])->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
                 $document['url'] = null;
+                if($foc){
+                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-05.pdf';
+                    $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-05.pdf';
+                    $pdf = \PDF::loadView('documents.foc-slip', ['dat'=>$foc[0]]);
+                    $pdf->save($path,$overwrite = true);
+                    $document['url'] = $url;
+                }
                 break;
             case '6':
                 $docs = \DB::table('documents')->where('documents.id',6)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
