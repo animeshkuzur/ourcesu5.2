@@ -237,6 +237,10 @@ class ApiVaultController extends Controller
             case '8':
                 $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$user->cont_acc)->where('CP_Date',$data['date'])->get();
+                $connect = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$user->cont_acc)->limit(1)->get();
+                $rp_meter = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$user->cont_acc)->where('CP_Date',$data['date'])->join('OW.dbo.tblMeterLocation','OW.dbo.tblMeterLocation.Location_Id','=','OW.dbo.MTR_PROT_SHEET.RP_MeterLocation')->join('OW.dbo.tblConnectionType','OW.dbo.tblConnectionType.Connection_Id','=','OW.dbo.MTR_PROT_SHEET.RP_Connection')->join('OW.dbo.tblBox','OW.dbo.tblBox.Box_Id','=','OW.dbo.MTR_PROT_SHEET.RP_Box')->join('OW.dbo.tblServiceLine','OW.dbo.tblServiceLine.SrvLineId','=','OW.dbo.MTR_PROT_SHEET.RP_ServiceLine')->limit(1)->get();
+                $mr = \DB::table('OW.dbo.MTR_PROT_SHEET')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MR_MeterMake')->join('OW.dbo.tblMeterType','OW.dbo.tblMeterType.TypeId','=','OW.dbo.MTR_PROT_SHEET.MR_MeterType')->join('OW.dbo.tblMeterPhase','OW.dbo.tblMeterPhase.Phase_Id','=','OW.dbo.MTR_PROT_SHEET.MR_MeterPhase')->where('CONTRACT_ACC',$user->cont_acc)->where('CP_Date',$data['date'])->limit(1)->get();
+                $mi = \DB::table('OW.dbo.MTR_PROT_SHEET')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterMake')->join('OW.dbo.tblMeterType','OW.dbo.tblMeterType.TypeId','=','OW.dbo.MTR_PROT_SHEET.MI_MeterType')->join('OW.dbo.tblMeterPhase','OW.dbo.tblMeterPhase.Phase_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterPhase')->where('CONTRACT_ACC',$user->cont_acc)->where('CP_Date',$data['date'])->limit(1)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
@@ -244,8 +248,16 @@ class ApiVaultController extends Controller
                 if($mtr_pro){
                     $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-08.pdf';
                     $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-08.pdf';
-                    $pdf = \PDF::loadView('documents.meter-protocol', ['dat'=>$mtr_pro[0]]);
-                    $pdf->save($path,$overwrite = true);
+                    if(empty($mr)){
+                        $pdf = \PDF::loadView('documents.meter-protocol', ['dat'=>$mtr_pro[0],'conn'=>$connect[0],'rp'=>$rp_meter[0],'mr'=>$mr,'mi'=>$mi[0]]);
+                        $pdf->save($path,$overwrite = true);
+                    }
+                    else{
+                        $pdf = \PDF::loadView('documents.meter-protocol', ['dat'=>$mtr_pro[0],'conn'=>$connect[0],'rp'=>$rp_meter[0],'mr'=>$mr[0],'mi'=>$mi[0]]);
+                        $pdf->save($path,$overwrite = true);
+                    }
+                    
+                    
                     $document['url'] = $url;
                 }
                 break;

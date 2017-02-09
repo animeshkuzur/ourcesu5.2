@@ -271,43 +271,43 @@
 				<div class='col-xs-4'>
 					Meter Seals: 
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_MeterSeal1 }}</div>
-				<div class='col-xs-4'> {{ $dat->SI_MeterSeal1 }}</div>
+				<div class='col-xs-4'> {{ $dat->SR_MeterSeals1 }}</div>
+				<div class='col-xs-4'> {{ $dat->SI_MeterSeals1 }}</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_MeterSeal2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_MeterSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_MeterSeals2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_MeterSeals2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Box Seals:
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BoxSeal1 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BoxSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BoxSeals1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BoxSeals1 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BoxSeal2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BoxSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BoxSeals2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BoxSeals2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Busbar Seal:
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BusbarSeal1 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BusbarSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BusbarSeals1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BusbarSeals1 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BusbarSeal2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BusbarSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BusbarSeals2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BusbarSeals2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
