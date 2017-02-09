@@ -102,9 +102,16 @@ class VaultController extends Controller
                 break;
             case '9':
                 $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $cons_acc = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$data['cont_acc'])->limit(1)->get(['CONS_ACC']);
+                $mon = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->CONS_ACC)->orderby('BillMonth','DESC')->limit(1)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                if($mon){
+                    foreach ($mon as $data) {
+                        array_push($date,$data->pay_date);
+                    }
+                }
                 break;
             case '10':
                 $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -382,9 +389,14 @@ class VaultController extends Controller
                 break;
             case '9':
                 $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $cons_acc = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$contacc)->limit(1)->get(['CONS_ACC']);
+                $mon = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->CONS_ACC)->where('pay_date',$date)->limit(1)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                if($mon){
+                    return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$mon[0]]);
+                }
                 break;
             case '10':
                 $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);

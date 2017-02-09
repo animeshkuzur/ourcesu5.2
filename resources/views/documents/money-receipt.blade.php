@@ -10,6 +10,13 @@
 			margin-right: auto; 
 
 		}
+		.receipt-footer{
+			max-width:900px;
+			padding-left: 5px;
+			padding-right: 5px;
+			margin-left: auto;
+			margin-right: auto; 
+		}
 		.title{
 			text-align: center;
 		}
@@ -54,44 +61,44 @@
 	</div>
 	<div class='row'>
 		<div class='col-md-3'>
-			Date:
+			Date: {{ $dat->pay_date }}
 		</div>
 		<div class='col-md-3'>
-			Consumer No.:
+			Consumer No.: {{ $dat->CONS_ACC }}
 		</div>
 		<div class='col-md-3'>
-			Category:
+			Category: 
 		</div>
 		<div class='col-md-3'>
-			Month:
+			Month: {{ $dat->Billmonth }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-md-6'>
 			<div class='row'>
 				<div class='col-md-6'>
-					Series:
+					Book No.: {{ $dat->BookNo }} 
 				</div>
 				<div class='col-md-6'>
-					Receipt No.:
+					Receipt No.: {{ $dat->ReceiptNo }}
 				</div>
 			</div>
 			<div class='row'>
 				<div class='col-md-12'>
-					Received from:
+					Received from: Customer
 				</div>
 			</div>
 			<div class='row'>
 				<div class='col-md-12'>
-					Rupees:
+					Rupees: {{ $dat->RevenueAmt+$dat->CapitalAmt+$dat->MiscAmt }}
 				</div>
 			</div><br>
 			<div class='row'>
 				<div class='col-md-6'>
-					By Cash/Cheque/Draft No.:
+					By Cash/Cheque/Draft No.: {{ $dat->PayMode }}
 				</div>
 				<div class='col-md-6'>
-					Date
+					Date : {{ $dat->pay_date }}
 				</div>
 			</div><br>
 			<div class='row'>
@@ -99,7 +106,8 @@
 					(Subject to realisation)
 				</div>
 				<div class='col-md-6 right'>
-					Collecting Officer
+					{{ $dat->BillCollName }}<br>
+					[Collecting Officer]
 				</div>
 			</div>
 		</div>
@@ -112,35 +120,37 @@
 				</tr>
 				<tr>
 					<td>MMFC</td>
-					<td class='tab-cell'>Rs.</td>
+					<td class='tab-cell'>Rs. - </td>
 				</tr>
 				<tr>
 					<td>Energy Charges</td>
-					<td class='tab-cell'>Rs.</td>
+					<td class='tab-cell'>Rs. - </td>
 				</tr>
 				<tr>
 					<td>Electricity Duty</td>
-					<td class='tab-cell'>Rs.</td>
+					<td class='tab-cell'>Rs. - </td>
 				</tr>
 				<tr>
 					<td>Meter Rent</td>
-					<td class='tab-cell'>Rs.</td>
+					<td class='tab-cell'>Rs. - </td>
 				</tr>
 				<tr>
 					<td>DPS</td>
-					<td class='tab-cell'>Rs.</td>
+					<td class='tab-cell'>Rs. - </td>
 				</tr>
 				<tr>
 					<td>Misc Receipt</td>
-					<td class='tab-cell'>Rs.</td>
+					<td class='tab-cell'>Rs. - </td>
 				</tr>
 				<tr>
 					<td class='tab'>Total</td>
-					<td class='tab'>Rs.</td>
+					<td class='tab'>Rs. <b>{{ $dat->RevenueAmt+$dat->CapitalAmt+$dat->MiscAmt }}</b></td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	<br>
 </div>
+<div class="receipt-footer">
 <h6 class='rec-footer'>for any complaints attend grievance call on every working day from 10AM to 12 Noon at CESU HO Office, IDCO Towers, 2nd Floor, BBSR, Tel : 0674-2542829, Fax : 0674 2543125</h6>
+</div>

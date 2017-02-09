@@ -97,9 +97,16 @@ class ApiVaultController extends Controller
                 break;
             case '9':
                 $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $cons_acc = \DB::table('user_details')->where('cont_acc',$user->cont_acc)->limit(1)->get(['cons_acc']);
+                $mon = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->cons_acc)->orderby('BillMonth','DESC')->limit(1)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
+                if($mon){
+                    foreach ($mon as $data) {
+                        array_push($date,$data->pay_date);
+                    }
+                }
                 break;
             case '10':
                 $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -263,10 +270,19 @@ class ApiVaultController extends Controller
                 break;
             case '9':
                 $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $cons_acc = \DB::table('user_details')->where('cont_acc',$user->cont_acc)->limit(1)->get(['cons_acc']);
+                $mon = \DB::table('VW_PAYMENT_RECEIPT')->where('CONS_ACC',$cons_acc[0]->cons_acc)->where('BillMonth',$data['date'])->limit(1)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
                 $document['url'] = null;
+                if($mon){
+                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-09.pdf';
+                    $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-09.pdf';
+                    $pdf = \PDF::loadView('documents.money-receipt', ['dat'=>$mon[0]]);
+                    $pdf->save($path,$overwrite = true);
+                    $document['url'] = $url;
+                }
                 break;
             case '10':
                 $docs = \DB::table('documents')->where('documents.id',10)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -277,7 +293,7 @@ class ApiVaultController extends Controller
                 break;
             case '11':
                 $docs = \DB::table('documents')->where('documents.id',11)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                $sap_bill = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$user->cont_acc)->orderby('BILL_MONTH','DESC')->get(['BILL_MONTH']);
+                $sap_bill = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$user->cont_acc)->where('BILL_MONTH',$data['date'])->get(['BILL_MONTH']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
