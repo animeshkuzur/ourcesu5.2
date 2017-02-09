@@ -45,13 +45,13 @@
 	</div>
 	<div class='row'>
 		<div class='col-xs-4 title'>
-			SU Code:
+			SU Code: {{ $dat->SU_Id }}
 		</div>
 		<div class='col-xs-4 title'>
 			<h4><strong>Meter Protocol Sheet</strong></h4>
 		</div>
 		<div class='col-xs-4 title'>
-			PS No.:
+			PS No.: {{ $dat->CP_ProtocolSheetNo }}
 		</div>
 	</div>
 	<div class='row'>
@@ -63,34 +63,34 @@
 	</div>
 	<div class='row'>
 		<div class='col-sm-6'>
-			Reference No.:
+			Reference No.: {{ $dat->CP_ReferenceNo }}
 		</div>
 		<div class='col-sm-6'>
-			Connection No.:
+			Connection No.: {{ $dat->CP_ConnectionNo }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-12'>
-			Name:
+			Name: {{ $dat->CP_Name }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-12'>
-			Address:<br>
+			Address: {{ $dat->CP_Address }}<br>
 
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-8'>
-			Landmark:
+			Landmark: {{ $dat->CP_Landmark }}
 		</div>
 		<div class='col-sm-4'>
-			Date:
+			Date: {{ $dat->CP_Date }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-8'>
-			Contact No.:
+			Contact No.: {{ $dat->CP_ContactNo }}
 		</div>
 	</div>
 	<div class='row'>
@@ -102,23 +102,23 @@
 	</div>
 	<div class='row'>
 		<div class='col-sm-6'>
-			Transformer Name:
+			Transformer Name: {{ $conn->DT_NAME }}
 		</div>
 		<div class='col-sm-6'>
-			Connection Name:
+			Connection Name: {{ $conn->EST_TYPE_DESC }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-6'>
-			Transformer No.:
+			Transformer No.: {{ $conn->DT_NO }}
 		</div>
 		<div class='col-sm-6'>
-			Connection Category:
+			Connection Category: {{ $conn->CATEGORY }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-xs-12'>
-			Pole No.:
+			Pole No.: {{ $conn->POLE_NO }}
 		</div>
 	</div>
 	<div class='row'>
@@ -130,21 +130,21 @@
 	</div>
 	<div class='row'>
 		<div class='col-sm-4'>
-			Meter Location: 
+			Meter Location: {{ $rp->Location_Detail }}
 		</div>
 		<div class='col-sm-4'>
-			Installation Type:
+			Installation Type: {{ $rp->Connection_Detail }}
 		</div>
 		<div class='col-sm-4'>
-			BOX:
+			BOX: {{ $rp->Box_Detail }}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-4'>
-			Service Line: 
+			Service Line: {{ $rp->SrvLineDetail }}
 		</div>
 		<div class='col-sm-4'>
-			Payment Details:
+			Payment Details: {{ $dat->AMOUNT }}
 		</div>
 		<div class='col-sm-4'>
 			Meter Height:
@@ -155,10 +155,10 @@
 			Bus Bar: 
 		</div>
 		<div class='col-sm-4'>
-			Material Used:
+			Material Used: 
 		</div>
 		<div class='col-sm-4'>
-			Owner:
+			Owner: {{ $conn->MTR_OWN }}
 		</div>
 	</div>
 	<div class='row'>
@@ -181,80 +181,80 @@
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
-					Meter No.:
+					Meter No.: 
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'>{{ $mr->MR_MeterNo }}</div>
+				<div class='col-xs-4'>{{ $mi->MI_MeterNo }}</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Make:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->Make_Detail }} </div>
+				<div class='col-xs-4'> {{ $mi->Make_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Type:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->Type_Detail }} </div>
+				<div class='col-xs-4'> {{ $mi->Type_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
-					Meter Phase:
+					Meter Phase: 
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->Phase_Detail }} </div>
+				<div class='col-xs-4'> {{ $mi->Phase_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
-					KHW Reading:
+					KHW Reading: 
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_KWHReading }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_KWHReading }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					KVAH Reading:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_KVAHReading }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_KVAHReading }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MDI KW:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_MDIkw }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_MDIkw }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MDI KVA:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_MDIkva }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_MDIkva }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Current Reading:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_CurrentReading }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_CurrentReading }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MF:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_MF }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_MF }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Condition:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $mr->MR_Condition }} </div>
+				<div class='col-xs-4'> {{ $mi->MI_Condition }} </div>
 			</div>
 		</div>
 		<div class='col-sm-6'>
@@ -269,73 +269,73 @@
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
-					Meter Seals:
+					Meter Seals: 
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_MeterSeal1 }}</div>
+				<div class='col-xs-4'> {{ $dat->SI_MeterSeal1 }}</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_MeterSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_MeterSeal2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Box Seals:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_BoxSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BoxSeal1 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_BoxSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BoxSeal2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Busbar Seal:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_BusbarSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BusbarSeal1 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_BusbarSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BusbarSeal2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Terminal Seal:
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal1 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal2 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal3 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal3 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					OPTICAL Seal
 				</div>
-				<div class='col-xs-4'></div>
-				<div class='col-xs-4'></div>
+				<div class='col-xs-4'> {{ $dat->SR_OpticalSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_OpticalSeal1 }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
@@ -348,7 +348,7 @@
 	</div><br>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<strong>Remarks:</strong>
+			<strong>Remarks: {{ $dat->Remarks }}</strong>
 		</div>
 	</div><br>
 	<div class='row'>

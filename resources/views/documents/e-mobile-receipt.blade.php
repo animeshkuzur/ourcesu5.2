@@ -84,7 +84,7 @@
 		</div><br>
 		<div class='row'>
 			<div class='col-xs-12 left'>
-				<p>{{\Auth::user()->name}}</p>
+				<p>{{$dat->CONSUMER_NAME}}</p>
 			</div>
 		</div>
 		<div class='row'>

@@ -38,7 +38,7 @@
 																	</div><br>
 																	<div class='row'>
 																		<div class='col-xs-6'>
-																			<b>Refrence No.:</b>
+																			<b>Refrence No.:</b> {{ $dat->REQ_NO }}
 																		</div>
 																		<div class='col-xs-6'>
 																			<b>Name:</b> {{ $dat->REQUESTEDBY }}

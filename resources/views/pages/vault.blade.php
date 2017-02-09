@@ -65,16 +65,16 @@
                                             <select class="form-control input-sm" id="doc_type">
                                                 <option value="11">SAP Bill</option>
                                                 <option value="12">Spot Bill</option>
-                                                <option value="1">Demand Note</option>
-                                                <option value="2">Disconnection Notice</option>
+                                                <option value="1" disabled>Demand Note</option>
+                                                <option value="2" disabled>Disconnection Notice</option>
                                                 <option value="3">E-mobile Receipt</option>
-                                                <option value="4">Final Assessment</option>
+                                                <option value="4" disabled>Final Assessment</option>
                                                 <option value="5">FOC Slip</option>
-                                                <option value="6">Inspection Report</option>
-                                                <option value="7">Meter Change</option>
+                                                <option value="6" disabled>Inspection Report</option>
+                                                <option value="7" disabled>Meter Change</option>
                                                 <option value="8">Meter Protocol</option>
                                                 <option value="9">Money Receipt</option>
-                                                <option value="10">Provisional Assessment</option>
+                                                <option value="10" disabled>Provisional Assessment</option>
                                                 <option value="13">Acknowledgement Receipt of Service Request</option>
                                             </select>
                                         </div>

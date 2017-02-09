@@ -49,10 +49,15 @@ class ApiVaultController extends Controller
                 break;
             case '3':
                 $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $emobile = \DB::table('VW_SPOT_MR_DETAILS')->where('CONTRACT_ACC', $user->cont_acc)->orderBy('BillMonth', 'DESC')->get(['BillMonth']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
-
+                if($emobile){
+                    foreach ($emobile as $data) {
+                        array_push($date,$data->BillMonth);
+                    }
+                }
                 break;
             case '4':
                 $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -188,11 +193,18 @@ class ApiVaultController extends Controller
                 break;
             case '3':
                 $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $emobile = \DB::table('VW_SPOT_MR_DETAILS')->where('CONTRACT_ACC', $user->cont_acc)->where('BillMonth', $data['date'])->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
                 $document['url'] = null;
-
+                if($emobile){
+                    $path = 'E:/TNINE/OURCESU/public/temp/documents/'.$user->cont_acc.'-03.pdf';
+                    $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-03.pdf';
+                    $pdf = \PDF::loadView('documents.e-mobile-receipt', ['dat'=>$emobile[0]]);
+                    $pdf->save($path,$overwrite = true);
+                    $document['url'] = $url;
+                }
                 break;
             case '4':
                 $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -285,7 +297,7 @@ class ApiVaultController extends Controller
         		break;
         	case '13':
                 $docs = \DB::table('documents')->where('documents.id',13)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$user->cont_acc)->where('')->get();
+                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$user->cont_acc)->where('REQUEST_DATE',$data['date'])->join('OFFLINE_MAS.dbo.CC_SERVICE_TYPE_GROUP_MAS','OFFLINE_MAS.dbo.CC_SERVICE_TYPE_GROUP_MAS.SERVICE_TYPE_GROUP_ID','=','OFFLINE_MAS.dbo.CC_REQ_MAS_NEW.SERVICE_TYPE_GROUP_ID')->join('OFFLINE_MAS.dbo.CC_SERVICE_TYPE_MAS','OFFLINE_MAS.dbo.CC_SERVICE_TYPE_MAS.SERVICE_TYPE_ID','=','OFFLINE_MAS.dbo.CC_REQ_MAS_NEW.SERVICE_TYPE_ID')->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
@@ -293,7 +305,7 @@ class ApiVaultController extends Controller
                 if($ser_req){
                     $path = 'C:/xampp/htdocs/ourcesu5.2/public/temp/documents/'.$user->cont_acc.'-13.pdf';
                     $url = 'https://ourcesu.com/temp/documents/'.$user->cont_acc.'-13.pdf';
-                    $pdf = \PDF::loadView('documents.service-request', ['data'=>$ser_req[0]]);
+                    $pdf = \PDF::loadView('documents.service-request', ['dat'=>$ser_req[0]]);
                     $pdf->save($path,$overwrite = true);
                     $document['url'] = $url;
                 }

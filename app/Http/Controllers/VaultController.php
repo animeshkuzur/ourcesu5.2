@@ -54,10 +54,15 @@ class VaultController extends Controller
                 break;
             case '3':
                 $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $emobile = \DB::table('VW_SPOT_MR_DETAILS')->where('CONTRACT_ACC', $data['cont_acc'])->orderBy('BillMonth', 'DESC')->get(['BillMonth']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
-
+                if($emobile){
+                    foreach ($emobile as $data) {
+                        array_push($date,$data->BillMonth);
+                    }
+                }
                 break;
             case '4':
                 $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -324,10 +329,13 @@ class VaultController extends Controller
                 break;
             case '3':
                 $docs = \DB::table('documents')->where('documents.id',3)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                $emobile = \DB::table('VW_SPOT_MR_DETAILS')->where('CONTRACT_ACC', $contacc)->where('BillMonth', $date)->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
-
+                if($emobile){
+                    return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$emobile[0]]);
+                }
                 break;
             case '4':
                 $docs = \DB::table('documents')->where('documents.id',4)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
@@ -356,11 +364,16 @@ class VaultController extends Controller
             case '8':
                 $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$contacc)->where('CP_Date',$date)->get();
+                $connect = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$contacc)->limit(1)->get();
+                $rp_meter = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$contacc)->where('CP_Date',$date)->join('OW.dbo.tblMeterLocation','OW.dbo.tblMeterLocation.Location_Id','=','OW.dbo.MTR_PROT_SHEET.RP_MeterLocation')->join('OW.dbo.tblConnectionType','OW.dbo.tblConnectionType.Connection_Id','=','OW.dbo.MTR_PROT_SHEET.RP_Connection')->join('OW.dbo.tblBox','OW.dbo.tblBox.Box_Id','=','OW.dbo.MTR_PROT_SHEET.RP_Box')->join('OW.dbo.tblServiceLine','OW.dbo.tblServiceLine.SrvLineId','=','OW.dbo.MTR_PROT_SHEET.RP_ServiceLine')->get();
+                $mr = \DB::table('OW.dbo.MTR_PROT_SHEET')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MR_MeterMake')->join('OW.dbo.tblMeterType','OW.dbo.tblMeterType.TypeId','=','OW.dbo.MTR_PROT_SHEET.MR_MeterType')->join('OW.dbo.tblMeterPhase','OW.dbo.tblMeterPhase.Phase_Id','=','OW.dbo.MTR_PROT_SHEET.MR_MeterPhase')->get();
+                $mi = \DB::table('OW.dbo.MTR_PROT_SHEET')->join('OW.dbo.tblMeterMake','OW.dbo.tblMeterMake.Make_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterMake')->join('OW.dbo.tblMeterType','OW.dbo.tblMeterType.TypeId','=','OW.dbo.MTR_PROT_SHEET.MI_MeterType')->join('OW.dbo.tblMeterPhase','OW.dbo.tblMeterPhase.Phase_Id','=','OW.dbo.MTR_PROT_SHEET.MI_MeterPhase')->get();
+
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
                 if($mtr_pro){
-                    return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$mtr_pro[0]]);
+                    return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$mtr_pro[0],'conn'=>$connect[0],'rp'=>$rp_meter[0],'mr'=>$mr[0],'mi'=>$mi[0]]);
                 }
                 break;
             case '9':
@@ -397,12 +410,12 @@ class VaultController extends Controller
                 break;
             case '13':
                 $docs = \DB::table('documents')->where('documents.id',13)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
-                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$contacc)->where('REQUEST_DATE',$date)->get();
+                $ser_req = \DB::table('OFFLINE_MAS.dbo.CC_REQ_MAS_NEW')->where('CONTRACT_ACC',$contacc)->where('REQUEST_DATE',$date)->join('OFFLINE_MAS.dbo.CC_SERVICE_TYPE_GROUP_MAS','OFFLINE_MAS.dbo.CC_SERVICE_TYPE_GROUP_MAS.SERVICE_TYPE_GROUP_ID','=','OFFLINE_MAS.dbo.CC_REQ_MAS_NEW.SERVICE_TYPE_GROUP_ID')->join('OFFLINE_MAS.dbo.CC_SERVICE_TYPE_MAS','OFFLINE_MAS.dbo.CC_SERVICE_TYPE_MAS.SERVICE_TYPE_ID','=','OFFLINE_MAS.dbo.CC_REQ_MAS_NEW.SERVICE_TYPE_ID')->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
                 $document['type'] = $docs[0]->type;
                 if($ser_req){
-                    
+                    return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$ser_req[0]]);
                 }
                 break;
             default:
