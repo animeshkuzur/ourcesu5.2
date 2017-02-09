@@ -5,6 +5,7 @@
 		}
 		.container-b{
 			color: black;
+			max-width: 900px;
 			border: 1px solid black;
 			padding-left: 5px;
 			padding-right: 5px;
