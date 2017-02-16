@@ -30,11 +30,18 @@ class User extends Authenticatable
         'password' => 'required|min:8',
         'password2' => 'required|min:8',
         'cont_acc' => 'required',
-        //'cont_acc' => 'required|exists:guests',
     ];
 
     public static $login_validation_rules = [
         'email' => 'required|exists:users',
         'password' => 'required',
+    ];
+
+    public static $settings_validation_rules = [
+        'name' => 'required',
+        'email' => 'required|email|Unique:users',
+        'password1' => 'required|min:8',
+        'password2' => 'required|min:8',
+        'mobile' => 'required|min:10',
     ];
 }

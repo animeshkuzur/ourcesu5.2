@@ -20,6 +20,7 @@ Route::get('/forgot',['as' => 'forgot', 'uses' => 'AuthController@forgot']);
 Route::get('/register',['as' => 'register', 'uses' => 'AuthController@register']);
 Route::post('/registervalidate',['as' => 'registervalidate', 'uses' => 'AuthController@registervalidate']);
 Route::get('/account',['as' => 'account', 'uses' => 'UserController@account']);
+Route::get('/getuserdetails',['as'=>'getuserdetails','uses'=>'UserController@getuserdetails']);
 Route::get('/page/{id}',['uses' => 'PageController@index']);
 Route::get('/docview/{contacc}/{date}/{docid}',['uses' => 'VaultController@docview']);
 Route::post('/savesettings',['as' => 'savesettings','uses' => 'UserController@savesettings']);

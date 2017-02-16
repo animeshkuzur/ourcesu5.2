@@ -8,6 +8,16 @@
     padding: 15px 0px 15px 0px; 
     
 }
+.sel_cont_acc select{
+    color: red;
+    display: block;
+    float:left;
+}
+.sel_cont_acc label{
+    color: red;
+    float:left;
+    display: block;
+}
 .account-body{
 	background-color: #f6f6f6;
 	color:#333333;

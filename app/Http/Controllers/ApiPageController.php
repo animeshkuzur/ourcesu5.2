@@ -229,12 +229,7 @@ class ApiPageController extends Controller
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['error' => 'token_absent'], $e->getStatusCode());
         }
-        //$date = date('Ym');
-        //$last_date = date("Ym", strtotime("-1 months"));
         $data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->orderby('BillMonth','DESC')->limit(2)->get();
-        //$last_date = strtotime($data[0]->BillMonth);
-        //$last_date = date($data[0]->BillMonth, strtotime("-1 months"));
-        //$last_data = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$user->cont_acc)->where('BillMonth',$last_date)->get();
     	return response()->json([
             'last_bill_date' => $data[1]->BILL_DATE,
             'last_bill_amount' => $data[1]->CUR_BILL,
