@@ -61,6 +61,9 @@ class ServiceRequestController extends Controller
                 case 12:
                     return $this->showSR($type);
                     break;
+                case 13:
+                    return $this->showDCWR($type);
+                    break;
     			default:
     				# code...
     				break;
@@ -185,7 +188,18 @@ class ServiceRequestController extends Controller
     {
         $srTitle="I want my service to be reconnected";
         $welcomeMessage=$this->welcomeMessage;
-    
+
         return view('servicerequest.sr',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Disconnected Consumer Wish to Reconnect
+    */ 
+    public function showDCWR($type)
+    {
+        $srTitle="I am a disconnected user & wish to reconnect my service";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.dcwr',compact('srTitle','welcomeMessage'));
     }
 }
