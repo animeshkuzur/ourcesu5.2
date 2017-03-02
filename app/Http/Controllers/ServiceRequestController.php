@@ -46,6 +46,21 @@ class ServiceRequestController extends Controller
     			case 7:
     				return $this->showCMA($type);
     				break;
+    			case 8:
+    				return $this->showOT($type);
+    				break;
+                case 9:
+                    return $this->showCAC($type);
+                    break;
+                case 10:
+                    return $this->showPD($type);
+                    break;
+                case 11:
+                    return $this->showTD($type);
+                    break;
+                case 12:
+                    return $this->showSR($type);
+                    break;
     			default:
     				# code...
     				break;
@@ -120,4 +135,57 @@ class ServiceRequestController extends Controller
     	$welcomeMessage=$this->welcomeMessage;
     	return view('servicerequest.cma',compact('srTitle','welcomeMessage'));
 	}
+	/*
+		Ownership Transfer
+
+	*/ 
+	public function showOT($type)
+	{
+		$srTitle="Attribute->Ownership Transfer";
+    	$welcomeMessage=$this->welcomeMessage;
+    	return view('servicerequest.ot',compact('srTitle','welcomeMessage'));
+	}
+
+    /*
+        I want my correction address to be changed
+    */ 
+
+    public function showCAC($type)
+    {
+        $srTitle="I want my correction address to be changed";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.cac',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Permanent Disconnection
+    */ 
+    public function showPD($type)
+    {
+        $srTitle="I want Permanent Disconnection";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.pd',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Temporary Disconnection
+    */ 
+    public function showTD($type)
+    {
+        $srTitle="I want Temporary Disconnection";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.td',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Service Reconnection
+    */ 
+
+    public function showSR($type)
+    {
+        $srTitle="I want my service to be reconnected";
+        $welcomeMessage=$this->welcomeMessage;
+    
+        return view('servicerequest.sr',compact('srTitle','welcomeMessage'));
+    }
 }

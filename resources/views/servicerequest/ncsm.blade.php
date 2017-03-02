@@ -26,30 +26,7 @@
 	</div>
 
 </div>
-<div class="clearfix">&nbsp;</div>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="col-sm-5"><label>Upload Load ID Proof (Voter ID/Aadhar Card/PAN Card)</label></div>
-		<div class="col-sm-7"><input type="file" name="idproof" class=" inputFile"></div>
-	</div>
-
-</div>
-
-<div class="clearfix">&nbsp;</div>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="col-sm-5"><label>Upload Pata/Sale-Deed/Rent Agreement/Industry Bond</label></div>
-		<div class="col-sm-7"><input type="file" name="residentialproof" class=" inputFile"></div>
-	</div>
-
-</div>
-<div class="clearfix">&nbsp;</div>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="col-sm-5"><label>Upload  Affidavit (To the correct name)</label></div>
-		<div class="col-sm-7"><input type="file" name="affidavit" class=" inputFile"></div>
-	</div>
-
-</div>
-
+@include('servicerequest.common.uploadid')
+@include('servicerequest.common.uploadresid')
+@include('servicerequest.common.uploadaffidavit')
 @stop

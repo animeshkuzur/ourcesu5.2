@@ -5,6 +5,7 @@
 		padding-bottom: 5px; 
 	}
 </style>
+<div class="clearfix">&nbsp;</div>
 <div class="row">
 	<div class="col-sm-12 text-center">
 		<div class="col-sm-12">
