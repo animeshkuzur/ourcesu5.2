@@ -11,6 +11,7 @@
 |
 */
 
+include_once("Routes/ServiceRequestRoutes.php");
 Route::get('/',['as'=>'home','uses' => 'PageController@home']);
 Route::get('/login',['as' => 'login', 'uses' => 'AuthController@login']);
 Route::get('/logout',['as' => 'logout', 'uses' => 'AuthController@logout']);

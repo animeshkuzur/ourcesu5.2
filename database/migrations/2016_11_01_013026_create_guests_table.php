@@ -18,6 +18,8 @@ class CreateGuestsTable extends Migration
             $table->string('password')->default(bcrypt('password'));
             $table->string('cont_acc')->nullable();
             $table->rememberToken();
+            // Engine-MYIsam
+            // SoftDelete on
         });
     }
 

@@ -2,20 +2,22 @@
 {{-- <script type="text/javascript" src="{{asset('public/js/jquery.min.js')}}"></script> --}}
 @yield('urlsetter')
 @section('content')
+<style type="text/css">
+	.srForm{
+		padding-top: 10px;
+		/*border: 1px solid black;*/
+	}
+</style>
 <div class="container">
-	{!!Form::open()!!}
-
-	<div class="row" class="show1">
-		{{-- Holds AC No Mob No Emaik --}}
-		{{-- @include('servicerequest.common.show1') --}}
-		
+	<div class="row">
+		<div class="col-sm-12">
+		<div class="col-sm-9"><h4>Service Request -> {{$srTitle}}</h4></div></div>
 	</div>
+	{!!Form::open(array('class'=>'srForm form','id'=>'srForm'))!!}
 
-
-	<div class="row" class="show2">
-		{{-- Holds Welcome Message --}}
-		{{-- @include('servicerequest.common.show2') --}}
-	</div>
+		<input type="hidden" name="servicerequestType" id="servicerequestType">
+		{{-- Holds AC No Mob No Email --}}
+		@yield('formContent')
 
 
 	<div class="row show3">
@@ -35,8 +37,10 @@
 
 	<div class="row show6">
 		{{-- Holds the Submit Button  --}}
-		<div class="col-sm-12">
-		<input type="submit" name="submit" id="formSubmit" class="btn btn-warning pull-right">
+		<div class="col-sm-12 text-center" style="padding-top: 10px; ">
+		
+		<input type="submit" name="submit" id="formSubmit" class="btn btn-warning " style="text-align: center;">
+	
 		</div>
 	</div>
 	</form>
@@ -48,6 +52,9 @@
 	$(document).ready(function(){
 		$('#formSubmit').click(function(e){
 			e.preventDefault();
+			var sForm= $('#srForm').serialize();
+			console.log(sForm);
+			console.log("**");
 		});
 	});
 </script>
