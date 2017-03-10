@@ -79,6 +79,12 @@ class ServiceRequestController extends Controller
                 case 18:
                     return $this->showMMSM($type);
                     break;
+                case 19:
+                    return $this->showIMR($type);
+                    break;
+                case 20:
+                    return $this->showNMDNU($type);
+                    break;
     			default:
     				return "In Progress";
     				break;
@@ -280,5 +286,19 @@ class ServiceRequestController extends Controller
         $welcomeMessage=$this->welcomeMessage;
 
         return view('servicerequest.imr',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+
+    I have already charged my meter since three months, new meter details not
+
+        updated yet in to my Electricity Bill
+    */ 
+    public function showNMDNU($type)
+    {
+        $srTitle=" I have already charged my meter since three months, new meter details not
+        updated yet in to my Electricity Bill";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.nmdnu',compact('srTitle','welcomeMessage'));
     }
 }
