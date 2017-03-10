@@ -64,12 +64,27 @@ class ServiceRequestController extends Controller
                 case 13:
                     return $this->showDCWR($type);
                     break;
+                case 14:
+                    return $this->showTM($type);
+                    break;
+                case 15:
+                    return $this->showMRHS($type);
+                    break;
+                case 16:
+                    return $this->showMS($type);
+                    break;
+                case 17:
+                    return $this->showMSL($type);
+                    break;
+                case 18:
+                    return $this->showMMSM($type);
+                    break;
     			default:
-    				# code...
+    				return "In Progress";
     				break;
     		}
     	} catch (\Exception $e) {
-    		dd($e->getMessage($type));
+    		dd($e->getMessage());
     	}
     }
     /*
@@ -201,5 +216,69 @@ class ServiceRequestController extends Controller
         $welcomeMessage=$this->welcomeMessage;
 
         return view('servicerequest.dcwr',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Test Meter
+    */ 
+    public function showTM($type)
+    {
+        $srTitle="I am a disconnected user & wish to reconnect my service";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.tm',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Meter running high speed
+    */ 
+    public function showMRHS($type)
+    {
+        $srTitle="My meter is running at high speed";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.mrhs',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        Meter Stopped
+    */ 
+    public function showMS($type)
+    {
+        $srTitle="My meter is not running";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.ms',compact('srTitle','welcomeMessage'));
+    }
+        /*
+        Meter Stolen
+    */ 
+    public function showMSL($type)
+    {
+        $srTitle="My meter is stolen";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.msl',compact('srTitle','welcomeMessage'));
+    }
+    /*
+        Meter Change from mechanical to static
+    */ 
+    public function showMMSM($type)
+    {
+        $srTitle="Want to change my Mechaninc Meter to Static Meter";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.mmsm',compact('srTitle','welcomeMessage'));
+    }
+
+    /*
+        I want Meter on Rent
+    */ 
+    public function showIMR($type)
+    {
+        $srTitle="I want my meter on rent. What is the procedure?";
+        $welcomeMessage=$this->welcomeMessage;
+
+        return view('servicerequest.imr',compact('srTitle','welcomeMessage'));
     }
 }
