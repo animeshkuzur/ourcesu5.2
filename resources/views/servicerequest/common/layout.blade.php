@@ -11,7 +11,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
-		<div class="col-sm-9"><h4>Service Request -> {{$srTitle}}</h4></div></div>
+		<div class="col-sm-12"><h4>Service Request -> {{$srTitle}}</h4></div></div>
 	</div>
 	{!!Form::open(array('class'=>'srForm form','id'=>'srForm'))!!}
 

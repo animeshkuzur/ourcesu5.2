@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-sm-12">
-		<div class="col-sm-3"><label>Have you paid Meter Cost?</label></div>
+		<div class="col-sm-5"><label>
+		@if(isset($customMeterCost)){{$customMeterCost}}@else Have you paid Meter Cost?@endif</label></div>
 		<div class="col-sm-1"><input type="radio" name="paidmetercost" class="form-control" value="1"></div>
 		<div class="col-sm-1">Yes</div>
 		<div class="col-sm-1"><input type="radio" name="paidmetercost" class="form-control" value="0"></div>

@@ -85,6 +85,25 @@ class ServiceRequestController extends Controller
                 case 20:
                     return $this->showNMDNU($type);
                     break;
+                case 21:
+                    return $this->showSMAPSP($type);
+                    break;
+                case 22:
+                    return $this->showMMNRM($type);
+                    break;
+                case 23:
+                    # code...
+                    return $this->showBBWR($type);
+                    break;
+                case 24:
+                    return $this->showRBBR($type);
+                    break;
+                case 25:
+                    return $this->showBBHLR($type);
+                    break;
+                case 26:
+                    return "Required Consultation";
+                    break;
     			default:
     				return "In Progress";
     				break;
@@ -301,4 +320,50 @@ class ServiceRequestController extends Controller
         $welcomeMessage=$this->welcomeMessage;
         return view('servicerequest.nmdnu',compact('srTitle','welcomeMessage'));
     }
+    /*
+        I want to shift my meter to another place, but in same plot
+    */ 
+    public function showSMAPSP($type)
+    {
+        $srTitle="I want to shift my meter to another place, but in same plot";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.smapsp',compact('srTitle','welcomeMessage'));   
+    }
+    /*
+        My Meter not read this month
+    */ 
+    public function showMMNRM($type)
+    {
+        $srTitle="My Meter not read this month";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.mmnrm',compact('srTitle','welcomeMessage'));   
+    }
+    /*
+        I have received a bill based on wrong reading
+    */ 
+    public function showBBWR($type)
+    {
+        $srTitle="I have received a bill based on wrong reading";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.bbwr',compact('srTitle','welcomeMessage'));   
+    }
+    /*
+    No one has come to my premises to take reading but I have received a bill based on Reading
+    */
+    public function showRBBR($type)
+    {
+        $srTitle="No one has come to my premises to take reading but I have received a bill based on Reading";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.rbbr',compact('srTitle','welcomeMessage'));
+    }
+    /*
+    I have received a bill based on house lock remark
+    */ 
+    public function showBBHLR($type)
+    {
+        $srTitle="I have received a bill based on house lock remark";
+        $welcomeMessage=$this->welcomeMessage;
+        return view('servicerequest.bbhlr',compact('srTitle','welcomeMessage'));
+    }
+
 }
