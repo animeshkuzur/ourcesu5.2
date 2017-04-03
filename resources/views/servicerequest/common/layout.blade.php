@@ -8,6 +8,9 @@
 		/*border: 1px solid black;*/
 	}
 </style>
+<?php 
+$customReason="";
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">

@@ -104,6 +104,7 @@ class ServiceRequestController extends Controller
                 case 26:
                     return "Required Consultation";
                     break;
+                
     			default:
     				return "In Progress";
     				break;
@@ -365,5 +366,6 @@ class ServiceRequestController extends Controller
         $welcomeMessage=$this->welcomeMessage;
         return view('servicerequest.bbhlr',compact('srTitle','welcomeMessage'));
     }
+
 
 }
