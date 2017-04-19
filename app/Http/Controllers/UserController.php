@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Guest;
+use Session;
 use App\User_Detail;
 
 class UserController extends Controller
@@ -43,5 +44,11 @@ class UserController extends Controller
         $header = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$cont_acc)->get();
         return response()->json(['header'=>$header[0]]);
     }
-    
+    public function setSession(Request $r)
+    {
+        if ($r->has('key')) {
+            Session::put('masterkey',$r->key);
+        }
+        return redirect('/');
+    }
 }

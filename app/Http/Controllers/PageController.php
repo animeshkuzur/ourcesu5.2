@@ -24,6 +24,7 @@ class PageController extends Controller
     }
 
     public function home(){
+        
     	$id = 266;
     	$data = Content::where('page_id',$id)->get();
     	return view('pages.index',['data' => $data[0]]);

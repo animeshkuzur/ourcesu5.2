@@ -1,0 +1,9 @@
+@extends('servicerequest.common.layout')
+@section('formContent')
+@include('servicerequest.common.dcme')
+<?php 
+$showMoreMeter=True;
+?>
+@include('servicerequest.common.mnmk')
+@include('servicerequest.common.uploadmeterprotocol')
+@stop

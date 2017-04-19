@@ -1,8 +1,6 @@
 
-    <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('dist/js/bootstrap.min.js') }}"></script>
-    <!--Accordion JS-->
-    <script src="{{ URL::asset('js/jquery-1.10.2.js') }}"></script>
+        <!--Accordion JS-->
+  {{--   <script src="{{ URL::asset('js/jquery-1.10.2.js') }}"></script> --}}
     <script src="{{ URL::asset('js/jquery-ui.js') }}"></script>
     <script src="{{ URL::asset('js/hoverintent.min.js') }}"></script>
     <script src="{{ URL::asset('js/js.cookie.js') }}"></script>
