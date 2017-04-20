@@ -290,6 +290,10 @@
     $("#bill_date").on('change',function(e){
         $("#view_bill").attr('disabled','disabled');
         $("#view_bill").attr('href',"#");
+        $("#duedate").val("");
+        $("#bduedate").val("");
+        $("#aduedate").val("");
+        $("#amount").val("");
         var loader = "{{ URL::asset('images/ajax-loader.gif') }}";
         $("#dateloader").html("<img src='"+loader+"' />");
         $.ajaxSetup({
@@ -318,7 +322,7 @@
                     $("#dateloader").html(data.error);
                 }
                 else{
-                    console.log(data.spot_bill);
+                    
                     $("#view_bill").removeAttr("disabled");
                     $("#dateloader").html("");
                     $("#view_bill").attr('href',docview_url+"/"+data.spot_bill[0].CONTRACT_ACC+"/"+data.spot_bill[0].BillMonth+"/11");
