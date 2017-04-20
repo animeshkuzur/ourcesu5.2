@@ -18,16 +18,16 @@ class PaymentController extends Controller
             
             
 
-            return view('pages.payment',['cont_acc'=>$cont_acc,'data' =>$data[0],'set_data'=>$set_data[0]]);        
+            return view('pages.payment',['cont_acc'=>$cont_acc]);        
         }
         if(\Auth::guard('guest')->check()){
             $id = \Auth::guard('guest')->user()->id;
             $cont_acc = Guest::where('id',$id)->get(['cont_acc']);
             
-            
+            return view('pages.payment',['cont_acc'=>$cont_acc]);
         }
 
-    	return view('pages.payment',['cont_acc'=>$cont_acc]);
+    	return view('pages.payment');
     }
 
     public function receipt(Request $request){
