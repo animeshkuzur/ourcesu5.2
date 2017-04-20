@@ -56,7 +56,7 @@
                                 @endforeach
                             @endif
                         @endif
-                        {!! Form::open(array('route' => 'savesettings', 'method'=>'POST')) !!}
+                        {!! Form::open(array('route' => 'pay', 'method'=>'POST')) !!}
                             <div class="row">
                             
                                 <div class="col-sm-4" style="text-align: right;padding-top: 5px;">
@@ -65,9 +65,9 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                     @if(isset($cont_acc))
-                                        <select class="form-control input-sm" id="sel_contacc">
+                                        <select class="form-control input-sm" id="sel_contacc" name="input_contacc">
                                         @foreach($cont_acc as $cont)
-                                            <option>{{$cont->cont_acc}}</option>
+                                            <option value="{{$cont->cont_acc}}">{{$cont->cont_acc}}</option>
                                         @endforeach
                                         </select>
                                     @else
@@ -94,7 +94,7 @@
                                     Collection Month : 
                                 </div>
                                 <div class="col-sm-4">
-                                    <select class="form-control input-sm" id="bill_date" disabled="disabled">
+                                    <select class="form-control input-sm" name="billmonth" id="bill_date" disabled="disabled">
                                         
                                     </select>
                                 </div>
@@ -271,7 +271,7 @@
                     $("#view_bill").removeAttr("disabled");
                     $("#dateloader").html("");
                     $.each(data.dates,function(index,value){
-                        $("#bill_date").append("<option>"+value+"</option>");
+                        $("#bill_date").append("<option value='"+value+"'>"+value.substring(0,4)+"-"+value.substring(4)+"</option>");
                     });
                     $("#view_bill").attr('href',docview_url+"/"+data.spot_bill[0].CONTRACT_ACC+"/"+data.spot_bill[0].BillMonth+"/11");
                     
@@ -309,7 +309,7 @@
         else{
             var contacc = $("#sel_contacc option:selected").text();    
         }
-        var billdate = $("#bill_date option:selected").text();
+        var billdate = $("#bill_date option:selected").val();
         var request = {"cont_acc":contacc,"date":billdate}
         $.ajax({
             type: "GET",

@@ -11,28 +11,23 @@ use App\User_Detail;
 
 class PaymentController extends Controller
 {
-	public function payment(){
-		if(\Auth::guard('user')->check()){
+    public function initiate(){
+    	if(\Auth::guard('user')->check()){
             $id=\Auth::guard('user')->user()->id;
             $cont_acc = User_Detail::where('user_id',$id)->get(['cont_acc']);
-            $set_data = User::where('id',$id)->get();
-            $data = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$cont_acc[0]->cont_acc)->get();
+            
+            
 
-        	return view('pages.payment',['cont_acc'=>$cont_acc,'data' =>$data[0],'set_data'=>$set_data[0]]);        
+            return view('pages.payment',['cont_acc'=>$cont_acc,'data' =>$data[0],'set_data'=>$set_data[0]]);        
         }
         if(\Auth::guard('guest')->check()){
             $id = \Auth::guard('guest')->user()->id;
             $cont_acc = Guest::where('id',$id)->get(['cont_acc']);
-            $data = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$cont_acc[0]->cont_acc)->get();
-            return view('pages.payment',['cont_acc'=>$cont_acc,'data' =>$data[0]]);
+            
+            
         }
-        return view('pages.payment');
-	}
 
-    public function initiate(){
-    	
-
-    	return view('pages.payment');
+    	return view('pages.payment',['cont_acc'=>$cont_acc]);
     }
 
     public function receipt(Request $request){
@@ -76,5 +71,61 @@ class PaymentController extends Controller
         }
         return response()->json(['spot_bill' => $spot_bill]);
         
+    }
+
+    public function pay(Request $request){
+        $data = $request->only('billmonth','input_contacc');
+        try{
+            $divcode = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$data['input_contacc'])->limit(1)->get(['DIVCODE']);
+            //$amount = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$data['input_contacc'])->orderby('BILL_MONTH','DESC')->limit(1)->get(['INVOICE_AMOUNT']);
+            $amount = 2;
+            $transactionid = $this->generateTransactionID();
+            if(!isset($divcode)){
+                return back()->withInput()->withErrors(['cont_acc' => 'Contract Account Number is invalid']);
+            }
+            if(!isset($amount)){
+                return back()->withInput()->withErrors(['billmonth' => 'Bill Month is invalid']);
+            }
+            $merch_id = "OURCESU";
+            $secur_id = "ourcesu";
+            $ret_url = "https://ourcesu.com/receipt";
+            $req = $merch_id."|".$data['input_contacc']."|NA|".$amount."|NA|NA|NA|INR|NA|R|".$secur_id."|NA|NA|F|".$transactionid."|".$divcode[0]->DIVCODE."|NA|NA|NA|NA|NA|".$ret_url;
+            $checksum = $this->encrypt($req);
+            $msg = $req."|".$checksum;
+        }
+        catch(Exception $e){
+
+        }
+        return view('pages.pay',['msg'=>$msg]);
+        //return response()->json(['input' => $data,'divcode'=>$divcode[0]->DIVCODE,'amount'=>$amount,'transactionid'=>$transactionid,'request'=>$req,'checksum'=>$checksum]);
+    }
+
+    protected function encrypt($str)
+    {
+        
+        $checksum = hash_hmac('sha256',$str,'qBR2g6A5IsK2', false); 
+        return $checksum;
+    }
+
+    protected function decrypt($response)
+    {
+
+        $hashSequence = "status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key";
+        $hashVarsSeq = explode('|', $hashSequence);
+        $hash_string = $this->salt."|";
+
+        foreach($hashVarsSeq as $hash_var) {
+            $hash_string .= isset($response[$hash_var]) ? $response[$hash_var] : '';
+            $hash_string .= '|';
+        }
+
+        $hash_string = trim($hash_string,'|');
+
+        return strtolower(hash('sha512', $hash_string));
+    }
+
+    public function generateTransactionID()
+    {
+        return substr((mt_rand() . microtime()), 0, 10);
     }
 }

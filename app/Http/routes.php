@@ -32,6 +32,7 @@ Route::group(['middleware'=>'masterauth'],function(){
 	Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);
 	Route::get('/datedocuments',['as' => 'datedocuments','uses' => 'VaultController@datedocs']);
 	Route::get('/payment',['as' => 'payment','uses'=>'PaymentController@initiate']);
+	Route::post('/payment',['as' => 'pay','uses' => 'PaymentController@pay']);
 	Route::get('/getbilldate',['as' => 'getbilldate','uses' => 'PaymentController@getbilldate']);
 	Route::get('/getbill',['as' => 'getbill','uses' => 'PaymentController@getbill']);
 	Route::post('/receipt',['as' => 'receipt','uses'=>'PaymentController@receipt']);
