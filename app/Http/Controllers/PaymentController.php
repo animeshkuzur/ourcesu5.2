@@ -97,13 +97,14 @@ class PaymentController extends Controller
 
         }
         return view('pages.pay',['msg'=>$msg]);
-        //return response()->json(['input' => $data,'divcode'=>$divcode[0]->DIVCODE,'amount'=>$amount,'transactionid'=>$transactionid,'request'=>$req,'checksum'=>$checksum]);
+        //return response()->json(['input' => $data,'divcode'=>$divcode[0]->DIVCODE,'amount'=>$amount,'transactionid'=>$transactionid,'request'=>$req,'checksum'=>$checksum,'msg'=>$msg]);
     }
 
     protected function encrypt($str)
     {
         
         $checksum = hash_hmac('sha256',$str,'qBR2g6A5IsK2', false); 
+        $checksum = strtoupper($checksum);
         return $checksum;
     }
 
