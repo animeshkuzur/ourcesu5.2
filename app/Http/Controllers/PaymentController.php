@@ -32,7 +32,22 @@ class PaymentController extends Controller
 
     public function receipt(Request $request){
     	$data = $request->all();
-    	return $data;
+        $hash = explode("|", $data['msg']);
+        $max = sizeof($hash);
+        $checksum = $hash[$max-1];
+        for($i = 0;$i<$max-1;$i++){
+            $msg .= $hash[$i];
+            $msg .= "|";
+        }
+        $msg = trim($msg,'|');
+        $check = $this->encrypt($msg);
+        if(strcmp($check, $checksum) == 0){
+            $status = "checksum verified!";
+        }
+        else{
+            $status = "cannot verify checksum";
+        }
+    	return response()->json(['response' => $data,'checksum'=>$status]);
     }
 
     public function getbilldate(Request $request){
@@ -106,23 +121,6 @@ class PaymentController extends Controller
         $checksum = hash_hmac('sha256',$str,'qBR2g6A5IsK2', false); 
         $checksum = strtoupper($checksum);
         return $checksum;
-    }
-
-    protected function decrypt($response)
-    {
-
-        $hashSequence = "status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key";
-        $hashVarsSeq = explode('|', $hashSequence);
-        $hash_string = $this->salt."|";
-
-        foreach($hashVarsSeq as $hash_var) {
-            $hash_string .= isset($response[$hash_var]) ? $response[$hash_var] : '';
-            $hash_string .= '|';
-        }
-
-        $hash_string = trim($hash_string,'|');
-
-        return strtolower(hash('sha512', $hash_string));
     }
 
     public function generateTransactionID()
