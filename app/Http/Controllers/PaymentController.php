@@ -39,4 +39,42 @@ class PaymentController extends Controller
     	$data = $request->all();
     	return $data;
     }
+
+    public function getbilldate(Request $request){
+        $date = array();
+        $flag = 1;
+        $data = $request->only('cont_acc');
+        if(!$data['cont_acc']){
+            return response()->json(['error' => 'cont_acc parameter absent']);
+        }
+        $sap_bill = \DB::table('SAP_DATA.dbo.BILLING_DATA')->where('CONTRACT_ACC',$data['cont_acc'])->orderby('BILL_MONTH','DESC')->get(['BILL_MONTH']);
+                if($sap_bill){
+                    foreach ($sap_bill as $dat) {
+                        array_push($date,$dat->BILL_MONTH);
+                        if($flag){
+                            $temp_date = $dat->BILL_MONTH;
+                            $flag = 0;
+                        }
+                    }
+                }
+        $spot_bill = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$data['cont_acc'])->where('BillMonth',$temp_date)->limit(1)->get();
+        return response()->json(['dates' => $date,'spot_bill' => $spot_bill]);
+    }
+
+    public function getbill(Request $request){
+        $date = array();
+        $data = $request->only('cont_acc','date');
+        if(!$data['cont_acc']){
+            return response()->json(['error' => 'cont_acc parameter absent']);
+        }
+        if(!$data['date']){
+            return response()->json(['error' => 'bill month parameter absent']);   
+        }
+        $spot_bill = \DB::table('STL.dbo.BILLING_OUTPUT_2016')->where('CONTRACT_ACC',$data['cont_acc'])->where('BillMonth',$data['date'])->limit(1)->get();
+        if(!$spot_bill){
+            return response()->json(['error' => 'no records found!']);    
+        }
+        return response()->json(['spot_bill' => $spot_bill]);
+        
+    }
 }

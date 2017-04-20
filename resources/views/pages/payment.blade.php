@@ -76,9 +76,17 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <button class="btn btn-danger login-btn btn-sm btn-block" style="width: 80px;" id="getbill">Get Bills</button>
+                                    <a class="btn btn-danger login-btn btn-sm btn-block" style="width: 80px;" id="getbill">Get Bills</a>
+                                    
+                                    
                                 </div>
+                              
                             
+                            </div>
+                            <div class="row">
+                                  <div class="col-sm-12">
+                                    <div id="dateloader" align="center"></div>
+                                </div>
                             </div>
                             <div class="row" style="padding-top: 5px;">
                             
@@ -86,10 +94,12 @@
                                     Collection Month : 
                                 </div>
                                 <div class="col-sm-4">
-                                    {!! Form::text('email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'email')) !!}
+                                    <select class="form-control input-sm" id="bill_date" disabled="disabled">
+                                        
+                                    </select>
                                 </div>
                                 <div class="col-sm-4">
-                                    <a href="#" class="btn btn-default btn-sm btn-block" style="width: 80px;">View Bill</a>
+                                    <a href="" id="view_bill" class="btn btn-default btn-sm btn-block" style="width: 80px;" disabled="disabled" target="_blank">View Bill</a>
                                 </div>
                             
                             </div>
@@ -99,7 +109,7 @@
                                     Due Date : 
                                 </div>
                                 <div class="col-sm-4">
-                                    {!! Form::text('email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'email')) !!}
+                                    {!! Form::text('duedate',null, array('class' => 'form-control input-sm','placeholder'=>'Due Date','id'=>'duedate','disabled'=>'disabled')) !!}
                                 </div>
                                 <div class="col-sm-4">
                                 </div>
@@ -111,7 +121,7 @@
                                     Amount Before Due Date : 
                                 </div>
                                 <div class="col-sm-4">
-                                    {!! Form::text('email',null, array('class' => 'form-control input-sm','placeholder'=>'Email','id'=>'email')) !!}
+                                    {!! Form::text('bduedate',null, array('class' => 'form-control input-sm','placeholder'=>'Amount Before Due Date','id'=>'bduedate','disabled'=>'disabled')) !!}
                                 </div>
                                 <div class="col-sm-4">
                                    <a href="#" class="pay_help">(View help for Pay Before Due Date)</a>
@@ -124,7 +134,7 @@
                                     Amount After Due Date : 
                                 </div>
                                 <div class="col-sm-4">
-                                    {!! Form::text('mobile',null, array('class' => 'form-control input-sm','placeholder'=>'Add Mobile Number','id'=>'mobile')) !!}
+                                    {!! Form::text('aduedate',null, array('class' => 'form-control input-sm','placeholder'=>'Amount After Due Date','id'=>'aduedate','disabled'=>'disabled')) !!}
                                 </div>
                                 <div class="col-sm-4">
                                     <a href="#" class="pay_help">(View help for Pay After Due Date)</a>
@@ -137,7 +147,7 @@
                                     Amount to Be Paid : 
                                 </div>
                                 <div class="col-sm-4">
-                                    {!! Form::text('mobile',null, array('class' => 'form-control input-sm','placeholder'=>'Add Mobile Number','id'=>'mobile')) !!}
+                                    {!! Form::text('amount',null, array('class' => 'form-control input-sm','placeholder'=>'Bill Amount','id'=>'amount','disabled'=>'disabled')) !!}
                                 </div>
                                 <div class="col-sm-4" style="font-size: 12px;">
                                     
@@ -221,5 +231,108 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
 
+    $("#getbill").click(function(e){
+        $("#bill_date").attr('disabled','disabled');
+        $("#view_bill").attr('disabled','disabled');
+        $("#view_bill").attr('href',"#");
+        var loader = "{{ URL::asset('images/ajax-loader.gif') }}";
+        $("#dateloader").html("<img src='"+loader+"' />");
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        e.preventDefault();
+        var url = "{{url('/getbilldate')}}";
+        if($("#text_contacc").length){
+            var contacc = $("#text_contacc").val();
+        }
+        else{
+            var contacc = $("#sel_contacc option:selected").text();    
+        }
+        var request = {"cont_acc":contacc}
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: request,
+            dataType: 'json',
+            success: function(data){
+                var docview_url = "{{ url('/docview') }}";
+                if(data.error){
+                    $("#dateloader").html(data.error);
+                }
+                else{
+                    
+                    $("#bill_date").html("");
+                    $("#bill_date").removeAttr("disabled");
+                    $("#view_bill").removeAttr("disabled");
+                    $("#dateloader").html("");
+                    $.each(data.dates,function(index,value){
+                        $("#bill_date").append("<option>"+value+"</option>");
+                    });
+                    $("#view_bill").attr('href',docview_url+"/"+data.spot_bill[0].CONTRACT_ACC+"/"+data.spot_bill[0].BillMonth+"/11");
+                    
+                    $("#duedate").val(data.spot_bill[0].BILL_DATE);
+                    $("#bduedate").val(data.spot_bill[0].BILL_BEFORE_DUT_DT);
+                    $("#aduedate").val(data.spot_bill[0].BILL_AFTER_DUT_DT);
+                    $("#amount").val(data.spot_bill[0].BILL_AFTER_DUT_DT);
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });
+
+    $("#bill_date").on('change',function(e){
+        $("#view_bill").attr('disabled','disabled');
+        $("#view_bill").attr('href',"#");
+        var loader = "{{ URL::asset('images/ajax-loader.gif') }}";
+        $("#dateloader").html("<img src='"+loader+"' />");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        e.preventDefault();
+        var url = "{{url('/getbill')}}";
+        if($("#text_contacc").length){
+            var contacc = $("#text_contacc").val();
+        }
+        else{
+            var contacc = $("#sel_contacc option:selected").text();    
+        }
+        var billdate = $("#bill_date option:selected").text();
+        var request = {"cont_acc":contacc,"date":billdate}
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: request,
+            dataType: 'json',
+            success: function(data){
+                var docview_url = "{{ url('/docview') }}";
+                if(data.error){
+                    $("#dateloader").html(data.error);
+                }
+                else{
+                    console.log(data.spot_bill);
+                    $("#view_bill").removeAttr("disabled");
+                    $("#dateloader").html("");
+                    $("#view_bill").attr('href',docview_url+"/"+data.spot_bill[0].CONTRACT_ACC+"/"+data.spot_bill[0].BillMonth+"/11");
+                    $("#duedate").val(data.spot_bill[0].BILL_DATE);
+                    $("#bduedate").val(data.spot_bill[0].BILL_BEFORE_DUT_DT);
+                    $("#aduedate").val(data.spot_bill[0].BILL_AFTER_DUT_DT);
+                    $("#amount").val(data.spot_bill[0].BILL_AFTER_DUT_DT);
+                }
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
+    });
+</script>
 @endsection
