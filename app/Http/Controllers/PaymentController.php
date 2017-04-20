@@ -32,6 +32,7 @@ class PaymentController extends Controller
 
     public function receipt(Request $request){
     	$data = $request->all();
+        $msg = "";
         $hash = explode("|", $data['msg']);
         $max = sizeof($hash);
         $checksum = $hash[$max-1];
@@ -111,6 +112,7 @@ class PaymentController extends Controller
         catch(Exception $e){
 
         }
+        //return redirect()->route('receipt',['msg'=>$msg]);
         return view('pages.pay',['msg'=>$msg]);
         //return response()->json(['input' => $data,'divcode'=>$divcode[0]->DIVCODE,'amount'=>$amount,'transactionid'=>$transactionid,'request'=>$req,'checksum'=>$checksum,'msg'=>$msg]);
     }
