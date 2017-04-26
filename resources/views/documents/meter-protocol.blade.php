@@ -118,7 +118,7 @@
 	</div>
 	<div class='row'>
 		<div class='col-xs-12'>
-			Pole No.: {{ $conn->POLE_NO }}
+			Pole No.: {{ $conn->POLE_NO or '--'}}
 		</div>
 	</div>
 	<div class='row'>
@@ -130,21 +130,21 @@
 	</div>
 	<div class='row'>
 		<div class='col-sm-4'>
-			Meter Location: {{ $rp->Location_Detail }}
+			Meter Location: {{ $rp->Location_Detail or '--' }}
 		</div>
 		<div class='col-sm-4'>
-			Installation Type: {{ $rp->Connection_Detail }}
+			Installation Type: {{ $rp->Connection_Detail or '--'}}
 		</div>
 		<div class='col-sm-4'>
-			BOX: {{ $rp->Box_Detail }}
+			BOX: {{ $rp->Box_Detail or '--'}}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-4'>
-			Service Line: {{ $rp->SrvLineDetail }}
+			Service Line: {{ $rp->SrvLineDetail or '--'}}
 		</div>
 		<div class='col-sm-4'>
-			Payment Details: {{ $dat->AMOUNT }}
+			Payment Details: {{ $dat->AMOUNT or '--'}}
 		</div>
 		<div class='col-sm-4'>
 			Meter Height:
@@ -158,7 +158,7 @@
 			Material Used: 
 		</div>
 		<div class='col-sm-4'>
-			Owner: {{ $conn->MTR_OWN }}
+			Owner: {{ $conn->MTR_OWN or '--'}}
 		</div>
 	</div>
 	<div class='row'>
@@ -183,64 +183,64 @@
 				<div class='col-xs-4'>
 					Meter No.: 
 				</div>
-				<div class='col-xs-4'>@if($mr) {{ $mr->MR_MeterNo }} @endif</div>
-				<div class='col-xs-4'>{{ $mi->MI_MeterNo }}</div>
+				<div class='col-xs-4'>@if(isset($mr)) {{ $mr->MR_MeterNo or '--' }} @endif</div>
+				<div class='col-xs-4'>{{ $mi->MI_MeterNo or '--'}}</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Make:
 				</div>
-				<div class='col-xs-4'>@if($mr) {{ $mr->Make_Detail }} @endif</div>
+				<div class='col-xs-4'>@if(isset($mr)) {{ $mr->Make_Detail }} @endif</div>
 				<div class='col-xs-4'> {{ $mi->Make_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Type:
 				</div>
-				<div class='col-xs-4'>@if($mr) {{ $mr->Type_Detail }} @endif</div>
+				<div class='col-xs-4'>@if(isset($mr)) {{ $mr->Type_Detail }} @endif</div>
 				<div class='col-xs-4'> {{ $mi->Type_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Meter Phase: 
 				</div>
-				<div class='col-xs-4'>@if($mr) {{ $mr->Phase_Detail }} @endif</div>
+				<div class='col-xs-4'>@if(isset($mr)) {{ $mr->Phase_Detail }} @endif</div>
 				<div class='col-xs-4'> {{ $mi->Phase_Detail }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					KHW Reading: 
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_KWHReading }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_KWHReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_KWHReading or '--'}} </div>
+				<div class='col-xs-4'> {{ $dat->MI_KWHReading or '--'}} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					KVAH Reading:
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_KVAHReading }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_KVAHReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_KVAHReading or '--'}} </div>
+				<div class='col-xs-4'> {{ $dat->MI_KVAHReading or '--'}} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MDI KW:
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_MDIkw }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_MDIkw }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_MDIkw or '--'}} </div>
+				<div class='col-xs-4'> {{ $dat->MI_MDIkw or '--'}} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					MDI KVA:
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_MDIkva }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_MDIkva }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_MDIkva or '--'}} </div>
+				<div class='col-xs-4'> {{ $dat->MI_MDIkva or '--'}} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Current Reading:
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_CurrentReading }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_CurrentReading }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_CurrentReading or '--'}} </div>
+				<div class='col-xs-4'> {{ $dat->MI_CurrentReading or '--'}} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
