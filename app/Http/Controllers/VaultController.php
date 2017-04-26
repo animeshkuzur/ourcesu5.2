@@ -107,6 +107,8 @@ class VaultController extends Controller
                 }
                 break;
             case '9':
+
+                try {
                 $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $cons_acc = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$data['cont_acc'])->lists('CONS_ACC');
                 $consumerID = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$data['cont_acc'])->lists('CONSUMERID');
@@ -119,6 +121,10 @@ class VaultController extends Controller
                     foreach ($mon as $data) {
                         array_push($date,$data->pay_date);
                     }
+                }
+                } catch (\Exception $e) {
+                    dump($e);
+                    return $e->getMessage();
                 }
                 break;
             case '10':
