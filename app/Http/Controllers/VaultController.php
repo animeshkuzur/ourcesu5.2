@@ -407,7 +407,32 @@ class VaultController extends Controller
                         return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$mtr_pro[0],'conn'=>$connect[0],'rp'=>$rp_meter[0],'mr'=>$mr,'mi'=>$mi[0]]);
                     }
                     else{
-                        return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$mtr_pro[0],'conn'=>$connect[0],'rp'=>$rp_meter[0],'mr'=>$mr[0],'mi'=>$mi[0]]);
+                        try {
+                            $dat=$mtr_pro;
+                        } catch (\Exception $e) {
+                            $dat=null;
+                        }
+                        try {
+                            $conn=$connect[0];
+                        } catch (\Exception $e) {
+                            $conn=null;
+                        }
+                        try {
+                            $rp=$rp_meter[0];
+                        } catch (\Exception $e) {
+                            $rp=null;
+                        }
+                        try {
+                            $mr=$mr[0];
+                        } catch (\Exception $e) {
+                            $mr=null;
+                        }
+                        try {
+                            $mi=$mi[0];
+                        } catch (\Exception $e) {
+                            $mi=null;
+                        }
+                        return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$dat,'conn'=>$conn,'rp'=>$rp,'mr'=>$mr,'mi'=>$mi);
                     }
                 }
                 } catch (\Exception $e) {
