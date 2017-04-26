@@ -392,7 +392,8 @@ class VaultController extends Controller
                 $document['type'] = $docs[0]->type;
                 break;
             case '8':
-                $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                try {
+                    $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$contacc)->where('CP_Date',$date)->get();
                 $connect = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$contacc)->limit(1)->get();
                 $rp_meter = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$contacc)->where('CP_Date',$date)->join('OW.dbo.tblMeterLocation','OW.dbo.tblMeterLocation.Location_Id','=','OW.dbo.MTR_PROT_SHEET.RP_MeterLocation')->join('OW.dbo.tblConnectionType','OW.dbo.tblConnectionType.Connection_Id','=','OW.dbo.MTR_PROT_SHEET.RP_Connection')->join('OW.dbo.tblBox','OW.dbo.tblBox.Box_Id','=','OW.dbo.MTR_PROT_SHEET.RP_Box')->join('OW.dbo.tblServiceLine','OW.dbo.tblServiceLine.SrvLineId','=','OW.dbo.MTR_PROT_SHEET.RP_ServiceLine')->limit(1)->get();
@@ -408,6 +409,10 @@ class VaultController extends Controller
                     else{
                         return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$mtr_pro[0],'conn'=>$connect[0],'rp'=>$rp_meter[0],'mr'=>$mr[0],'mi'=>$mi[0]]);
                     }
+                }
+                } catch (\Exception $e) {
+                    dump($e);
+                    return $e->getMessage();
                 }
                 break;
             case '9':
