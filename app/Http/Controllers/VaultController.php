@@ -95,7 +95,8 @@ class VaultController extends Controller
                 $document['type'] = $docs[0]->type;
                 break;
             case '8':
-                $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
+                try {
+                    $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$data['cont_acc'])->orderby('CP_Date','DESC')->get(['CP_Date']);
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
@@ -105,6 +106,11 @@ class VaultController extends Controller
                         array_push($date,$data->CP_Date);
                     }
                 }
+                } catch (\Exception $e) {
+                    dump($e);
+                    return $e->getMessage();
+                }
+
                 break;
             case '9':
 
