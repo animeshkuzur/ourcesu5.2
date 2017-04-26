@@ -111,8 +111,7 @@ class VaultController extends Controller
                 try {
                 $docs = \DB::table('documents')->where('documents.id',9)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $cons_acc = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$data['cont_acc'])->lists('CONS_ACC');
-                $consumerID = \DB::table('Address_Mas.dbo.VW_CON_MAS')->where('CONTRACT_ACC',$data['cont_acc'])->lists('CONSUMERID');
-                $cons_acc=array_merge($cons_acc,$consumerID);
+               
                 $mon = \DB::table('VW_PAYMENT_RECEIPT')->whereIn('CONS_ACC',$cons_acc)->orderby('BillMonth','DESC')->get();
                 $document['id'] = $docs[0]->id;
                 $document['name'] = $docs[0]->name;
