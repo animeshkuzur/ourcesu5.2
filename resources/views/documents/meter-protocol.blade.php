@@ -45,13 +45,13 @@
 	</div>
 	<div class='row'>
 		<div class='col-xs-4 title'>
-			SU Code: {{ $dat->SU_Id or 'Missing ID' }}
+			SU Code: {{ $dat->SU_Id or '--' }}
 		</div>
 		<div class='col-xs-4 title'>
 			<h4><strong>Meter Protocol Sheet</strong></h4>
 		</div>
 		<div class='col-xs-4 title'>
-			PS No.: {{ $dat->CP_ProtocolSheetNo }}
+			PS No.: {{ $dat->CP_ProtocolSheetNo or '--' }}
 		</div>
 	</div>
 	<div class='row'>
@@ -63,34 +63,34 @@
 	</div>
 	<div class='row'>
 		<div class='col-sm-6'>
-			Reference No.: {{ $dat->CP_ReferenceNo }}
+			Reference No.: {{ $dat->CP_ReferenceNo or '--' }}
 		</div>
 		<div class='col-sm-6'>
-			Connection No.: {{ $dat->CP_ConnectionNo }}
+			Connection No.: {{ $dat->CP_ConnectionNo or '--'}}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-12'>
-			Name: {{ $dat->CP_Name }}
+			Name: {{ $dat->CP_Name or '--'}}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-12'>
-			Address: {{ $dat->CP_Address }}<br>
+			Address: {{ $dat->CP_Address or '--'}}<br>
 
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-8'>
-			Landmark: {{ $dat->CP_Landmark }}
+			Landmark: {{ $dat->CP_Landmark or '--'}}
 		</div>
 		<div class='col-sm-4'>
-			Date: {{ $dat->CP_Date }}
+			Date: {{ $dat->CP_Date or '--'}}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-8'>
-			Contact No.: {{ $dat->CP_ContactNo }}
+			Contact No.: {{ $dat->CP_ContactNo or '--'}}
 		</div>
 	</div>
 	<div class='row'>
@@ -102,18 +102,18 @@
 	</div>
 	<div class='row'>
 		<div class='col-sm-6'>
-			Transformer Name: {{ $conn->DT_NAME }}
+			Transformer Name: {{ $conn->DT_NAME or '--'}}
 		</div>
 		<div class='col-sm-6'>
-			Connection Name: {{ $conn->EST_TYPE_DESC }}
+			Connection Name: {{ $conn->EST_TYPE_DESC or '--'}}
 		</div>
 	</div>
 	<div class='row'>
 		<div class='col-sm-6'>
-			Transformer No.: {{ $conn->DT_NO }}
+			Transformer No.: {{ $conn->DT_NO  or '--'}}
 		</div>
 		<div class='col-sm-6'>
-			Connection Category: {{ $conn->CATEGORY }}
+			Connection Category: {{ $conn->CATEGORY or '--'}}
 		</div>
 	</div>
 	<div class='row'>
