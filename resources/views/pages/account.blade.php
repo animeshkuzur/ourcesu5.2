@@ -66,6 +66,20 @@
                             <div class="col-xs-2"></div>
                         </div>
                         <div class="content">
+                        @if($errors)
+                            @if(count($errors))
+                                @foreach($errors->all() as $error)
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <font style="font-size: 12px; padding: 0px; margin : 0px;">
+                                            {{ $error }}
+                                            </font>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                @endforeach
+                            @endif
+                        @endif
                         {!! Form::open(array('route' => 'savesettings', 'method'=>'POST')) !!}
                             <div class="row" style="padding-top: 5px;">
                             
@@ -168,21 +182,7 @@
                             <div class="col-xs-2"></div>
                         </div>
                         <div class="content">
-                        @if($errors)
-                            @if(count($errors))
-                                @foreach($errors->all() as $error)
-                                    <div class="alert alert-danger alert-dismissible" role="alert">
-                                        <font style="font-size: 12px; padding: 0px; margin : 0px;">
-                                            {{ $error }}
-                                            </font>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            
-                                        </button>
-                                    </div>
-                                @endforeach
-                            @endif
-                        @endif
+                        
                         {!! Form::open(array('route' => 'savesettings', 'method'=>'POST')) !!}
                             <div class="row" style="padding-top: 5px;">
                             

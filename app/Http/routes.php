@@ -32,37 +32,15 @@ Route::group(['middleware'=>'masterauth'],function(){
 	Route::get('/getdocuments',['as' => 'getdocuments','uses' => 'VaultController@getdocuments']);
 	Route::get('/datedocuments',['as' => 'datedocuments','uses' => 'VaultController@datedocs']);
 	Route::get('/payment',['as' => 'payment','uses'=>'PaymentController@initiate']);
+	Route::post('/payment',['as' => 'pay','uses' => 'PaymentController@pay']);
+	Route::get('/getbilldate',['as' => 'getbilldate','uses' => 'PaymentController@getbilldate']);
+	Route::get('/getbill',['as' => 'getbill','uses' => 'PaymentController@getbill']);
 	Route::post('/receipt',['as' => 'receipt','uses'=>'PaymentController@receipt']);
 
-	Route::group(['prefix'=>'api'],function(){
-		Route::post('/login', ['uses'=>'ApiAuthController@login']);
-		Route::get('/getuser',['uses' => 'ApiAuthController@getuser']);
-		Route::get('/logout',['uses' => 'ApiAuthController@logout']);
-		Route::get('/refresh',['uses' => 'ApiAuthController@refresh']);
-		Route::post('/register',['uses' => 'ApiAuthController@register']);
-		Route::get('/selectacc',['uses' => 'ApiAuthController@selectacc']);
-		Route::get('/settings/password',['uses' => 'ApiUserController@password']);
-		Route::get('/settings/name',['uses' => 'ApiUserController@name']);
-		Route::get('/settings/email',['uses' => 'ApiUserController@email']);
-		Route::get('/settings/contacc',['uses' => 'ApiUserController@contacc']);
-		Route::get('/supply',['uses' => 'ApiPageController@supply']);
-		Route::get('/meter',['uses' => 'ApiPageController@meter']);
-		Route::get('/meterhistory',['uses' => 'ApiPageController@meterhist']);
-		Route::get('/connection',['uses' => 'ApiPageController@connection']);
-		Route::get('/reading',['uses' => 'ApiPageController@reading']);
-		Route::get('/readinghistory',['uses' => 'ApiPageController@readinghist']);
-		Route::get('/bill',['uses' => 'ApiPageController@bill']);
-		Route::get('/payment',['uses' => 'ApiPageController@payment']);
-		Route::get('/paymenthistory',['uses'=>'ApiPageController@paymenthist']);
-		Route::get('/sixmonthpayment',['uses' => 'ApiPageController@sixmonthpayment']);
-		Route::get('/paymentnotice',['uses' => 'ApiPageController@paymentnotice']);
-		Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
-		Route::get('/care',['uses' => 'ApiPageController@care']);
-		Route::get('/datedocuments',['uses'=>'ApiVaultController@datedocs']);
-		Route::get('/getdocuments',['uses'=>'ApiVaultController@getdocs']);
-		Route::get('/urldocuments',['uses'=>'ApiVaultController@urldocs']);
 
-	});
+
+
+
 
 	Route::group(['prefix'=>'admin'],function(){
 		Route::get('/login',['as'=>'adminlogin','uses' => 'AdminController@login']);
@@ -82,4 +60,33 @@ Route::group(['middleware'=>'masterauth'],function(){
 		Route::get('/getcontent',['uses'=>'AdminController@getcontent']);
 		Route::post('/savecontent',['uses'=>'AdminController@savecontent']);
 	});
+});
+
+Route::group(['prefix'=>'api'],function(){
+	Route::post('/login', ['uses'=>'ApiAuthController@login']);
+	Route::get('/getuser',['uses' => 'ApiAuthController@getuser']);
+	Route::get('/logout',['uses' => 'ApiAuthController@logout']);
+	Route::get('/refresh',['uses' => 'ApiAuthController@refresh']);
+	Route::post('/register',['uses' => 'ApiAuthController@register']);
+	Route::get('/selectacc',['uses' => 'ApiAuthController@selectacc']);
+	Route::get('/settings/password',['uses' => 'ApiUserController@password']);
+	Route::get('/settings/name',['uses' => 'ApiUserController@name']);
+	Route::get('/settings/email',['uses' => 'ApiUserController@email']);
+	Route::get('/settings/contacc',['uses' => 'ApiUserController@contacc']);
+	Route::get('/supply',['uses' => 'ApiPageController@supply']);
+	Route::get('/meter',['uses' => 'ApiPageController@meter']);
+	Route::get('/meterhistory',['uses' => 'ApiPageController@meterhist']);
+	Route::get('/connection',['uses' => 'ApiPageController@connection']);
+	Route::get('/reading',['uses' => 'ApiPageController@reading']);
+	Route::get('/readinghistory',['uses' => 'ApiPageController@readinghist']);
+	Route::get('/bill',['uses' => 'ApiPageController@bill']);
+	Route::get('/payment',['uses' => 'ApiPageController@payment']);
+	Route::get('/paymenthistory',['uses'=>'ApiPageController@paymenthist']);
+	Route::get('/sixmonthpayment',['uses' => 'ApiPageController@sixmonthpayment']);
+	Route::get('/paymentnotice',['uses' => 'ApiPageController@paymentnotice']);
+	Route::get('/compliance',['uses' => 'ApiPageController@compliance']);
+	Route::get('/care',['uses' => 'ApiPageController@care']);
+	Route::get('/datedocuments',['uses'=>'ApiVaultController@datedocs']);
+	Route::get('/getdocuments',['uses'=>'ApiVaultController@getdocs']);
+	Route::get('/urldocuments',['uses'=>'ApiVaultController@urldocs']);
 });

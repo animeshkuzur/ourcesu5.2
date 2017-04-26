@@ -73,7 +73,7 @@ class AuthController extends Controller
         $data = $request->only('name','email','password','password2','cont_acc','phone');
         $stl_conn = \DB::connection('sqlsrv_STL');
         foreach ($contacc as $accnos) {
-            $count=$count+1;
+            $count=$count+1; //sizeof()
             if(empty($accnos)){
                 return back()->withInput()->withErrors(['cont_acc' => 'Contract Account Number ' .$count. ' is missing']);
             }
