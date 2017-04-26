@@ -432,7 +432,7 @@ class VaultController extends Controller
                         } catch (\Exception $e) {
                             $mi=null;
                         }
-                        return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$dat,'conn'=>$conn,'rp'=>$rp,'mr'=>$mr,'mi'=>$mi);
+                        return view('pages.docview',['doc_type'=>$document['id'],'dat'=>$dat,'conn'=>$conn,'rp'=>$rp,'mr'=>$mr,'mi'=>$mi]);
                     }
                 }
                 } catch (\Exception $e) {
