@@ -246,15 +246,15 @@
 				<div class='col-xs-4'>
 					MF:
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_MF }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_MF }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_MF or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_MF or '--'}} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Condition:
 				</div>
-				<div class='col-xs-4'> {{ $dat->MR_Condition }} </div>
-				<div class='col-xs-4'> {{ $dat->MI_Condition }} </div>
+				<div class='col-xs-4'> {{ $dat->MR_Condition or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->MI_Condition or '--'  }} </div>
 			</div>
 		</div>
 		<div class='col-sm-6'>
@@ -271,71 +271,71 @@
 				<div class='col-xs-4'>
 					Meter Seals: 
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_MeterSeals1 }}</div>
-				<div class='col-xs-4'> {{ $dat->SI_MeterSeals1 }}</div>
+				<div class='col-xs-4'> {{ $dat->SR_MeterSeals1 or '--' }}</div>
+				<div class='col-xs-4'> {{ $dat->SI_MeterSeals1 or '--' }}</div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_MeterSeals2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_MeterSeals2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_MeterSeals2 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_MeterSeals2 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Box Seals:
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BoxSeals1 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BoxSeals1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BoxSeals1 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BoxSeals1 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BoxSeals2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BoxSeals2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BoxSeals2 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BoxSeals2 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Busbar Seal:
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BusbarSeals1 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BusbarSeals1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BusbarSeals1 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BusbarSeals1 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_BusbarSeals2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_BusbarSeals2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_BusbarSeals2 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_BusbarSeals2 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					Terminal Seal:
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal1 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal1 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal1 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal2 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal2 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal2 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal2 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					&nbsp;
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal3 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal3 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_TerminalSeal3 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_TerminalSeal3 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
 					OPTICAL Seal
 				</div>
-				<div class='col-xs-4'> {{ $dat->SR_OpticalSeal1 }} </div>
-				<div class='col-xs-4'> {{ $dat->SI_OpticalSeal1 }} </div>
+				<div class='col-xs-4'> {{ $dat->SR_OpticalSeal1 or '--' }} </div>
+				<div class='col-xs-4'> {{ $dat->SI_OpticalSeal1 or '--' }} </div>
 			</div>
 			<div class='row'>
 				<div class='col-xs-4'>
@@ -348,7 +348,7 @@
 	</div><br>
 	<div class='row'>
 		<div class='col-xs-12'>
-			<strong>Remarks: {{ $dat->Remarks }}</strong>
+			<strong>Remarks: {{ $dat->Remarks or '--' }}</strong>
 		</div>
 	</div><br>
 	<div class='row'>
