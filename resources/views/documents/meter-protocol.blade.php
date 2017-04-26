@@ -45,7 +45,7 @@
 	</div>
 	<div class='row'>
 		<div class='col-xs-4 title'>
-			SU Code: {{ $dat->SU_Id }}
+			SU Code: {{ $dat->SU_Id or 'Missing ID' }}
 		</div>
 		<div class='col-xs-4 title'>
 			<h4><strong>Meter Protocol Sheet</strong></h4>
