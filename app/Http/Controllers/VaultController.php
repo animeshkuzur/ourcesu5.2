@@ -392,7 +392,7 @@ class VaultController extends Controller
                 $document['type'] = $docs[0]->type;
                 break;
             case '8':
-            dd("lol");
+            
                 try {
                     $docs = \DB::table('documents')->where('documents.id',8)->join('document_types','document_types.id','=','documents.type')->get(['documents.id','documents.name','document_types.name as type']);
                 $mtr_pro = \DB::table('OW.dbo.MTR_PROT_SHEET')->where('CONTRACT_ACC',$contacc)->where('CP_Date',$date)->get();
