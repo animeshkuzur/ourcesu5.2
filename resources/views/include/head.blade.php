@@ -17,5 +17,51 @@
     {{-- These two js file always on top--}}
     <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('dist/js/bootstrap.min.js') }}"></script>
+    <style>
+.dropbtn {
+
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: normal;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 360px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 3px 5px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px !important;
+    font-weight: normal;
+
+
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
 
     

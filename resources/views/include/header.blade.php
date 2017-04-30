@@ -625,18 +625,92 @@
 				</ul>				
 			</li>
           					  
-		  <li class="cesu-menu"><a href="#">EHS</a></li>
-		  
-		 					  
-		  <li class="cesu-menu"><a href="#">Network</a></li>
-		  
-		 					  
-		  <li class="cesu-menu"><a href="#">Community</a></li>
-		  
-		 					  
-		  <li class="cesu-menu"><a href="#">Associates</a></li>
+		  <li class="cesu-menu mega">
+		  		<div class="dropdown">
+				  <button class="dropbtn">EHS</button>
+				  <div class="dropdown-content">
+				  	<?php
+				  		$pages=DB::table('pages')->where('subcategory_id',24)->get();
+				  	?>
+				  	@foreach($pages as $p)
 
-		  <li class="cesu-menu"><a href="#">Careers</a></li>
+				    <a href="{{url('page',$p->id)}}">{{$p->name}}</a>
+				
+				    @endforeach
+				  </div>
+				</div>
+		  </li>
+		  
+		 					  
+ 		  <li class="cesu-menu mega">
+		  		<div class="dropdown">
+				  <button class="dropbtn">Network</button>
+				  <div class="dropdown-content">
+				  	<?php
+				  		$pages=DB::table('pages')->where('subcategory_id',23)->get();
+				  	?>
+				  	@foreach($pages as $p)
+
+				    <a href="{{url('page',$p->id)}}">{{$p->name}}</a>
+				
+				    @endforeach
+				  </div>
+				</div>
+		  </li>
+		  
+		  
+		 					  
+  		  	<li class="cesu-menu mega">
+		  		<div class="dropdown">
+				  <button class="dropbtn">Community</button>
+				  <div class="dropdown-content">
+				  	<?php
+				  		$pages=DB::table('pages')->where('subcategory_id',25)->get();
+				  	?>
+				  	@foreach($pages as $p)
+
+				    <a href="{{url('page',$p->id)}}">{{$p->name}}</a>
+				
+				    @endforeach
+				  </div>
+				</div>
+		  </li>
+		  
+		  
+		 					  
+  		  <li class="cesu-menu mega">
+		  		<div class="dropdown">
+				  <button class="dropbtn">Associates</button>
+				  <div class="dropdown-content">
+				  	<?php
+				  		$pages=DB::table('pages')->where('subcategory_id',26)->get();
+				  	?>
+				  	@foreach($pages as $p)
+
+				    <a href="{{url('page',$p->id)}}">{{$p->name}}</a>
+				
+				    @endforeach
+				  </div>
+				</div>
+		  </li>
+		  
+
+  		  <li class="cesu-menu mega">
+		  		<div class="dropdown">
+				  <button class="dropbtn">Careers</button>
+				  <div class="dropdown-content">
+				  	<?php
+				  		$pages=DB::table('pages')->where('subcategory_id',27)->get();
+				  	?>
+				  	@foreach($pages as $p)
+
+				    <a href="{{url('page',$p->id)}}">{{$p->name}}</a>
+				
+				    @endforeach
+				  </div>
+				</div>
+		  </li>
+		  
 		  
 		   
 		</ul>
