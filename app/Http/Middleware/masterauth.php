@@ -15,11 +15,11 @@ class masterauth
      */
     public function handle($request, Closure $next)
     {
-        $key="cesu7895";
-        if (Session::get('masterkey') != $key) {
-            return "No access";
-            return redirect()->back();
-        }
+        // $key="cesu7895";
+        // if (Session::get('masterkey') != $key) {
+        //     return "No access";
+        //     return redirect()->back();
+        // }
 
         return $next($request);
     }
