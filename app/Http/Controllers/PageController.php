@@ -75,6 +75,7 @@ class PageController extends Controller
         $co->page_id=$page->id;
         $co->content="No Content";
         $co->save();
+        return $page->id;
     }
 
 }
