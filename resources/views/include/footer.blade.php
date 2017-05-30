@@ -4,7 +4,7 @@
                     <div class="cesu-ftr">
                     <div class="col-md-3 prd">
                         <h4>Ourcesu.com</h4>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/262">Privacy Policy</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/262">Privacy Statement</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/268">Refund & Cancellation Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/273">Information</a></p>
                     </div>
