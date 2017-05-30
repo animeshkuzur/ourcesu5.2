@@ -10,8 +10,8 @@
                     </div>
                     <div class="col-md-3 prd">
                         <h4>&nbsp;</h4>
-                       <p><span class="glyphicon glyphicon-menu-right"></span> <a href="page/269">Services</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="page/270">Disclaimer of warranties</a></p>
+                       <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/269">Services</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/270">Disclaimer of warranties</a></p>
                       {{--   <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Legal Disclaimer</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Cookies Policy</a></p>
@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-md-3 prd">
                         <h4>&nbsp;</h4>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="page/271">Acceptance</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="page/272">Revisions</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/271">Acceptance</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/272">Revisions</a></p>
                       {{--   <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Legal Disclaimer</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Cookies Policy</a></p>
