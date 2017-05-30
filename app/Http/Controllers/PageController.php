@@ -32,5 +32,48 @@ class PageController extends Controller
     	$data = Content::where('page_id',$id)->get();
     	return view('pages.index',['data' => $data[0]]);
     }
+    public function show_new_subcat()
+    {
+        return "
+
+            <form action='' method='POST'>
+                <input type='text' name='cat_id'> <br>
+                <input name='title'> <br>".csrf_field()."
+                <input type='submit'>
+            </form>
+
+
+        ";
+    }
+    public function save_new_subcat(Request $r)
+    {
+        $page= new Subcategory;
+        $page->name=$r->title;
+        $page->category_id=$r->cat_id;
+        $page->save();
+    }
+    public function show_new_page()
+    {
+        return "
+
+            <form action='' method='POST'>
+                <input type='text' name='subcat_id'>".csrf_field()." <br>
+                <input name='title'> <br>
+                <input type='submit'>
+            </form>
+
+
+        ";
+    }
+    public function save_new_page(Request $r)
+    {
+        $page= new Page;
+        $page->name=$r->title;
+        $page->subcategory_id=$r->subcat_id;
+        $page->save();
+        $co=new Content;
+        $co->page_id=$page->id;
+        $co->save();
+    }
 
 }

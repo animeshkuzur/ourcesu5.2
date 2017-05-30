@@ -4,36 +4,31 @@
                     <div class="cesu-ftr">
                     <div class="col-md-3 prd">
                         <h4>Ourcesu.com</h4>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Privacy Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Copytight Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Legal Disclaimer</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Cookies Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Our Cesu Commitment</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Regular Notices</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Your add Choice</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/262">Privacy Policy</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="/page/267">Refund/Cancellation Policy</a></p>
+                      
                     </div>
                     <div class="col-md-3 prd">
-                        <h4>Help</h4>
-                       <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Privacy Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Copytight Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
+                        <h4>&nbsp;</h4>
+                       <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Services</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Disclaimer of warranties</a></p>
+                      {{--   <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Legal Disclaimer</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Cookies Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Our Cesu Commitment</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Regular Notices</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Your add Choice</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Your add Choice</a></p> --}}
                     </div>
                     <div class="col-md-3 prd">
-                        <h4>Useful Link</h4>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Privacy Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Copytight Policy</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
+                        <h4>&nbsp;</h4>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Acceptance</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Revisions</a></p>
+                      {{--   <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Data Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Legal Disclaimer</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Cookies Policy</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Our Cesu Commitment</a></p>
                         <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Regular Notices</a></p>
-                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Your add Choice</a></p>
+                        <p><span class="glyphicon glyphicon-menu-right"></span> <a href="#">Your add Choice</a></p> --}}
                     </div>
                     <div class="col-md-3 prd">
                         <h4>Contact Us</h4>

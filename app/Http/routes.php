@@ -59,6 +59,11 @@ Route::group(['middleware'=>'masterauth'],function(){
 		Route::get('/getpage',['uses'=>'AdminController@getpage']);
 		Route::get('/getcontent',['uses'=>'AdminController@getcontent']);
 		Route::post('/savecontent',['uses'=>'AdminController@savecontent']);
+		Route::get('new/page','PageController@show_new_page');
+		Route::post('new/page','PageController@save_new_page');
+		Route::get('new/subcat','PageController@show_new_subcat');
+		Route::post('new/subcat','PageController@save_new_subcat');
+
 	});
 });
 
