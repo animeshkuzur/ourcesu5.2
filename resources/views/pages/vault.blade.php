@@ -63,19 +63,19 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <select class="form-control input-sm" id="doc_type">
-                                                <option value="11">SAP Bill</option>
-                                                <option value="12">Spot Bill</option>
-                                                <option value="1" disabled>Demand Note</option>
-                                                <option value="2" disabled>Disconnection Notice</option>
-                                                <option value="3">E-mobile Receipt</option>
-                                                <option value="4" disabled>Final Assessment</option>
-                                                <option value="5">FOC Slip</option>
-                                                <option value="6" disabled>Inspection Report</option>
-                                                <option value="7" disabled>Meter Change</option>
-                                                <option value="8">Meter Protocol</option>
+                                                <option disabled>SAP Bill</option>
+                                                <option disabled>Spot Bill</option>
+                                                <option disabled>Demand Note</option>
+                                                <option disabled>Disconnection Notice</option>
+                                                <option disabled="disabled">E-mobile Receipt</option>
+                                                <option  disabled>Final Assessment</option>
+                                                <option disabled="disabled">FOC Slip</option>
+                                                <option disabled="disabled">Inspection Report</option>
+                                                <option  disabled>Meter Change</option>
+                                                <option disabled="disabled">Meter Protocol</option>
                                                 <option value="9">Money Receipt</option>
-                                                <option value="10" disabled>Provisional Assessment</option>
-                                                <option value="13">Acknowledgement Receipt of Service Request</option>
+                                                <option  disabled>Provisional Assessment</option>
+                                                <option disabled="disabled">Acknowledgement Receipt of Service Request</option>
                                             </select>
                                         </div>
                                     </div>
